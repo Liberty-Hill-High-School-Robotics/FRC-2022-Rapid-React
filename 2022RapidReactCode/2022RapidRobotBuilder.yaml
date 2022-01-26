@@ -275,6 +275,16 @@ Children:
           value: '7'
       Base: Victor SPX
       Name: Victor SPX Intake
+    - Children: []
+      Properties:
+        Input Channel (Analog): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id001
+          default: '0'
+          name: Input Channel (Analog)
+          validators: *id002
+          value: '3'
+      Base: Analog Input
+      Name: intakeSensor
     Properties:
       Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
         name: Send to SmartDashboard, validators: null, value: false}
@@ -730,9 +740,9 @@ Properties:
       Number, validators: null, value: 0}
   Export Subsystems: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Subsystems, validators: null, value: true}
-  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\ander\',
+  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\hayde\',
     extension: null, folder: true, name: Wiring file location, validators: null, value: 'C:\Users\ander\'}
-  Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\ander\FRCProjects',
+  Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\hayde\FRCProjects',
     extension: null, folder: true, name: Export Directory, validators: null, value: ..\}
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
     name: Autonomous Command, type: Command, validators: null, value: Autonomous Command}
