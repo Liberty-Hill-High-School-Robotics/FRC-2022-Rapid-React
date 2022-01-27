@@ -66,7 +66,7 @@ beltTopSensor = new AnalogInput(1);
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        SmartDashboard.putNumber("conveyorSensorValue",beltSensor.getValue());
+        SmartDashboard.putNumber("conveyorSensorValue",beltBottomSensor.getValue());
         SmartDashboard.putBoolean("conveyorSensorTriggered", isBallInConveyor());
     }
 
@@ -90,7 +90,7 @@ beltTopSensor = new AnalogInput(1);
         victorSPXBelt.set(0);
     }
     public boolean  isBallInConveyor() {
-        if  (beltSensor.getValue() < DISTANCE_TOLERANCE) return true;
+        if  (beltBottomSensor.getValue() < DISTANCE_TOLERANCE) return true;
         else return false;
     }
 }

@@ -65,14 +65,14 @@ victorSPXIntake = new WPI_VictorSPX(7);
     // here. Call these from Commands.
     
     public void intakeStartIn() {
-        intakeMotor.set(.5);
+        victorSPXIntake.set(.5);
     }
 
     public void intakeStartOut() {
-        intakeMotor.set(-.5);
+        victorSPXIntake.set(-.5);
     }
     public void intakeStop() {
-        intakeMotor.set(0);
+        victorSPXIntake.set(0);
     }
 }
 

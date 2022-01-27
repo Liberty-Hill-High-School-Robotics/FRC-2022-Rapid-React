@@ -70,15 +70,17 @@ talonFXflywheel2 = new WPI_TalonFX(1);
     // here. Call these from Commands.
 
     public void flywheelStartIn() {
-        flywheelMotor.set(.5);
+        talonFXflywheel1.set(.5);
+        talonFXflywheel2.set(.5);
     }
 
     public void flywheelStartOut() {
-        flywheelMotor.set(-.5);
+        talonFXflywheel1.set(-.5);
+        talonFXflywheel2.set(-.5);
     }
     public void flywheelStop() {
-        flywheelMotor.set(0);
-    }
+        talonFXflywheel1.set(0);
+        talonFXflywheel2.set(0);    }
 
 }
 
