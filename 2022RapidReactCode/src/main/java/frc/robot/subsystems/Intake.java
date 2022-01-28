@@ -86,3 +86,4 @@ intakeSensor = new AnalogInput(3);
         else return false;
     }
 }
+//We're not gonna want the intake to run forwards unless the conveyor is clear and ready.
