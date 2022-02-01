@@ -88,3 +88,5 @@ posOneLimit = new DigitalInput(0);
         // Vex limit switch is actting normally closed, we need it normally open, hence the !
     }
 }
+
+//We're not gonna want the intake to run forwards unless the conveyor is clear and ready.
