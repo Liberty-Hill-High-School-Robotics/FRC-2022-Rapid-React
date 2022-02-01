@@ -54,19 +54,21 @@ public class IntakeInCommand extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+
         m_intake.intakeStartIn();
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        // TODO; need to excecute belt up here
         m_intake.intakeStop();
     }
 
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return false;
+        return m_intake.isBallInIntake();
     }
 
     @Override

@@ -131,6 +131,7 @@ beltDownButton.whileHeld(new BeltDownCommand( m_belt ) ,true);
 final JoystickButton beltUpButton = new JoystickButton(driverJoystick, 1);        
 beltUpButton.whileHeld(new BeltUpCommand( m_belt ) ,true);
     SmartDashboard.putData("beltUpButton",new BeltUpCommand( m_belt ) );
+    
 
 
 
