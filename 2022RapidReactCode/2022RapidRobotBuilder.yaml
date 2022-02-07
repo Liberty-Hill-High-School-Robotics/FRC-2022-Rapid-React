@@ -50,7 +50,7 @@ Children:
           validators: &id003 [CANID]
           value: '6'
       Base: Victor SPX
-      Name: Victor SPX Belt
+      Name: victorSPXBelt
     - Children: []
       Properties:
         Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
@@ -62,7 +62,7 @@ Children:
           validators: &id011 [DigitalChannel]
           value: '1'
       Base: Limit Switch
-      Name: beltLimit
+      Name: beltLimitOne
     Properties:
       Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
         name: Send to SmartDashboard, validators: null, value: false}
@@ -94,7 +94,7 @@ Children:
               validators: &id005 [CANID]
               value: '4'
           Base: Talon SRX
-          Name: Talon SRX L
+          Name: talonSRXL
         - Children: []
           Properties:
             CAN ID: !!robotbuilder.data.properties.ChoicesProperty
@@ -104,20 +104,20 @@ Children:
               validators: *id003
               value: '5'
           Base: Victor SPX
-          Name: Victor SPX L
+          Name: victorSPXL
         Properties:
           MotorController2: !!robotbuilder.data.properties.ChildSelectionProperty
             default: 1
             name: MotorController2
             type: PIDOutput
             validators: &id006 [MotorControllerGroup, ChildDropdownSelected]
-            value: Victor SPX L
+            value: victorSPXL
           MotorController1: !!robotbuilder.data.properties.ChildSelectionProperty
             default: 0
             name: MotorController1
             type: PIDOutput
             validators: &id007 [MotorControllerGroup, ChildDropdownSelected]
-            value: Talon SRX L
+            value: talonSRXL
           MotorController4: !!robotbuilder.data.properties.ChildSelectionProperty {
             default: null, name: MotorController4, type: PIDOutput, validators: null,
             value: null}
@@ -136,7 +136,7 @@ Children:
               validators: *id005
               value: '2'
           Base: Talon SRX
-          Name: Talon SRX R
+          Name: talonSRXR
         - Children: []
           Properties:
             CAN ID: !!robotbuilder.data.properties.ChoicesProperty
@@ -146,20 +146,20 @@ Children:
               validators: *id003
               value: '3'
           Base: Victor SPX
-          Name: Victor SPX R
+          Name: victorSPXR
         Properties:
           MotorController2: !!robotbuilder.data.properties.ChildSelectionProperty
             default: 1
             name: MotorController2
             type: PIDOutput
             validators: *id006
-            value: Victor SPX R
+            value: victorSPXR
           MotorController1: !!robotbuilder.data.properties.ChildSelectionProperty
             default: 0
             name: MotorController1
             type: PIDOutput
             validators: *id007
-            value: Talon SRX R
+            value: talonSRXR
           MotorController4: !!robotbuilder.data.properties.ChildSelectionProperty {
             default: null, name: MotorController4, type: PIDOutput, validators: null,
             value: null}
@@ -218,7 +218,7 @@ Children:
           validators: &id009 [CANID]
           value: '11'
       Base: Talon FX
-      Name: Talon FX flywheel1
+      Name: talonFXflywheel1
     - Children: []
       Properties:
         CAN ID: !!robotbuilder.data.properties.ChoicesProperty
@@ -228,7 +228,7 @@ Children:
           validators: *id009
           value: '12'
       Base: Talon FX
-      Name: Talon FX flywheel2
+      Name: talonFXflywheel2
     Properties:
       Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
         name: Send to SmartDashboard, validators: null, value: false}
@@ -256,7 +256,7 @@ Children:
           validators: *id003
           value: '7'
       Base: Victor SPX
-      Name: Victor SPX Intake
+      Name: victorSPXIntake
     - Children: []
       Properties:
         Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
@@ -266,7 +266,7 @@ Children:
           validators: *id011
           value: '0'
       Base: Limit Switch
-      Name: posOneLimit
+      Name: intakeLimitOne
     Properties:
       Send to SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: false,
         name: Send to SmartDashboard, validators: null, value: false}
@@ -384,7 +384,7 @@ Children:
           name: Command
           type: Command
           validators: *id013
-          value: FlywheelOutCommand
+          value: ShooterOutCommand
         Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
           name: Timeout, validators: null, value: 0.0}
         Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
@@ -396,7 +396,7 @@ Children:
           validators: null
           value: whileHeld
       Base: Joystick Button
-      Name: flywheelOutButton
+      Name: shooterOutButton
     - Children: []
       Properties:
         Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
@@ -419,7 +419,7 @@ Children:
           name: Command
           type: Command
           validators: *id013
-          value: FlywheelInCommand
+          value: ShooterInCommand
         Timeout: !!robotbuilder.data.properties.PositiveDoubleProperty {default: 0,
           name: Timeout, validators: null, value: 0.0}
         Add Timeout: !!robotbuilder.data.properties.BooleanProperty {default: false,
@@ -431,7 +431,7 @@ Children:
           validators: null
           value: whileHeld
       Base: Joystick Button
-      Name: flywheelInButton
+      Name: shooterInButton
     - Children: []
       Properties:
         Interruptible: !!robotbuilder.data.properties.BooleanProperty {default: true,
@@ -612,7 +612,7 @@ Children:
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
-    Name: FlywheelOutCommand
+    Name: ShooterOutCommand
   - Children: []
     Properties:
       Autonomous Selection: !!robotbuilder.data.properties.BooleanProperty {default: false,
@@ -634,7 +634,7 @@ Children:
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
-    Name: FlywheelInCommand
+    Name: ShooterInCommand
   - Children: []
     Properties:
       Autonomous Selection: !!robotbuilder.data.properties.BooleanProperty {default: false,
@@ -713,38 +713,16 @@ Children:
       Run When Disabled: !!robotbuilder.data.properties.BooleanProperty {default: false,
         name: Run When Disabled, validators: null, value: false}
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: Belt}
-      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: []
-        name: Parameter presets
-        validators: null
-        value: []
-      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
-    Base: Sequential Command Group
-    Name: Sequential Command Group 1
-  - Children: []
-    Properties:
-      Autonomous Selection: !!robotbuilder.data.properties.BooleanProperty {default: false,
-        name: Autonomous Selection, validators: null, value: false}
-      Parameters: !!robotbuilder.data.properties.ParametersProperty
-        default: []
-        name: Parameters
-        validators: null
-        value: []
-      Run When Disabled: !!robotbuilder.data.properties.BooleanProperty {default: false,
-        name: Run When Disabled, validators: null, value: false}
-      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: Flywheel}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id015 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id015
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
-    Name: flywheelSlider
+    Name: ShooterSlider
   Properties: {}
   Base: Commands
   Name: Commands
