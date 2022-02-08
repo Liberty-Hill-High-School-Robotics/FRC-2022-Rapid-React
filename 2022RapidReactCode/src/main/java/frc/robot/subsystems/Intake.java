@@ -84,7 +84,7 @@ intakeLimitOne = new DigitalInput(0);
         victorSPXIntake.set(0);
     }
     public boolean  isBallInIntake() {
-        return !intakeLimitOne.get();
+        return !posOneLimit.get();
         // Vex limit switch is actting normally closed, we need it normally open, hence the !
     }
 }
