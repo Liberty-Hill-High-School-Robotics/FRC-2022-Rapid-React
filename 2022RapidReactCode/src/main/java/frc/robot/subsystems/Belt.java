@@ -83,7 +83,7 @@ beltLimitOne = new DigitalInput(1);
         victorSPXBelt.set(-.5);
     }
     public void beltStop() {
-        victorSPXBelt.set(0);
+        victorSPXBelt.stopMotor();
     }
     public boolean  isBallInConveyor() {
         return beltLimitOne.get();
@@ -91,6 +91,7 @@ beltLimitOne = new DigitalInput(1);
     public void test() {
         if(isBallInConveyor())
         victorSPXBelt.set(0);
+
     }
 }
 //We're gonna want the belt to only run forwards whenever the shooter is up to speed and aimed properererly, and only allow reverse movements when the intake is clear.
