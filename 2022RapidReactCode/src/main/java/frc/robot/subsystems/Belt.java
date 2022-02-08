@@ -86,7 +86,7 @@ beltLimitOne = new DigitalInput(1);
         victorSPXBelt.set(0);
     }
     public boolean  isBallInConveyor() {
-        return beltLimit.get();
+        return beltLimitOne.get();
     }
     public void test() {
         if(isBallInConveyor())
