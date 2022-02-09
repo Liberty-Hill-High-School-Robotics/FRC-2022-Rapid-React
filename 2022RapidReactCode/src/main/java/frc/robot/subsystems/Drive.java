@@ -97,6 +97,10 @@ gyro = new AnalogGyro(0);
     public void periodic() {
         // This method will be called once per scheduler run
         SmartDashboard.putNumber("gyroValue", gyro.getAngle());
+        SmartDashboard.putNumber("encoderR", talonSRXR.getSelectedSensorPosition());
+        SmartDashboard.putNumber("encoderL", talonSRXL.getSelectedSensorPosition());
+        SmartDashboard.putNumber("velocityR", talonSRXR.getSelectedSensorVelocity());
+        SmartDashboard.putNumber("velocityL", talonSRXL.getSelectedSensorVelocity());
     }
 
     @Override
