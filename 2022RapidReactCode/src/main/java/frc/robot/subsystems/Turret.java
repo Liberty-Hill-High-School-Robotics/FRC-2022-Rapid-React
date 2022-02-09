@@ -63,6 +63,15 @@ victorSPXTurret = new WPI_VictorSPX(0);
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+    public void turretStartLeft() {
+        victorSPXTurret.set(.5);
+    }
 
+    public void turretStartRight() {
+        victorSPXTurret.set(-.5);
+    }
+    public void turretStop() {
+        victorSPXTurret.stopMotor();
+    }
 }
 
