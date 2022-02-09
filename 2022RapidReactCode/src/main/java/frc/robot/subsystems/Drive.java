@@ -101,6 +101,8 @@ gyro = new AnalogGyro(0);
         SmartDashboard.putNumber("encoderL", talonSRXL.getSelectedSensorPosition());
         SmartDashboard.putNumber("velocityR", talonSRXR.getSelectedSensorVelocity());
         SmartDashboard.putNumber("velocityL", talonSRXL.getSelectedSensorVelocity());
+        SmartDashboard.putNumber("closedLoopErrorL", talonSRXL.getClosedLoopError());
+        SmartDashboard.putNumber("closedLoopErrorR", talonSRXR.getClosedLoopError());
     }
 
     @Override
