@@ -68,14 +68,7 @@ public class IntakeInCommand extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-                if(m_intake.isBallInIntake())   {
-            BeltUpCommand m_BeltUpCommand=new BeltUpCommand(RobotContainer.getInstance().m_belt);
-            m_BeltUpCommand.schedule();
-            return true;
-        }
-        else {
-            return false;
-        }
+       return false;
     }
 
     @Override
