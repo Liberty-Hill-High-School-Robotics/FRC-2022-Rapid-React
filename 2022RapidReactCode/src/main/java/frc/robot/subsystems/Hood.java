@@ -64,5 +64,17 @@ talonSRXHood = new WPI_TalonSRX(1);
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
+    public void HoodUp(){
+    talonSRXHood.set(.1);
+    }
+
+    public void HoodDown(){
+        talonSRXHood.set(-.1);
+    }
+
+    public void HoodStop(){
+        talonSRXHood.set(0);
+    }
+
 }
 
