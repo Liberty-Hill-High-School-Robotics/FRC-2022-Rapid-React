@@ -81,7 +81,7 @@ intakeLimitOne = new DigitalInput(0);
         victorSPXIntake.set(-.5);
     }
     public void intakeStop() {
-        victorSPXIntake.set(0);
+        victorSPXIntake.stopMotor();
     }
     public boolean  isBallInIntake() {
         return !intakeLimitOne.get();

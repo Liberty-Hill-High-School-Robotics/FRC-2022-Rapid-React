@@ -73,7 +73,7 @@ talonSRXHood = new WPI_TalonSRX(1);
     }
 
     public void HoodStop(){
-        talonSRXHood.set(0);
+        talonSRXHood.stopMotor();
     }
 
 }
