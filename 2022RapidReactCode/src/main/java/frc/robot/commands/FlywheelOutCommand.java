@@ -54,7 +54,7 @@ public class FlywheelOutCommand extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_flywheel.flywheelStartOut(-0.5);
+        m_flywheel.flywheelStartOut();
     }
 
     // Called once the command ends or is interrupted.
