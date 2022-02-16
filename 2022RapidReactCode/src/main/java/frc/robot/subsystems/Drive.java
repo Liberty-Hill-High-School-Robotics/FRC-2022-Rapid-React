@@ -131,5 +131,12 @@ gyro = new AnalogGyro(0);
         talonSRXL.set(ControlMode.Position, target);
         talonSRXR.set(ControlMode.Position, target);
     }
+
+    public void driveStop(){
+        talonSRXL.stopMotor();
+        talonSRXR.stopMotor();
+        victorSPXL.stopMotor();
+        victorSPXR.stopMotor();
+    }
 }
 
