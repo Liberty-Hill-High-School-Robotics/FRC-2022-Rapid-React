@@ -76,6 +76,7 @@ shooterLmiit = new DigitalInput(2);
 
     @Override
     public void periodic() {
+        SmartDashboard.putNumber("limelightDistance", RobotContainer.getInstance().getDistance());
         SmartDashboard.putNumber("targetVelocity", talonFXShooter1.getClosedLoopTarget());
         SmartDashboard.putNumber("actualVelocity1", talonFXShooter1.getSelectedSensorVelocity());
         SmartDashboard.putNumber("actualVelocity2", talonFXShooter1.getSelectedSensorVelocity());
