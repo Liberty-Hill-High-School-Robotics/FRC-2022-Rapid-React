@@ -383,7 +383,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id011
-          value: '10'
+          value: '14'
         Motor Type: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id012
           default: Brushless
