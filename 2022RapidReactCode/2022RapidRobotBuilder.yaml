@@ -270,7 +270,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id003
-          value: '0'
+          value: '3'
       Base: Talon SRX
       Name: talonSRXTurret
     Properties:
@@ -333,7 +333,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id011
-          value: '3'
+          value: '10'
         Motor Type: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id012
           default: Brushless
@@ -1271,10 +1271,10 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: RearShooter}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id017 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id017
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
@@ -1300,9 +1300,9 @@ Properties:
       Number, validators: null, value: 0}
   Export Subsystems: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Subsystems, validators: null, value: true}
-  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\ander\',
+  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\madel\',
     extension: null, folder: true, name: Wiring file location, validators: null, value: 'C:\Users\ander\'}
-  Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\ander\FRCProjects',
+  Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\madel\FRCProjects',
     extension: null, folder: true, name: Export Directory, validators: null, value: ..\}
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
     name: Autonomous Command, type: Command, validators: null, value: Autonomous Command}

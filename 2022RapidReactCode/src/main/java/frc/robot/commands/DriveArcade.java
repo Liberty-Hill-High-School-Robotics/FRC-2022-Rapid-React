@@ -54,7 +54,11 @@ public class DriveArcade extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        if(Math.abs(-RobotContainer.getInstance().getdriverJoystick().getY()) < .1 ){
+            m_drive.DriveArcade(-RobotContainer.getInstance().getdriverJoystick().getY(),RobotContainer.getInstance().getdriverJoystick().getX() * 0.25);
+        } else {
         m_drive.DriveArcade(-RobotContainer.getInstance().getdriverJoystick().getY(),RobotContainer.getInstance().getdriverJoystick().getX());
+        }
     }
 
     // Called once the command ends or is interrupted.
