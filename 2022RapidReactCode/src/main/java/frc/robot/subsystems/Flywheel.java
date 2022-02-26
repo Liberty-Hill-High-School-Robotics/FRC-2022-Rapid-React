@@ -118,7 +118,7 @@ shooterLmiit = new DigitalInput(2);
         SmartDashboard.putNumber("limelightDistance", RobotContainer.getInstance().getDistance());
         SmartDashboard.putNumber("targetVelocity", talonFXShooter1.getClosedLoopTarget());
         SmartDashboard.putNumber("actualVelocity1", talonFXShooter1.getSelectedSensorVelocity());
-        SmartDashboard.putNumber("actualVelocity2", talonFXShooter1.getSelectedSensorVelocity());
+        SmartDashboard.putNumber("actualVelocity2", talonFXShooter2.getSelectedSensorVelocity());
         SmartDashboard.putNumber("RequestedShooterVelocity", CURRENT_SHOOTER_VELOCITY);
         // This method will be called once per scheduler run
 

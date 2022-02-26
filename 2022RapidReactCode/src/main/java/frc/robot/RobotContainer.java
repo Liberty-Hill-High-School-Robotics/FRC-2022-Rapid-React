@@ -127,7 +127,7 @@ private final Joystick driverJoystick = new Joystick(0);
     SmartDashboard.putData("TransversalBack", new TransversalBack( m_transversal ));
 
     // GROUP
-    SmartDashboard.putData("PrepareToShoot", new PrepareToShoot(m_turret));
+    SmartDashboard.putData("PrepareToShoot", new PrepareToShoot(m_turret, m_flywheel, m_rearShooter));
 
 
     // Configure the button bindings
