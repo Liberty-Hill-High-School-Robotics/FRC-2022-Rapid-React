@@ -83,8 +83,8 @@ intakeLimitOne = new DigitalInput(0);
         victorSPXIntake.stopMotor();
     }
     public boolean  isBallInIntake() {
+        // FRIDGE Switch is Normally CLOSED
         return !intakeLimitOne.get();
-        // Vex limit switch is actting normally closed, we need it normally open, hence the !
     }
 }
 

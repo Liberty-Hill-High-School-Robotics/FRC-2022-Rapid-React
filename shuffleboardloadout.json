@@ -11,25 +11,18 @@
         "vgap": 16.0,
         "titleType": 0,
         "tiles": {
-          "1,1": {
+          "0,0": {
             "size": [
               1,
               1
             ],
             "content": {
-              "_type": "Graph",
+              "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/actualVelocity1",
-              "_title": "SmartDashboard/actualVelocity1",
-              "Graph/Visible time": 30.0,
-              "Graph/X-axis auto scrolling": true,
-              "Y-axis/Automatic bounds": true,
-              "Y-axis/Upper bound": 1.0,
-              "Y-axis/Lower bound": -1.0,
-              "Y-axis/Unit": "ul",
-              "Visible data/SmartDashboard/actualVelocity1": true
+              "_title": "SmartDashboard/actualVelocity1"
             }
           },
-          "4,1": {
+          "2,0": {
             "size": [
               1,
               1
@@ -47,7 +40,7 @@
               "Visible data/SmartDashboard/actualVelocity2": true
             }
           },
-          "12,5": {
+          "5,0": {
             "size": [
               1,
               1
@@ -58,7 +51,7 @@
               "_title": "LiveWindow/Drive/gyro/Value"
             }
           },
-          "6,0": {
+          "4,0": {
             "size": [
               1,
               1
@@ -69,7 +62,7 @@
               "_title": "SmartDashboard/targetVelocity"
             }
           },
-          "6,2": {
+          "4,2": {
             "size": [
               1,
               1
@@ -80,7 +73,7 @@
               "_title": "SmartDashboard/closedLoopErrorL"
             }
           },
-          "6,1": {
+          "4,1": {
             "size": [
               1,
               1
@@ -180,7 +173,7 @@
               "imageHeight": -1
             }
           },
-          "8,3": {
+          "7,0": {
             "size": [
               1,
               1
@@ -190,15 +183,296 @@
               "_source0": "network_table:///SmartDashboard/limelightDistance",
               "_title": "SmartDashboard/limelightDistance"
             }
+          },
+          "5,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///LiveWindow/Drive/driveMain/Left Motor Speed",
+              "_title": "/LiveWindow/Drive/driveMain/Left Motor Speed"
+            }
+          },
+          "5,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///LiveWindow/Drive/driveMain/Right Motor Speed",
+              "_title": "/LiveWindow/Drive/driveMain/Right Motor Speed"
+            }
+          },
+          "8,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/FlywheelOutCommand",
+              "_title": "/SmartDashboard/FlywheelOutCommand"
+            }
+          },
+          "2,4": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/FrontDecrementVelocity",
+              "_title": "/SmartDashboard/FrontDecrementVelocity"
+            }
+          },
+          "2,3": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/FrontIncrementVelocity",
+              "_title": "/SmartDashboard/FrontIncrementVelocity"
+            }
+          },
+          "9,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/FrontVelocity",
+              "_title": "/SmartDashboard/FrontVelocity"
+            }
+          },
+          "0,4": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/RearDecrementVelocity",
+              "_title": "/SmartDashboard/RearDecrementVelocity"
+            }
+          },
+          "0,3": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/RearIncrementVelocity",
+              "_title": "/SmartDashboard/RearIncrementVelocity"
+            }
+          },
+          "0,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/RearVelocity",
+              "_title": "/SmartDashboard/RearVelocity"
+            }
+          },
+          "1,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/RearRequestVelocity",
+              "_title": "/SmartDashboard/RearRequestVelocity"
+            }
+          },
+          "2,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/RequestedShooterVelocity",
+              "_title": "/SmartDashboard/RequestedShooterVelocity"
+            }
+          },
+          "3,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/FrontShooterSlider",
+              "_title": "/SmartDashboard/FrontShooterSlider"
+            }
+          },
+          "7,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/BeltDownCommand",
+              "_title": "/SmartDashboard/BeltDownCommand"
+            }
+          },
+          "7,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/BeltUpCommand",
+              "_title": "/SmartDashboard/BeltUpCommand"
+            }
+          },
+          "6,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/IntakeInCommand",
+              "_title": "/SmartDashboard/IntakeInCommand"
+            }
+          },
+          "5,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/IntakeOutCommand",
+              "_title": "/SmartDashboard/IntakeOutCommand"
+            }
+          },
+          "11,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/LiftStartDown",
+              "_title": "/SmartDashboard/LiftStartDown"
+            }
+          },
+          "11,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/LiftStartUp",
+              "_title": "/SmartDashboard/LiftStartUp"
+            }
+          },
+          "10,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/TransversalBack",
+              "_title": "/SmartDashboard/TransversalBack"
+            }
+          },
+          "10,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/TransversalForward",
+              "_title": "/SmartDashboard/TransversalForward"
+            }
+          },
+          "10,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/posOneLimit",
+              "_title": "/SmartDashboard/posOneLimit",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "11,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///LiveWindow/Belt/throughSensor/Value",
+              "_title": "/LiveWindow/Belt/throughSensor/Value",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "12,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///LiveWindow/Belt/beltLimit/Value",
+              "_title": "/LiveWindow/Belt/beltLimit/Value",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "5,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/BeltToFull",
+              "_title": "/SmartDashboard/BeltToFull"
+            }
+          },
+          "6,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/IntakeToFull",
+              "_title": "/SmartDashboard/IntakeToFull"
+            }
           }
         }
       }
     }
   ],
   "windowGeometry": {
-    "x": 0.0,
-    "y": 0.0,
-    "width": 1920.0,
-    "height": 1032.0
+    "x": -6.5,
+    "y": -6.5,
+    "width": 1933.0,
+    "height": 1045.0
   }
 }

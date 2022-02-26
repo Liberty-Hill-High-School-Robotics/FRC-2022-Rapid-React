@@ -66,7 +66,8 @@ public class BeltToFull extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return false;
+        if(m_belt.isBallInConveyor()) return true;
+        else return false;
     }
 
     @Override
