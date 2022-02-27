@@ -55,6 +55,8 @@ talonSRXTurret = new WPI_TalonSRX(3);
     public void periodic() {
     
         // This method will be called once per scheduler run
+        SmartDashboard.putNumber("TurretPosition", talonSRXTurret.getSelectedSensorPosition());
+        
 
     }
 

@@ -44,7 +44,7 @@ public class SimpleAuton extends SequentialCommandGroup {
         //          new command3(argsN, subsystem)
         //      )    
         //  );
-            new PrepareToShoot(turret),
+            new PrepareToShoot(turret, flywheel, rearShooter),
             new DriveTime(2.5, -.25, drive)
         );
     }
