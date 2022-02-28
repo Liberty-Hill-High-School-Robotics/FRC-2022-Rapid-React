@@ -74,6 +74,7 @@ public class Belt extends SubsystemBase {
     */
     public Belt() {
         victorSPXBelt = new WPI_VictorSPX(2);
+        victorSPXBelt.configFactoryDefault();
         victorSPXBelt.setInverted(true);
 
         throughSensor = new DigitalInput(1);
