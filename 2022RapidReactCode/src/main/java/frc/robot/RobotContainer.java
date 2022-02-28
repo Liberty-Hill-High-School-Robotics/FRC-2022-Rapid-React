@@ -94,7 +94,7 @@ private final Joystick driverJoystick = new Joystick(0);
     SmartDashboard.putData("IntakeToFull", new IntakeToFull( m_intake ));
 
     // CONVEYOR
-    SmartDashboard.putData("BeltUpCommand", new BeltUpCommand(m_belt));
+    SmartDashboard.putData("BeltUpCommand", new BeltUpCommand(m_belt, Belt.Level.MANUAL));
     SmartDashboard.putData("BeltDownCommand", new BeltDownCommand( m_belt ));
     SmartDashboard.putData("BeltToFull", new BeltToFull( m_belt ));
     SmartDashboard.putData("BeltIncrementVelocity", new beltTestIncrement(m_belt));
