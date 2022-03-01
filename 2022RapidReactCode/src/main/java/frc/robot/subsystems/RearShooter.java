@@ -61,7 +61,6 @@ public class RearShooter extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        SmartDashboard.putNumber("RearRequestVelocity", CURRENT_SHOOTER_VELOCITY);
         SmartDashboard.putNumber("RearVelocity", m_encoder.getVelocity());
     }
 
@@ -95,15 +94,17 @@ public class RearShooter extends SubsystemBase {
     public void incrementShooterVelocity() {
         CURRENT_SHOOTER_VELOCITY = CURRENT_SHOOTER_VELOCITY + 475;
         if (CURRENT_SHOOTER_VELOCITY > MAX_SHOOTER_VELOCITY) CURRENT_SHOOTER_VELOCITY = MAX_SHOOTER_VELOCITY;
+        SmartDashboard.putNumber("RearRequestVelocity", CURRENT_SHOOTER_VELOCITY);
     }
 
     public void decrementShooterVelocity() {
         CURRENT_SHOOTER_VELOCITY = CURRENT_SHOOTER_VELOCITY - 475;
         if (CURRENT_SHOOTER_VELOCITY < 0) CURRENT_SHOOTER_VELOCITY = 0;
+        SmartDashboard.putNumber("RearRequestVelocity", CURRENT_SHOOTER_VELOCITY);
     }
 
     public void testVelocity() {
-        m_pidController.setReference(CURRENT_SHOOTER_VELOCITY, CANSparkMax.ControlType.kVelocity);
+        m_pidController.setReference(SmartDashboard.getNumber("RearRequestVelocity", CURRENT_SHOOTER_VELOCITY), CANSparkMax.ControlType.kVelocity);
     }
 }
 

@@ -108,7 +108,6 @@ public class Flywheel extends SubsystemBase {
         SmartDashboard.putNumber("targetVelocity", talonFXShooter1.getClosedLoopTarget());
         SmartDashboard.putNumber("actualVelocity1", talonFXShooter1.getSelectedSensorVelocity());
         SmartDashboard.putNumber("actualVelocity2", talonFXShooter2.getSelectedSensorVelocity());
-        SmartDashboard.putNumber("RequestedShooterVelocity", CURRENT_SHOOTER_VELOCITY);
     }
 
     @Override
@@ -146,15 +145,17 @@ public class Flywheel extends SubsystemBase {
     public void incrementShooterVelocity() {
         CURRENT_SHOOTER_VELOCITY = CURRENT_SHOOTER_VELOCITY + 10;
         if (CURRENT_SHOOTER_VELOCITY > MAX_SHOOTER_VELOCITY) CURRENT_SHOOTER_VELOCITY = MAX_SHOOTER_VELOCITY;
+        SmartDashboard.putNumber("RequestedShooterVelocity", CURRENT_SHOOTER_VELOCITY);
     }
 
     public void decrementShooterVelocity() {
         CURRENT_SHOOTER_VELOCITY = CURRENT_SHOOTER_VELOCITY - 10;
         if (CURRENT_SHOOTER_VELOCITY < 0) CURRENT_SHOOTER_VELOCITY = 0;
+        SmartDashboard.putNumber("RequestedShooterVelocity", CURRENT_SHOOTER_VELOCITY);
     }
 
     public void flyWheelTestVelocity() {
-        talonFXShooter1.set(ControlMode.Velocity, CURRENT_SHOOTER_VELOCITY);
+        talonFXShooter1.set(ControlMode.Velocity, SmartDashboard.getNumber("RequestedShooterVelocity", CURRENT_SHOOTER_VELOCITY));
     }
 }
 
