@@ -144,18 +144,17 @@ public class Flywheel extends SubsystemBase {
 
     // All methods below this comment are for TESTING ONLY
     public void incrementShooterVelocity() {
-        CURRENT_SHOOTER_VELOCITY = CURRENT_SHOOTER_VELOCITY + .1;
-        if (CURRENT_SHOOTER_VELOCITY > 1) CURRENT_SHOOTER_VELOCITY = 1;
+        CURRENT_SHOOTER_VELOCITY = CURRENT_SHOOTER_VELOCITY + 10;
+        if (CURRENT_SHOOTER_VELOCITY > MAX_SHOOTER_VELOCITY) CURRENT_SHOOTER_VELOCITY = MAX_SHOOTER_VELOCITY;
     }
 
     public void decrementShooterVelocity() {
-        CURRENT_SHOOTER_VELOCITY = CURRENT_SHOOTER_VELOCITY - .1;
+        CURRENT_SHOOTER_VELOCITY = CURRENT_SHOOTER_VELOCITY - 10;
         if (CURRENT_SHOOTER_VELOCITY < 0) CURRENT_SHOOTER_VELOCITY = 0;
     }
 
     public void flyWheelTestVelocity() {
-        //talonFXShooter1.set(ControlMode.Velocity, CURRENT_SHOOTER_VELOCITY);
-        talonFXShooter1.set(ControlMode.PercentOutput,CURRENT_SHOOTER_VELOCITY);
+        talonFXShooter1.set(ControlMode.Velocity, CURRENT_SHOOTER_VELOCITY);
     }
 }
 

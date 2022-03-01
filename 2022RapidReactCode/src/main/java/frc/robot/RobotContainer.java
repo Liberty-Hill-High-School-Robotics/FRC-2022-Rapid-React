@@ -224,7 +224,9 @@ public XboxController getoperatorJoystick() {
 
 
   public double getDistance(){
-    double distance = (TARGET_HEIGHT - CAMERA_HEIGHT) / Math.tan(CAMERA_ANGLE + getTy());
+    // 20220228 Corrected Calculation : Incorrectly sending angle in degrees instead of radians to tan method
+    double radians = Math.toRadians(CAMERA_ANGLE + getTy());
+    double distance = (TARGET_HEIGHT - CAMERA_HEIGHT) / Math.tan(radians);
     return distance;
   }
   

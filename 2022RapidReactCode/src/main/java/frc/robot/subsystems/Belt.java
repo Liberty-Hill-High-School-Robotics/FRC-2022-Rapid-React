@@ -41,7 +41,7 @@ public class Belt extends SubsystemBase {
     public enum Level {
         INDEX       (0.3),      // Auto-Move Ball to Sensor Position
         MANUAL      (0.2),      // If Operator is trying to correct a problem
-        TARMAC      (0.0),      // Shooting from Tarmac
+        TARMAC      (0.4),      // Shooting from Tarmac
         LAUNCH1     (0.0),      // Shooting from Launch Pad 1
         LAUNCH2     (0.0),      // Shooting from Launch Pad 2
         TERMINAL    (0.0),      // Shooting from Terminal
@@ -88,7 +88,6 @@ public class Belt extends SubsystemBase {
     @Override
     public void periodic() {
         SmartDashboard.putBoolean("conveyorSensorTriggered", isBallInConveyor());
-        SmartDashboard.putNumber("BeltRequestedSpeed", CURRENT_BELT_VELOCITY);
         SmartDashboard.putNumber("BeltCurrentOutput", victorSPXBelt.get());
     }
 
@@ -181,6 +180,7 @@ public class Belt extends SubsystemBase {
     }
 
     public void beltTestPrecentOutput() {
+        CURRENT_BELT_VELOCITY = SmartDashboard.getNumber("BeltRequestedSpeed", CURRENT_BELT_VELOCITY);
         victorSPXBelt.set(CURRENT_BELT_VELOCITY);
     }
 }
