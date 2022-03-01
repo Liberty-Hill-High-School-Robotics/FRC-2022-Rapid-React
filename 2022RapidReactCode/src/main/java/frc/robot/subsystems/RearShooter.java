@@ -45,6 +45,7 @@ public class RearShooter extends SubsystemBase {
     public RearShooter() {
         canSparkMAXRearShooter = new CANSparkMax(14, MotorType.kBrushless);
         canSparkMAXRearShooter.setIdleMode(IdleMode.kCoast);
+        canSparkMAXRearShooter.setInverted(true);
         
         m_encoder = canSparkMAXRearShooter.getEncoder();
 

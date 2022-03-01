@@ -631,7 +631,7 @@
               "_title": "/SmartDashboard/limelightDistance"
             }
           },
-          "3,1": {
+          "1,5": {
             "size": [
               2,
               1
@@ -642,7 +642,7 @@
               "_title": "SmartDashboard/BeltDecrementVelocity"
             }
           },
-          "3,2": {
+          "1,4": {
             "size": [
               2,
               1
@@ -653,7 +653,7 @@
               "_title": "SmartDashboard/BeltIncrementVelocity"
             }
           },
-          "3,3": {
+          "1,3": {
             "size": [
               2,
               1
@@ -664,9 +664,9 @@
               "_title": "SmartDashboard/BeltTESTPrecentOutput"
             }
           },
-          "4,4": {
+          "0,1": {
             "size": [
-              1,
+              2,
               1
             ],
             "content": {
@@ -675,9 +675,9 @@
               "_title": "SmartDashboard/RearDecrementVelocity"
             }
           },
-          "5,4": {
+          "0,0": {
             "size": [
-              1,
+              2,
               1
             ],
             "content": {
@@ -686,9 +686,9 @@
               "_title": "SmartDashboard/RearIncrementVelocity"
             }
           },
-          "6,4": {
+          "4,4": {
             "size": [
-              1,
+              2,
               1
             ],
             "content": {
@@ -697,9 +697,9 @@
               "_title": "SmartDashboard/RearVelocity"
             }
           },
-          "6,5": {
+          "4,5": {
             "size": [
-              1,
+              2,
               1
             ],
             "content": {
@@ -708,9 +708,9 @@
               "_title": "SmartDashboard/FrontVelocity"
             }
           },
-          "4,5": {
+          "2,0": {
             "size": [
-              1,
+              2,
               1
             ],
             "content": {
@@ -719,9 +719,9 @@
               "_title": "SmartDashboard/FrontIncrementVelocity"
             }
           },
-          "5,5": {
+          "2,1": {
             "size": [
-              1,
+              2,
               1
             ],
             "content": {
@@ -741,15 +741,103 @@
               "_title": "SmartDashboard/RearRequestVelocity"
             }
           },
-          "7,5": {
+          "2,2": {
             "size": [
-              1,
+              2,
               1
             ],
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/RequestedShooterVelocity",
               "_title": "SmartDashboard/RequestedShooterVelocity"
+            }
+          },
+          "0,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/BeltRequestedSpeed",
+              "_title": "SmartDashboard/BeltRequestedSpeed"
+            }
+          },
+          "3,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/IntakeToFull",
+              "_title": "SmartDashboard/IntakeToFull"
+            }
+          },
+          "9,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/FrontShooterSlider",
+              "_title": "SmartDashboard/FrontShooterSlider"
+            }
+          },
+          "0,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/RearRequestVelocity",
+              "_title": "SmartDashboard/RearRequestVelocity"
+            }
+          },
+          "11,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/actualVelocity1",
+              "_title": "SmartDashboard/actualVelocity1"
+            }
+          },
+          "5,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/FlywheelStop",
+              "_title": "SmartDashboard/FlywheelStop"
+            }
+          },
+          "5,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/BeltStop",
+              "_title": "SmartDashboard/BeltStop"
+            }
+          },
+          "4,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/RearStop",
+              "_title": "SmartDashboard/RearStop"
             }
           }
         }
@@ -961,7 +1049,7 @@
       }
     },
     {
-      "title": "Tab 6",
+      "title": "Turret",
       "autoPopulate": false,
       "autoPopulatePrefix": "",
       "widgetPane": {
@@ -1004,7 +1092,7 @@
               "_title": "SmartDashboard/TurretPosition"
             }
           },
-          "5,1": {
+          "6,1": {
             "size": [
               1,
               1
