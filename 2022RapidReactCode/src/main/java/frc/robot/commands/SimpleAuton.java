@@ -12,6 +12,7 @@
 
 package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Constants;
 import frc.robot.subsystems.Belt;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Flywheel;
@@ -44,19 +45,19 @@ public class SimpleAuton extends SequentialCommandGroup {
         //          new command3(argsN, subsystem)
         //      )    
         //  );
-            new TurretAutoAim(turret),                      // AIM
-            parallel(                                       // GET THE SHOOTER UP TO SPEED
-                                                            // Flywheel (TARMAC)
-                                                            // RearFlywheel (TARMAC)
+            new TurretAutoAim(turret),                                                          // AIM
+            parallel(                                                                           // GET THE SHOOTER UP TO SPEED
+                                                                                                // Flywheel (TARMAC)
+                                                                                                // RearFlywheel (TARMAC)
             ),
-            new BeltUpCommand(belt, Belt.Level.TARMAC),     // SHOOT BALLS
-            new WaitForShooter(3),                          // WAIT FOR SHOOTING TO BE DONE
-            parallel(                                       // TURN EVERYTHING OFF
+            new BeltUpSpeed(belt, Constants.ShootingConstants.ShootingPosition.TARMAC),         // SHOOT BALLS
+            new WaitForShooter(3),                                                              // WAIT FOR SHOOTING TO BE DONE
+            parallel(                                                                           // TURN EVERYTHING OFF
                 new FlywheelStop(flywheel),
                 new RearShooterStop(rearShooter),
                 new BeltStop(belt)
             ),                                               
-            new DriveTime(2.5, -.25, drive)                 // BACK UP OUT OF TARMAC
+            new DriveTime(2.5, -.25, drive)                                                     // BACK UP OUT OF TARMAC
         );
     }
 

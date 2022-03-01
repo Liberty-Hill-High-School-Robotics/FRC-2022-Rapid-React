@@ -9,6 +9,7 @@
 // it from being updated in the future.
 
 // ROBOTBUILDER TYPE: Command.
+
 // ***********************************************************************************************
 // * 2/28/2022 Remove all AUTO-GENERATE COMMENTS
 // ***********************************************************************************************
@@ -16,17 +17,22 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.Belt;
 
 /**
  *
  */
-public class BeltToFull extends CommandBase {
-    private final Belt m_belt;
+public class BeltUpSpeed extends CommandBase {
 
-    public BeltToFull(Belt subsystem) {
+    private final Belt m_belt;
+    private Constants.ShootingConstants.ShootingPosition m_position;
+
+    public BeltUpSpeed(Belt subsystem, Constants.ShootingConstants.ShootingPosition position) {
         m_belt = subsystem;
         addRequirements(m_belt);
+
+        m_position = position;
     }
 
     // Called when the command is initially scheduled.
@@ -37,7 +43,7 @@ public class BeltToFull extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_belt.beltStartUp(Belt.Level.INDEX);
+        m_belt.beltUpSpeed(m_position);
     }
 
     // Called once the command ends or is interrupted.
@@ -49,8 +55,7 @@ public class BeltToFull extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        if(m_belt.isBallInConveyor()) return true;
-        else return false;
+        return false;
     }
 
     @Override

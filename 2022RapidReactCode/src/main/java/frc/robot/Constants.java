@@ -28,5 +28,58 @@ public class Constants {
     *   public static final int kRightMotor2Port = 3; 
     * }
     */ 
+    public static final class ShootingConstants {
+    // ***********************************************************************************************
+    // TODO: Catch Errors when developers use an out of bounds index
+    // ***********************************************************************************************
+        public enum ShootingPosition {
+            TARMAC      (0),      // Shooting from Tarmac
+            LAUNCH1     (1),      // Shooting from Launch Pad 1
+            LAUNCH2     (2),      // Shooting from Launch Pad 2
+            TERMINAL    (3),      // Shooting from Terminal
+            DISTANCE    (4)       // Shooting Based on Distance from LimeLight
+            ;
+
+            private final int shootingPositionIndex;
+    
+            ShootingPosition(int shootingPositionIndex) {
+                this.shootingPositionIndex = shootingPositionIndex;
+            }
+        
+            public int getShootingPositionIndex() {
+                return this.shootingPositionIndex;
+            } 
+        }
+
+        public enum SubSystem{
+            BELT        (0),
+            FLYWHEEL    (1),
+            REARSHOOTER (2);
+
+            private final int shootingSubSystemIndex;
+
+            SubSystem (int shootingSubSystemIndex) {
+                this.shootingSubSystemIndex = shootingSubSystemIndex;
+            }
+
+            public int getShootingSubSystemIndex () {
+                return this.shootingSubSystemIndex;
+            }
+        }
+
+        private double[][] shootingSpeeds = {
+            {0.4, 0.8, 3325},       // TARMAC (ABOUT 60")
+            {0.0, 0.0, 0},          // LAUNCH PAD 1 (ABOUT 145")
+            {0.0, 0.0, 0},          // LAUNCH PAD 2 (ABOUT 187")
+            {0.0, 0.0, 0},          // TERMINAL (ABOUT 248")
+            {0.0, 0.0, 0}           // DISTANCE
+        };
+
+        public double getShootingSpeed(ShootingPosition position, SubSystem subSystem) {
+            double speed = shootingSpeeds[position.getShootingPositionIndex()][subSystem.getShootingSubSystemIndex()];
+            return speed;
+        }
+
+    }
 }
 

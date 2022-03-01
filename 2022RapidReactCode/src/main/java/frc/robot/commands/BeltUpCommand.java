@@ -17,6 +17,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.Belt;
 
 /**
@@ -25,13 +26,13 @@ import frc.robot.subsystems.Belt;
 public class BeltUpCommand extends CommandBase {
 
     private final Belt m_belt;
-    private Belt.Level m_level;
+    private Belt.Level m_speed;
 
-    public BeltUpCommand(Belt subsystem, Belt.Level level) {
+    public BeltUpCommand(Belt subsystem, Belt.Level speed) {
         m_belt = subsystem;
         addRequirements(m_belt);
 
-        m_level = level;
+        m_speed = speed;
     }
 
     // Called when the command is initially scheduled.
@@ -42,7 +43,7 @@ public class BeltUpCommand extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_belt.beltUpSpeed(m_level);
+        m_belt.beltStartUp(m_speed);
     }
 
     // Called once the command ends or is interrupted.

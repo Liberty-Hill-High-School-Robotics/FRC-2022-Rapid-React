@@ -16,7 +16,9 @@
 
 package frc.robot.subsystems;
 
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.Constants.ShootingConstants.ShootingPosition;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -40,12 +42,7 @@ public class Belt extends SubsystemBase {
     // ***********************************************************************************************
     public enum Level {
         INDEX       (0.3),      // Auto-Move Ball to Sensor Position
-        MANUAL      (0.2),      // If Operator is trying to correct a problem
-        TARMAC      (0.4),      // Shooting from Tarmac
-        LAUNCH1     (0.0),      // Shooting from Launch Pad 1
-        LAUNCH2     (0.0),      // Shooting from Launch Pad 2
-        TERMINAL    (0.0),      // Shooting from Terminal
-        DISTANCE    (0.0)       // Shooting Based on Distance from LimeLight
+        MANUAL      (0.2)       // If Operator is trying to correct a problem
         ;
 
         private final double levelCode;
@@ -107,8 +104,8 @@ public class Belt extends SubsystemBase {
     // * beltStartUp
     // * Original movement command -- obsolete
     // ***********************************************************************************************
-    public void beltStartUp() {
-        victorSPXBelt.set(Level.MANUAL.getLevelCode());
+    public void beltStartUp(Level speed) {
+        victorSPXBelt.set(speed.getLevelCode());
     }
 
     // ***********************************************************************************************
@@ -140,13 +137,14 @@ public class Belt extends SubsystemBase {
     // * Operate the belt at the requested speed
     // * Speed is based on use
     // ***********************************************************************************************
-    public void beltUpSpeed(Level speed) {
+    public void beltUpSpeed(Constants.ShootingConstants.ShootingPosition position) {
+        Constants.ShootingConstants temp = new Constants.ShootingConstants();
         double percentOutput = 0;
-        if (speed == Level.DISTANCE) {
+        if (position == Constants.ShootingConstants.ShootingPosition.DISTANCE) {
             percentOutput = determinePowerFromDistance();
         }
         else {
-            percentOutput = speed.getLevelCode();
+            percentOutput = temp.getShootingSpeed(position, Constants.ShootingConstants.SubSystem.BELT);
         }
         victorSPXBelt.set(percentOutput);
     }
@@ -172,11 +170,13 @@ public class Belt extends SubsystemBase {
     public void incrementBeltVelocity() {
         CURRENT_BELT_VELOCITY = CURRENT_BELT_VELOCITY + 0.10;
         if (CURRENT_BELT_VELOCITY > 1) CURRENT_BELT_VELOCITY = 1.0;
+        SmartDashboard.putNumber("BeltRequestedSpeed", CURRENT_BELT_VELOCITY);   
     }
 
     public void decrementBeltVelocity() {
         CURRENT_BELT_VELOCITY = CURRENT_BELT_VELOCITY - 0.10;
         if (CURRENT_BELT_VELOCITY < 0) CURRENT_BELT_VELOCITY = 0;
+        SmartDashboard.putNumber("BeltRequestedSpeed", CURRENT_BELT_VELOCITY);   
     }
 
     public void beltTestPrecentOutput() {
