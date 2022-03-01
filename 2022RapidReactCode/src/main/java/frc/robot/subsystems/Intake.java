@@ -28,7 +28,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
  *
  */
 public class Intake extends SubsystemBase {
-    private final double INTAKE_POWER = .25;
+    private final double INTAKE_POWER = .35;
     
     private WPI_VictorSPX victorSPXIntake;
     private DigitalInput intakeLimitOne;
