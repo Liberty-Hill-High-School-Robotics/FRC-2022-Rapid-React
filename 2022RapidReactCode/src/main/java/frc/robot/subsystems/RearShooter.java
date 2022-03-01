@@ -16,11 +16,16 @@
 
 package frc.robot.subsystems;
 
+import frc.robot.Constants;
+import frc.robot.RobotContainer;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import com.revrobotics.CANSparkMax; 
+import com.ctre.phoenix.led.CANdle.VBatOutputMode;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.revrobotics.RelativeEncoder;
@@ -88,6 +93,37 @@ public class RearShooter extends SubsystemBase {
       canSparkMAXRearShooter.set(power);
       SmartDashboard.putNumber("powerRear", power);
     }
+    // ***********************************************************************************************
+    // * rearFlywheelUpSpeed
+    // * Operate the flywheel at the requested velocity
+    // * Speed is based on use
+    // ***********************************************************************************************
+    public void rearflywheelUpSpeed(Constants.ShootingConstants.ShootingPosition position) {
+        Constants.ShootingConstants temp = new Constants.ShootingConstants();
+        double velocity = 0;
+        if (position == Constants.ShootingConstants.ShootingPosition.DISTANCE) {
+            velocity = determinePowerFromDistance();
+        }
+        else {
+            velocity = temp.getShootingSpeed(position, Constants.ShootingConstants.SubSystem.FLYWHEEL);
+        }
+        m_pidController.setReference(velocity, CANSparkMax.ControlType.kVelocity);
+    }    
+    
+    // ***********************************************************************************************
+    // * determinePowerFromDistance
+    // TODO: Implement Algorithm to find power based on distance
+    // ***********************************************************************************************
+    public double determinePowerFromDistance(){
+        double calculatedPower = 0;
+        double distance = RobotContainer.getInstance().getDistance();
+        return calculatedPower;
+    }
+
+
+
+
+
 
 
     // All methods below this comment are for TESTING ONLY

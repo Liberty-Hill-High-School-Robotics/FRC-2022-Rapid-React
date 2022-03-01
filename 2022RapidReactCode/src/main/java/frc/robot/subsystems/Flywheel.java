@@ -17,6 +17,7 @@
 package frc.robot.subsystems;
 
 
+import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
 import frc.robot.commands.*;
@@ -24,6 +25,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import com.ctre.phoenix.ErrorCode;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -56,13 +58,14 @@ public class Flywheel extends SubsystemBase {
         talonFXShooter1.configFactoryDefault();
         talonFXShooter1.setInverted(true);
         talonFXShooter1.setNeutralMode(NeutralMode.Coast);
-        talonFXShooter1.config_kP(0, .0001);
+       ErrorCode error = talonFXShooter1.config_kP(0, .0001);
+       SmartDashboard.putNumber("kperror", error.value);
         talonFXShooter1.config_kI(0, 0);
         talonFXShooter1.config_kF(0, 10);
         talonFXShooter1.config_kD(0, 0);
 
         talonFXShooter2 = new WPI_TalonFX(12);
-        talonFXShooter1.configFactoryDefault();
+        talonFXShooter2.configFactoryDefault();
         talonFXShooter2.follow(talonFXShooter1);
         talonFXShooter2.setInverted(InvertType.OpposeMaster);
         talonFXShooter2.setNeutralMode(NeutralMode.Coast);
@@ -140,6 +143,36 @@ public class Flywheel extends SubsystemBase {
     public void flywheelOutPower (double power) {
         talonFXShooter1.set(power);
     }
+
+
+    // ***********************************************************************************************
+    // * flywheelUpSpeed
+    // * Operate the flywheel at the requested velocity
+    // * Speed is based on use
+    // ***********************************************************************************************
+    public void flywheelUpSpeed(Constants.ShootingConstants.ShootingPosition position) {
+        Constants.ShootingConstants temp = new Constants.ShootingConstants();
+        double velocity = 0;
+        if (position == Constants.ShootingConstants.ShootingPosition.DISTANCE) {
+            velocity = determinePowerFromDistance();
+        }
+        else {
+            velocity = temp.getShootingSpeed(position, Constants.ShootingConstants.SubSystem.FLYWHEEL);
+        }
+        talonFXShooter1.set(ControlMode.Velocity, velocity);
+    }
+    
+    // ***********************************************************************************************
+    // * determinePowerFromDistance
+    // TODO: Implement Algorithm to find power based on distance
+    // ***********************************************************************************************
+    public double determinePowerFromDistance(){
+        double calculatedPower = 0;
+        double distance = RobotContainer.getInstance().getDistance();
+        return calculatedPower;
+    }
+
+
 
     // All methods below this comment are for TESTING ONLY
     public void incrementShooterVelocity() {
