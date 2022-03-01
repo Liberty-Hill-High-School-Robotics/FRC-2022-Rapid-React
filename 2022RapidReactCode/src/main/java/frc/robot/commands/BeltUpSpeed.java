@@ -38,24 +38,24 @@ public class BeltUpSpeed extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        m_belt.beltUpSpeed(m_position);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_belt.beltUpSpeed(m_position);
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        m_belt.beltStop();
+        // m_belt.beltStop();
     }
 
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return false;
+        return true;
     }
 
     @Override
