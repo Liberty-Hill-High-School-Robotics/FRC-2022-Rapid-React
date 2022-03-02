@@ -12,6 +12,7 @@
 
 package frc.robot;
 
+import frc.robot.Constants.ShootingConstants.ShootingPosition;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -87,6 +88,7 @@ private final Joystick driverJoystick = new Joystick(0);
     
     SmartDashboard.putData("RotateToHeadingCommand", new RotateToHeadingCommand( 45, m_drive ));
     SmartDashboard.putData("DriveArcade", new DriveArcade( m_drive ));
+    SmartDashboard.putData("DriveTime", new DriveTime(2.5, -.25, m_drive));
 
     // INTAKE
     SmartDashboard.putData("IntakeInCommand", new IntakeInCommand( m_intake ));
@@ -101,6 +103,7 @@ private final Joystick driverJoystick = new Joystick(0);
     SmartDashboard.putData("BeltDecrementVelocity", new beltTestDecrement(m_belt));
     SmartDashboard.putData("BeltTESTPrecentOutput", new beltTestPrecentOutput(m_belt));
     SmartDashboard.putData("BeltStop", new BeltStop(m_belt));
+    SmartDashboard.putData("BeltUpSpeed", new BeltUpSpeed(m_belt,ShootingPosition.TARMAC));
 
     // TURRET
     SmartDashboard.putData("TurretRight", new TurretRight( m_turret ));
@@ -116,6 +119,7 @@ private final Joystick driverJoystick = new Joystick(0);
     SmartDashboard.putData("FrontDecrementVelocity", new FlywheelTESTDecrement(m_flywheel));
     SmartDashboard.putData("FrontVelocity", new FlywheelTESTVelocity(m_flywheel));
     SmartDashboard.putData("FlywheelStop", new FlywheelStop(m_flywheel));
+    SmartDashboard.putData("FlyWheelUpSpeed", new FlywheelUpSpeed(m_flywheel, ShootingPosition.TARMAC));
   
 
     // SHOOTER REAR
@@ -126,6 +130,7 @@ private final Joystick driverJoystick = new Joystick(0);
     SmartDashboard.putData("RearDecrementVelocity", new RearShooterTESTDecrement(m_rearShooter));
     SmartDashboard.putData("RearVelocity", new RearShooterTESTVelocity(m_rearShooter));
     SmartDashboard.putData("RearStop", new RearShooterStop(m_rearShooter));
+    SmartDashboard.putData("RearFlywheelUpSpeed", new RearFlywheelUpSpeed(m_rearShooter, ShootingPosition.TARMAC));
     // LIFT
     SmartDashboard.putData("LiftStartUp", new LiftStartUp( m_lift ));
     SmartDashboard.putData("LiftStartDown", new LiftStartDown( m_lift ));
@@ -136,7 +141,8 @@ private final Joystick driverJoystick = new Joystick(0);
 
     // GROUP
     SmartDashboard.putData("PrepareToShoot", new PrepareToShoot(m_turret, m_flywheel, m_rearShooter));
-
+    SmartDashboard.putData("Shoot", new Shoot(m_belt));
+    
 
     // Configure the button bindings
     configureButtonBindings();
