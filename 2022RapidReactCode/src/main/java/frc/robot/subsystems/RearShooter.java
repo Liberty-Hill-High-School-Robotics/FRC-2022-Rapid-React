@@ -40,6 +40,7 @@ public class RearShooter extends SubsystemBase {
     private final double REAR_POWER = .3;
 
     private double CURRENT_SHOOTER_VELOCITY = 0.0;
+    private double targetShooterVelocity = 0.0;
     private CANSparkMax canSparkMAXRearShooter;
     private SparkMaxPIDController m_pidController;
     private RelativeEncoder m_encoder;
@@ -99,18 +100,17 @@ public class RearShooter extends SubsystemBase {
     // * Speed is based on use
     // ***********************************************************************************************
     public void rearflywheelUpSpeed(Constants.ShootingConstants.ShootingPosition position) {
-        SmartDashboard.putNumber("RearFlywheelpid", 99);
         Constants.ShootingConstants temp = new Constants.ShootingConstants();
-        double velocity = 0;
+        targetShooterVelocity = 0;
         if (position == Constants.ShootingConstants.ShootingPosition.DISTANCE) {
-            velocity = determinePowerFromDistance();
+            targetShooterVelocity = determinePowerFromDistance();
         }
         else {
-            velocity = temp.getShootingSpeed(position, Constants.ShootingConstants.SubSystem.FLYWHEEL);
+            // *** COPY/PASTE ERROR *** velocity = temp.getShootingSpeed(position, Constants.ShootingConstants.SubSystem.FLYWHEEL); 
+            targetShooterVelocity = temp.getShootingSpeed(position, Constants.ShootingConstants.SubSystem.REARSHOOTER);
         }
         
-        m_pidController.setReference(velocity, CANSparkMax.ControlType.kVelocity);
-        CURRENT_SHOOTER_VELOCITY = velocity;
+        m_pidController.setReference(targetShooterVelocity, CANSparkMax.ControlType.kVelocity);
     }    
     
     // ***********************************************************************************************
@@ -123,16 +123,13 @@ public class RearShooter extends SubsystemBase {
         return calculatedPower;
     }
 
-
-
-
-
     public boolean isFlywheelAtVelocity(){
+        double closedLoopError = m_encoder.getVelocity() - targetShooterVelocity;
         SmartDashboard.putNumber("RearShooterVelocity", m_encoder.getVelocity());
         SmartDashboard.putNumber("RearShooterTargetVelocity", CURRENT_SHOOTER_VELOCITY);
-       if (Math.abs(m_encoder.getVelocity() - CURRENT_SHOOTER_VELOCITY) < 10 ) return true;
-       else return false;
-
+        SmartDashboard.putNumber("RearClosedLoopError", closedLoopError);
+        if (Math.abs(closedLoopError) < 100 ) return true;
+        else return false;
     }
 
 

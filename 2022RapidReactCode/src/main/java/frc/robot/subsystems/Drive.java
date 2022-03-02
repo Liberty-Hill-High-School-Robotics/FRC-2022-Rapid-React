@@ -40,6 +40,8 @@ public class Drive extends SubsystemBase {
     private AnalogGyro gyro;
     
     private double speedFactor = 1;
+    private final double NORMAL_DRIVE_SPEED_FACTOR = 1.0;
+    private final double PRECISE_DRIVE_SPEED_FACTOR = 0.5;
     
     /**
     *
@@ -98,7 +100,8 @@ public class Drive extends SubsystemBase {
     // Put methods for controlling this subsystem here. Call these from Commands.
 
     public void DriveArcade(double speed, double rotation) {
-        driveMain.arcadeDrive(speed*speedFactor, rotation*speedFactor);
+        driveMain.arcadeDrive(speed, rotation);
+        // *** ALLOW DIFFERENTIAL DRIVE TO HANDLE SCALING *** driveMain.arcadeDrive(speed*speedFactor, rotation*speedFactor);
     }
 
     public double getPIDCommand_Input(){
@@ -124,11 +127,13 @@ public class Drive extends SubsystemBase {
     }
 
     public void setPrecissionMode(){
-        speedFactor = .5;
+        speedFactor = PRECISE_DRIVE_SPEED_FACTOR;
+        driveMain.setMaxOutput(speedFactor);
     }
 
     public void setNormalMode(){
-        speedFactor = 1;
+        speedFactor = NORMAL_DRIVE_SPEED_FACTOR;
+        driveMain.setMaxOutput(speedFactor);
     }
 }
 

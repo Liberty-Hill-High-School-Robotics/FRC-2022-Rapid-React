@@ -54,12 +54,13 @@ public class TurretAutoAim extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_turret.turretStartLeft();
+        if (!RobotContainer.getInstance().getTv()) m_turret.turretStartLeft();
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        m_turret.turretStop();
     }
 
     // Returns true when the command should end.
