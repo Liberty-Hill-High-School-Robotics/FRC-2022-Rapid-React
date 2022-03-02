@@ -88,7 +88,6 @@ private final Joystick driverJoystick = new Joystick(0);
     
     SmartDashboard.putData("RotateToHeadingCommand", new RotateToHeadingCommand( 45, m_drive ));
     SmartDashboard.putData("DriveArcade", new DriveArcade( m_drive ));
-    SmartDashboard.putData("DriveTime", new DriveTime(3.5, -.5, m_drive));
 
     // INTAKE
     SmartDashboard.putData("IntakeInCommand", new IntakeInCommand( m_intake ));
@@ -102,8 +101,6 @@ private final Joystick driverJoystick = new Joystick(0);
     SmartDashboard.putData("BeltIncrementVelocity", new beltTestIncrement(m_belt));
     SmartDashboard.putData("BeltDecrementVelocity", new beltTestDecrement(m_belt));
     SmartDashboard.putData("BeltTESTPrecentOutput", new beltTestPrecentOutput(m_belt));
-    SmartDashboard.putData("BeltStop", new BeltStop(m_belt));
-    SmartDashboard.putData("BeltUpSpeed", new BeltUpSpeed(m_belt,ShootingPosition.TARMAC));
 
     // TURRET
     SmartDashboard.putData("TurretRight", new TurretRight( m_turret ));
@@ -118,9 +115,7 @@ private final Joystick driverJoystick = new Joystick(0);
     SmartDashboard.putData("FrontIncrementVelocity", new FlywheelTestIncrement(m_flywheel));
     SmartDashboard.putData("FrontDecrementVelocity", new FlywheelTESTDecrement(m_flywheel));
     SmartDashboard.putData("FrontVelocity", new FlywheelTESTVelocity(m_flywheel));
-    SmartDashboard.putData("FlywheelStop", new FlywheelStop(m_flywheel));
-    SmartDashboard.putData("FlyWheelUpSpeed", new FlywheelUpSpeed(m_flywheel, ShootingPosition.TARMAC));
-  
+    
 
     // SHOOTER REAR
     SmartDashboard.putData("RearShooterOut", new RearShooterOut( m_rearShooter ));
@@ -130,7 +125,7 @@ private final Joystick driverJoystick = new Joystick(0);
     SmartDashboard.putData("RearDecrementVelocity", new RearShooterTESTDecrement(m_rearShooter));
     SmartDashboard.putData("RearVelocity", new RearShooterTESTVelocity(m_rearShooter));
     SmartDashboard.putData("RearStop", new RearShooterStop(m_rearShooter));
-    SmartDashboard.putData("RearFlywheelUpSpeed", new RearFlywheelUpSpeed(m_rearShooter, ShootingPosition.TARMAC));
+    
     // LIFT
     SmartDashboard.putData("LiftStartUp", new LiftStartUp( m_lift ));
     SmartDashboard.putData("LiftStartDown", new LiftStartDown( m_lift ));
@@ -139,10 +134,28 @@ private final Joystick driverJoystick = new Joystick(0);
     SmartDashboard.putData("TransversalForward", new TransversalForward( m_transversal ));
     SmartDashboard.putData("TransversalBack", new TransversalBack( m_transversal ));
 
+    // VISION
+    SmartDashboard.putData("LIMELIGHT Off", new LimeLightLEDOff());
+    SmartDashboard.putData("LIMELIGHT On", new LimeLightLEDOn());
+
     // GROUP
-    SmartDashboard.putData("PrepareToShoot", new PrepareToShoot(m_turret, m_flywheel, m_rearShooter));
-    SmartDashboard.putData("Shoot", new Shoot(m_belt));
-    
+    SmartDashboard.putData("GROUP_PrepareToShoot", new PrepareToShoot(m_turret, m_flywheel, m_rearShooter));
+    SmartDashboard.putData("GROUP_Shoot", new Shoot(m_turret, m_flywheel, m_rearShooter, m_belt));
+    SmartDashboard.putData("GROUP_SimpleAuton", new SimpleAuton(m_turret, m_flywheel, m_rearShooter, m_belt, m_drive));
+    SmartDashboard.putData("GROUP_StopAllShooterMotors", new GroupStopAllShooterMotors(m_flywheel, m_rearShooter, m_belt));
+
+    // GROUP COMPONENTS
+    SmartDashboard.putData("GROUP_FindTarget", new TurretAutoAim( m_turret ));
+    SmartDashboard.putData("GROUP_CenterTarget", new TurretAutoCenter(m_turret));
+    SmartDashboard.putData("GROUP_FlyWheelUpSpeed", new FlywheelUpSpeed(m_flywheel, ShootingPosition.TARMAC));
+    SmartDashboard.putData("GROUP_RearFlywheelUpSpeed", new RearFlywheelUpSpeed(m_rearShooter, ShootingPosition.TARMAC));
+    SmartDashboard.putData("GROUP_BeltUpSpeed", new BeltUpSpeed(m_belt,ShootingPosition.TARMAC));
+    SmartDashboard.putData("GROUP_WaitForShooter", new WaitForShooter(3));
+    SmartDashboard.putData("GROUP_RearStop", new RearShooterStop(m_rearShooter));
+    SmartDashboard.putData("GROUP_FlywheelStop", new FlywheelStop(m_flywheel));
+    SmartDashboard.putData("GROUP_BeltStop", new BeltStop(m_belt));
+    SmartDashboard.putData("GROUP_DriveTime", new DriveTime(3.5, -.5, m_drive));
+  
 
     // Configure the button bindings
     configureButtonBindings();
@@ -158,7 +171,7 @@ private final Joystick driverJoystick = new Joystick(0);
         
 
     m_chooser.addOption("SimpleAuton", new SimpleAuton(m_turret, m_flywheel, m_rearShooter, m_belt, m_drive));
-    //m_chooser.setDefaultOption("$command.getName()", new ${name.replace(' ', '')}( m_${name.substring(0,1).toLowerCase()}${name.substring(1).replace(' ', '')} ));
+    m_chooser.setDefaultOption("SimpleAuton", new SimpleAuton(m_turret, m_flywheel, m_rearShooter, m_belt, m_drive));
 
     
 
@@ -216,10 +229,11 @@ public XboxController getoperatorJoystick() {
    *
    * @return the command to run in autonomous
   */
- // public Command getAutonomousCommand() {
+  // 20220302 : THIS WHOLE METHOD WAS COMMENTED OUT : WHY?
+public Command getAutonomousCommand() {
     // The selected command will be run in autonomous
-   // return m_chooser.getSelected();
- // }
+  return m_chooser.getSelected();
+}
 
   public boolean getTv(){
     NetworkTableEntry tv = table.getEntry("tv");
@@ -239,6 +253,16 @@ public XboxController getoperatorJoystick() {
   public double getTa(){
     NetworkTableEntry ta = table.getEntry("ta");
     return ta.getDouble(0);
+  }
+
+  public void forceLEDOff(){
+    NetworkTableEntry ledMode = table.getEntry("ledMode");
+    ledMode.setNumber(1);   // Off
+  }
+
+  public void forceLEDOn(){
+    NetworkTableEntry ledMode = table.getEntry("ledMode");
+    ledMode.setNumber(3);   // On
   }
 
 

@@ -31,10 +31,15 @@ import com.revrobotics.SparkMaxLimitSwitch.Type;
  *
  */
 public class Lift extends SubsystemBase {
-    private final double POWER_LIFT = .1;
-    
+    // private final double POWER_LIFT = .1;
+    private final int FAST_MAX_ENCODER_COUNT = 250;
+    private final int FAST_MIN_ENCODER_COUNT = 50;
+    private final double FAST_PERCENT_OUTPUT = 0.5;
+    private final double SLOW_PERCENT_OUTPUT = 0.1;
+
     private RelativeEncoder m_encoder;
     private CANSparkMax canSparkMAXLift;
+    private boolean LIFT_IS_LOCKED;
 
     /**
     *
@@ -42,7 +47,16 @@ public class Lift extends SubsystemBase {
     public Lift() {
         canSparkMAXLift = new CANSparkMax(8, MotorType.kBrushless);
         canSparkMAXLift.setIdleMode(IdleMode.kBrake);
+        // Forward -- TOP
+        canSparkMAXLift.setSoftLimit(SoftLimitDirection.kForward, 310);
+        canSparkMAXLift.enableSoftLimit(SoftLimitDirection.kForward, true);
+        // Reverse -- BOTTOM
+        canSparkMAXLift.setSoftLimit(SoftLimitDirection.kReverse, -10);
+        canSparkMAXLift.enableSoftLimit(SoftLimitDirection.kReverse, true);
+
         m_encoder = canSparkMAXLift.getEncoder();
+
+        LIFT_IS_LOCKED = false;
     }
 
     @Override
@@ -51,6 +65,7 @@ public class Lift extends SubsystemBase {
         SmartDashboard.putNumber("liftPosition", m_encoder.getPosition());
         SmartDashboard.putBoolean("LiftForwardLimit", canSparkMAXLift.getForwardLimitSwitch(Type.kNormallyOpen).isPressed());
         SmartDashboard.putBoolean("LiftReverseLimit", canSparkMAXLift.getReverseLimitSwitch(Type.kNormallyOpen).isPressed());
+        setLockedState();
     }
 
     @Override
@@ -61,11 +76,25 @@ public class Lift extends SubsystemBase {
     // Put methods for controlling this subsystem here. Call these from Commands.
 
     public void liftStartUp(){
-        if (!isLiftLocked()) canSparkMAXLift.set(POWER_LIFT);
+        if (!LIFT_IS_LOCKED){
+            if (!isLiftLocked()) {
+                if (m_encoder.getPosition() > FAST_MIN_ENCODER_COUNT && m_encoder.getPosition() < FAST_MAX_ENCODER_COUNT)
+                    canSparkMAXLift.set(FAST_PERCENT_OUTPUT);
+                else
+                    canSparkMAXLift.set(SLOW_PERCENT_OUTPUT);
+            }
+        }
     }
 
     public void liftStartDown(){
-        canSparkMAXLift.set(-POWER_LIFT);
+        if (!LIFT_IS_LOCKED){
+            if (!isLiftLocked()) {
+                if (m_encoder.getPosition() > FAST_MIN_ENCODER_COUNT && m_encoder.getPosition() < FAST_MAX_ENCODER_COUNT)
+                    canSparkMAXLift.set(-FAST_PERCENT_OUTPUT);
+                else
+                    canSparkMAXLift.set(-SLOW_PERCENT_OUTPUT);
+            }
+        }
     }
 
     public void liftStop(){
@@ -73,12 +102,18 @@ public class Lift extends SubsystemBase {
     }
 
     public boolean isLiftLocked() {
+        setLockedState();
         return canSparkMAXLift.getReverseLimitSwitch(Type.kNormallyOpen).isPressed();
     }
 
     public boolean isLiftAtTop(){
+        setLockedState();
         return canSparkMAXLift.getForwardLimitSwitch(Type.kNormallyOpen).isPressed();
     }
 
+    private void setLockedState(){
+        if (canSparkMAXLift.getReverseLimitSwitch(Type.kNormallyOpen).isPressed() ||
+            m_encoder.getPosition() <= -10) LIFT_IS_LOCKED = true;
+    }
 }
 

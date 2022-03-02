@@ -173,6 +173,7 @@ public class Flywheel extends SubsystemBase {
     }
 
     public boolean isFlywheelAtVelocity(){
+        SmartDashboard.putNumber("FlywheelError", talonFXShooter1.getClosedLoopError());
        if (Math.abs(talonFXShooter1.getClosedLoopError()) < 10) return true;
        else return false;
 

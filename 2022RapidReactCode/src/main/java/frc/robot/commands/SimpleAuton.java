@@ -45,19 +45,19 @@ public class SimpleAuton extends SequentialCommandGroup {
         //          new command3(argsN, subsystem)
         //      )    
         //  );
-            //new TurretAutoCenter(turret),                                                          // AIM
-            parallel(                                                                           // GET THE SHOOTER UP TO SPEED
-            new FlywheelUpSpeed(flywheel, Constants.ShootingConstants.ShootingPosition.TARMAC),                                                             // Flywheel (TARMAC)
-            new RearFlywheelUpSpeed(rearShooter, Constants.ShootingConstants.ShootingPosition.TARMAC)                                       // RearFlywheel (TARMAC)
+            //new TurretAutoCenter(turret),                                                             // AIM
+            parallel(                                                                                   // GET THE SHOOTER UP TO SPEED
+            new FlywheelUpSpeed(flywheel, Constants.ShootingConstants.ShootingPosition.TARMAC),         // Flywheel (TARMAC)
+            new RearFlywheelUpSpeed(rearShooter, Constants.ShootingConstants.ShootingPosition.TARMAC)   // RearFlywheel (TARMAC)
             ),
-            new BeltUpSpeed(belt, Constants.ShootingConstants.ShootingPosition.TARMAC),         // SHOOT BALLS
-            new WaitForShooter(3),                                                              // WAIT FOR SHOOTING TO BE DONE
-            parallel(                                                                           // TURN EVERYTHING OFF
+            new BeltUpSpeed(belt, Constants.ShootingConstants.ShootingPosition.TARMAC),                 // SHOOT BALLS
+            new WaitForShooter(3),                                                                      // WAIT FOR SHOOTING TO BE DONE
+            parallel(                                                                                   // TURN EVERYTHING OFF
                 new FlywheelStop(flywheel),
                 new RearShooterStop(rearShooter),
                 new BeltStop(belt)
             ),                                               
-            new DriveTime(3.5, -.5, drive)                                                     // BACK UP OUT OF TARMAC
+            new DriveTime(3.5, -.5, drive)                                                              // BACK UP OUT OF TARMAC
         );
     }
 

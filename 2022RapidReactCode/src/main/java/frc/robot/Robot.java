@@ -46,6 +46,7 @@ public class Robot extends TimedRobot {
         HAL.report(tResourceType.kResourceType_Framework, tInstances.kFramework_RobotBuilder);
 
         CameraServer.startAutomaticCapture();
+        m_robotContainer.forceLEDOff();
         
     }
 
@@ -71,6 +72,7 @@ public class Robot extends TimedRobot {
     */
     @Override
     public void disabledInit() {
+        m_robotContainer.forceLEDOff();
     }
 
     @Override
@@ -80,7 +82,9 @@ public class Robot extends TimedRobot {
     /**
     * This autonomous runs the autonomous command selected by your {@link RobotContainer} class.
     */
-   /* @Override
+
+    // 20220302 : This whole method was commented out : WHY?
+    @Override
     public void autonomousInit() {
         m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
