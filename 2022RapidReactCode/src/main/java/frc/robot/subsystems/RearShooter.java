@@ -108,6 +108,7 @@ public class RearShooter extends SubsystemBase {
             velocity = temp.getShootingSpeed(position, Constants.ShootingConstants.SubSystem.FLYWHEEL);
         }
         m_pidController.setReference(velocity, CANSparkMax.ControlType.kVelocity);
+        CURRENT_SHOOTER_VELOCITY = velocity;
     }    
     
     // ***********************************************************************************************
@@ -123,6 +124,12 @@ public class RearShooter extends SubsystemBase {
 
 
 
+
+    public boolean isFlywheelAtVelocity(){
+       if (Math.abs(m_encoder.getVelocity() - CURRENT_SHOOTER_VELOCITY) < 10 ) return true;
+       else return false;
+
+    }
 
 
 
