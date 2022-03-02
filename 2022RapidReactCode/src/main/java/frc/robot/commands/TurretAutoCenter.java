@@ -61,8 +61,15 @@ already created in your subsystem
     }
     @Override
     public boolean isFinished() {
+        // End if NO TARGET IS AVAILABLE
+        if (!RobotContainer.getInstance().getTv()) {
+                RobotContainer.getInstance().forceLEDOff();
+                return true; 
+        }
+
       // End when the controller is at the reference.
-      if (!RobotContainer.getInstance().getTv()) return true; 
-      return getController().atSetpoint();
+        if (getController().atSetpoint()) RobotContainer.getInstance().forceLEDOff();
+
+        return getController().atSetpoint();
     }
 }

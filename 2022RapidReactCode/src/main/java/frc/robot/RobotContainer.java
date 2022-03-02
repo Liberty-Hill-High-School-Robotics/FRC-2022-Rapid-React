@@ -134,9 +134,13 @@ private final Joystick driverJoystick = new Joystick(0);
     SmartDashboard.putData("TransversalForward", new TransversalForward( m_transversal ));
     SmartDashboard.putData("TransversalBack", new TransversalBack( m_transversal ));
 
+    // VISION
+    SmartDashboard.putData("LIMELIGHT Off", new LimeLightLEDOff());
+    SmartDashboard.putData("LIMELIGHT On", new LimeLightLEDOn());
+
     // GROUP
     SmartDashboard.putData("GROUP_PrepareToShoot", new PrepareToShoot(m_turret, m_flywheel, m_rearShooter));
-    SmartDashboard.putData("GROUP_Shoot", new Shoot(m_belt));
+    SmartDashboard.putData("GROUP_Shoot", new Shoot(m_turret, m_flywheel, m_rearShooter, m_belt));
     SmartDashboard.putData("GROUP_SimpleAuton", new SimpleAuton(m_turret, m_flywheel, m_rearShooter, m_belt, m_drive));
     SmartDashboard.putData("GROUP_StopAllShooterMotors", new GroupStopAllShooterMotors(m_flywheel, m_rearShooter, m_belt));
 
@@ -225,10 +229,11 @@ public XboxController getoperatorJoystick() {
    *
    * @return the command to run in autonomous
   */
- // public Command getAutonomousCommand() {
+  // 20220302 : THIS WHOLE METHOD WAS COMMENTED OUT : WHY?
+public Command getAutonomousCommand() {
     // The selected command will be run in autonomous
-   // return m_chooser.getSelected();
- // }
+  return m_chooser.getSelected();
+}
 
   public boolean getTv(){
     NetworkTableEntry tv = table.getEntry("tv");
@@ -248,6 +253,16 @@ public XboxController getoperatorJoystick() {
   public double getTa(){
     NetworkTableEntry ta = table.getEntry("ta");
     return ta.getDouble(0);
+  }
+
+  public void forceLEDOff(){
+    NetworkTableEntry ledMode = table.getEntry("ledMode");
+    ledMode.setNumber(1);   // Off
+  }
+
+  public void forceLEDOn(){
+    NetworkTableEntry ledMode = table.getEntry("ledMode");
+    ledMode.setNumber(3);   // On
   }
 
 
