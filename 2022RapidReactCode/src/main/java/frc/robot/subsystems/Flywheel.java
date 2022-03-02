@@ -172,6 +172,11 @@ public class Flywheel extends SubsystemBase {
         return calculatedPower;
     }
 
+    public boolean isFlywheelAtVelocity(){
+       if (Math.abs(talonFXShooter1.getClosedLoopError()) < 10) return true;
+       else return false;
+
+    }
 
 
     // All methods below this comment are for TESTING ONLY
