@@ -43,12 +43,15 @@ public class Turret extends SubsystemBase {
         talonSRXTurret.configFactoryDefault();
         TalonSRXConfiguration allConfigs = new TalonSRXConfiguration();
         talonSRXTurret.setSensorPhase(true);
-        allConfigs.reverseSoftLimitEnable = true;           // Rotation to Right
-        allConfigs.reverseSoftLimitThreshold = -300;
-        allConfigs.forwardSoftLimitEnable = true;           // Rotation to Left
-        allConfigs.forwardSoftLimitThreshold = 300;
+        //allConfigs.reverseSoftLimitEnable = true;           // Rotation to Right
+        //allConfigs.reverseSoftLimitThreshold = -300;
+        //allConfigs.forwardSoftLimitEnable = true;           // Rotation to Left
+        //allConfigs.forwardSoftLimitThreshold = 300;
+        allConfigs.peakOutputForward = .25;
+        allConfigs.peakOutputReverse = -.25;
         talonSRXTurret.configAllSettings(allConfigs);
         talonSRXTurret.setNeutralMode(NeutralMode.Brake);
+
     }
 
     @Override

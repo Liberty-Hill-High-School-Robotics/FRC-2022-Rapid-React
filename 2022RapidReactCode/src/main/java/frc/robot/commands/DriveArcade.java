@@ -55,7 +55,7 @@ public class DriveArcade extends CommandBase {
     @Override
     public void execute() {
         if(Math.abs(-RobotContainer.getInstance().getdriverJoystick().getY()) < .1 ){
-            m_drive.DriveArcade(-RobotContainer.getInstance().getdriverJoystick().getY(),RobotContainer.getInstance().getdriverJoystick().getX() * 0.25);
+            m_drive.DriveArcade(-RobotContainer.getInstance().getdriverJoystick().getY(),RobotContainer.getInstance().getdriverJoystick().getX() * 0.5);
         } else {
         m_drive.DriveArcade(-RobotContainer.getInstance().getdriverJoystick().getY(),RobotContainer.getInstance().getdriverJoystick().getX());
         }
