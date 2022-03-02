@@ -88,7 +88,7 @@ private final Joystick driverJoystick = new Joystick(0);
     
     SmartDashboard.putData("RotateToHeadingCommand", new RotateToHeadingCommand( 45, m_drive ));
     SmartDashboard.putData("DriveArcade", new DriveArcade( m_drive ));
-    SmartDashboard.putData("DriveTime", new DriveTime(2.5, -.25, m_drive));
+    SmartDashboard.putData("DriveTime", new DriveTime(3.5, -.5, m_drive));
 
     // INTAKE
     SmartDashboard.putData("IntakeInCommand", new IntakeInCommand( m_intake ));

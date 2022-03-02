@@ -63,6 +63,7 @@ public class DriveTime extends WaitCommand {
     // Called repeatedly when this Command is scheduled to run
     @Override
     public void execute() {
+        m_drive.DriveArcade(m_speed, 0);
     }
 
 

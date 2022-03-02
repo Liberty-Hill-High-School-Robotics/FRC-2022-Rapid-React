@@ -57,7 +57,7 @@ public class SimpleAuton extends SequentialCommandGroup {
                 new RearShooterStop(rearShooter),
                 new BeltStop(belt)
             ),                                               
-            new DriveTime(2.5, -.25, drive)                                                     // BACK UP OUT OF TARMAC
+            new DriveTime(3.5, -.5, drive)                                                     // BACK UP OUT OF TARMAC
         );
     }
 

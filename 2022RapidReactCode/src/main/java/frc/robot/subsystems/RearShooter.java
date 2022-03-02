@@ -99,6 +99,7 @@ public class RearShooter extends SubsystemBase {
     // * Speed is based on use
     // ***********************************************************************************************
     public void rearflywheelUpSpeed(Constants.ShootingConstants.ShootingPosition position) {
+        SmartDashboard.putNumber("RearFlywheelpid", 99);
         Constants.ShootingConstants temp = new Constants.ShootingConstants();
         double velocity = 0;
         if (position == Constants.ShootingConstants.ShootingPosition.DISTANCE) {
@@ -107,6 +108,7 @@ public class RearShooter extends SubsystemBase {
         else {
             velocity = temp.getShootingSpeed(position, Constants.ShootingConstants.SubSystem.FLYWHEEL);
         }
+        
         m_pidController.setReference(velocity, CANSparkMax.ControlType.kVelocity);
         CURRENT_SHOOTER_VELOCITY = velocity;
     }    
@@ -126,6 +128,8 @@ public class RearShooter extends SubsystemBase {
 
 
     public boolean isFlywheelAtVelocity(){
+        SmartDashboard.putNumber("RearShooterVelocity", m_encoder.getVelocity());
+        SmartDashboard.putNumber("RearShooterTargetVelocity", CURRENT_SHOOTER_VELOCITY);
        if (Math.abs(m_encoder.getVelocity() - CURRENT_SHOOTER_VELOCITY) < 10 ) return true;
        else return false;
 
