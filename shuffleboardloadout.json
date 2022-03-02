@@ -1218,6 +1218,42 @@
           }
         }
       }
+    },
+    {
+      "title": "turn limelight off",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "titleType": 0,
+        "tiles": {
+          "4,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/LIMELIGHT Off",
+              "_title": "SmartDashboard/LIMELIGHT Off"
+            }
+          },
+          "5,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/LIMELIGHT On",
+              "_title": "SmartDashboard/LIMELIGHT On"
+            }
+          }
+        }
+      }
     }
   ],
   "windowGeometry": {
