@@ -505,10 +505,10 @@
         "vgap": 16.0,
         "titleType": 0,
         "tiles": {
-          "4,0": {
+          "0,1": {
             "size": [
-              3,
-              2
+              6,
+              5
             ],
             "content": {
               "_type": "Camera Stream",
@@ -524,10 +524,10 @@
               "imageHeight": 0
             }
           },
-          "4,2": {
+          "7,1": {
             "size": [
-              3,
-              2
+              6,
+              5
             ],
             "content": {
               "_type": "Camera Stream",
