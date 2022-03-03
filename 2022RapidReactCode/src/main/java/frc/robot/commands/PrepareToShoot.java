@@ -42,8 +42,9 @@ public class PrepareToShoot extends SequentialCommandGroup {
         //          new command2(argsN, subsystem),
         //          new command3(argsN, subsystem)
         //      )    
-        new TurretAutoCenter(turret),
-
+        //new TurretAutoCenter(turret),
+        new TurretAutoAim(turret),
+        new TurretAutoCenter(turret), 
         parallel(                                                                           // GET THE SHOOTER UP TO SPEED
         new FlywheelUpSpeed(flywheel, Constants.ShootingConstants.ShootingPosition.TARMAC),                                                             // Flywheel (TARMAC)
         new RearFlywheelUpSpeed(rearShooter, Constants.ShootingConstants.ShootingPosition.TARMAC)                                       // RearFlywheel (TARMAC)

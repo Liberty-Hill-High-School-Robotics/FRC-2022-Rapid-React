@@ -126,7 +126,7 @@ public class RearShooter extends SubsystemBase {
     public boolean isFlywheelAtVelocity(){
         double closedLoopError = m_encoder.getVelocity() - targetShooterVelocity;
         SmartDashboard.putNumber("RearShooterVelocity", m_encoder.getVelocity());
-        SmartDashboard.putNumber("RearShooterTargetVelocity", CURRENT_SHOOTER_VELOCITY);
+        SmartDashboard.putNumber("RearShooterTargetVelocity", targetShooterVelocity);
         SmartDashboard.putNumber("RearClosedLoopError", closedLoopError);
         if (Math.abs(closedLoopError) < 100 ) return true;
         else return false;

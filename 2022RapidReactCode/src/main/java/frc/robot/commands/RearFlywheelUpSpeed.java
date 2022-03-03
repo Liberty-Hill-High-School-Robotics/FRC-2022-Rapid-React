@@ -55,7 +55,8 @@ public class RearFlywheelUpSpeed extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return m_rearShooter.isFlywheelAtVelocity();
+        //return m_rearShooter.isFlywheelAtVelocity();
+        return true;
     }
 
     @Override

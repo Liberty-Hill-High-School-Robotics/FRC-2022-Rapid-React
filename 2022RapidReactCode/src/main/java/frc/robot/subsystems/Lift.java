@@ -51,7 +51,7 @@ public class Lift extends SubsystemBase {
         canSparkMAXLift.setSoftLimit(SoftLimitDirection.kForward, 310);
         canSparkMAXLift.enableSoftLimit(SoftLimitDirection.kForward, true);
         // Reverse -- BOTTOM
-        canSparkMAXLift.setSoftLimit(SoftLimitDirection.kReverse, -10);
+        canSparkMAXLift.setSoftLimit(SoftLimitDirection.kReverse, -17);
         canSparkMAXLift.enableSoftLimit(SoftLimitDirection.kReverse, true);
 
         m_encoder = canSparkMAXLift.getEncoder();

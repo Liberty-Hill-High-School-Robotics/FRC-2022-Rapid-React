@@ -55,7 +55,8 @@ public class FlywheelUpSpeed extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return m_flywheel.isFlywheelAtVelocity();
+       // return m_flywheel.isFlywheelAtVelocity();
+       return true;
     }
 
     @Override

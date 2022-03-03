@@ -60,6 +60,7 @@ public class Turret extends SubsystemBase {
         SmartDashboard.putNumber("TurretPosition", talonSRXTurret.getSelectedSensorPosition());
         SmartDashboard.putBoolean("TurretLeftLimit", isLeftLimit());
         SmartDashboard.putBoolean("TurretRightLimit", isRightLimit());
+        SmartDashboard.putNumber("getTv", RobotContainer.getInstance().getTv());
     }
 
     @Override

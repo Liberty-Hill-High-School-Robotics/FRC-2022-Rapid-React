@@ -18,6 +18,9 @@ import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import java.security.acl.Group;
+
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -203,8 +206,20 @@ final JoystickButton intakeToFullButton = new JoystickButton(operatorJoystick, X
 intakeToFullButton.whileHeld(new IntakeToFull( m_intake ) ,true);
     SmartDashboard.putData("IntakeToFullButton",new IntakeToFull( m_intake ) );
 
+final JoystickButton prepareToShootButton = new JoystickButton(operatorJoystick, XboxController.Button.kLeftBumper.value);        
+prepareToShootButton.whileHeld(new PrepareToShoot(m_turret, m_flywheel, m_rearShooter  ) ,true);
+    SmartDashboard.putData("PrepareToShootButton",new PrepareToShoot(m_turret, m_flywheel, m_rearShooter  ) );   
+
+final JoystickButton shootButton = new JoystickButton(operatorJoystick, XboxController.Button.kRightBumper.value);        
+shootButton.whileHeld(new Shoot(m_turret, m_flywheel, m_rearShooter, m_belt) ,true);
+    SmartDashboard.putData("ShootButton",new Shoot(m_turret, m_flywheel, m_rearShooter, m_belt  ) );
+    
+final JoystickButton stopShooterButton = new JoystickButton(operatorJoystick, XboxController.Button.kRightBumper.value);        
+stopShooterButton.whenReleased(new GroupStopAllShooterMotors(m_flywheel, m_rearShooter, m_belt) ,true);
+    SmartDashboard.putData("StopShooterButton",new GroupStopAllShooterMotors(m_flywheel, m_rearShooter, m_belt  ) );  
+
 final JoystickButton precissionButton = new JoystickButton(driverJoystick, 2);        
-precissionButton.whileHeld(new drivePrecission( m_drive ) ,true);
+precissionButton.whenReleased(new drivePrecission( m_drive ) ,true);
     SmartDashboard.putData("precissionButton",new drivePrecission( m_drive ) );
 
 
@@ -235,9 +250,10 @@ public Command getAutonomousCommand() {
   return m_chooser.getSelected();
 }
 
-  public boolean getTv(){
-    NetworkTableEntry tv = table.getEntry("tv");
-    return tv.getBoolean(false);
+  public double getTv(){
+    return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
+    //NetworkTableEntry tv = table.getEntry("tv");
+    //return tv.getBoolean(false);
   }
 
   public double getTx(){

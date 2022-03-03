@@ -38,7 +38,8 @@ public class Drive extends SubsystemBase {
     private WPI_VictorSPX victorSPXL;
     private WPI_VictorSPX victorSPXR;
     private AnalogGyro gyro;
-    
+
+    public Boolean PreciseMode;
     private double speedFactor = 1;
     private final double NORMAL_DRIVE_SPEED_FACTOR = 1.0;
     private final double PRECISE_DRIVE_SPEED_FACTOR = 0.5;
@@ -78,6 +79,7 @@ public class Drive extends SubsystemBase {
         gyro = new AnalogGyro(0);
         addChild("gyro",gyro);
         gyro.setSensitivity(0.007);
+        PreciseMode = false;
     }
 
     @Override
@@ -128,7 +130,14 @@ public class Drive extends SubsystemBase {
 
     public void setPrecissionMode(){
         speedFactor = PRECISE_DRIVE_SPEED_FACTOR;
-        driveMain.setMaxOutput(speedFactor);
+        if(PreciseMode){
+            driveMain.setMaxOutput(NORMAL_DRIVE_SPEED_FACTOR);
+            PreciseMode = false;
+        }
+        else{
+        driveMain.setMaxOutput(PRECISE_DRIVE_SPEED_FACTOR);
+        PreciseMode = true;
+        }
     }
 
     public void setNormalMode(){
