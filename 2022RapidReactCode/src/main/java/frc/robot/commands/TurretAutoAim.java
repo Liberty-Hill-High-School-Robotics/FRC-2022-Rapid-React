@@ -54,6 +54,7 @@ public class TurretAutoAim extends CommandBase {
     public void initialize() {
         RobotContainer.getInstance().forceLEDOn();
         m_turret.turretStartLeft();
+        turretMoving = true;
         //if (RobotContainer.getInstance().getTv()) m_turret.turretStartLeft();
     }
 
