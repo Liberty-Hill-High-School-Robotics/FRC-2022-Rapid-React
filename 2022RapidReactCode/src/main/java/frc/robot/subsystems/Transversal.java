@@ -37,7 +37,7 @@ public class Transversal extends SubsystemBase {
     *
     */
     public Transversal() {
-        canSparkMAXTransversal2 = new CANSparkMax(9, MotorType.kBrushless); // Master
+        canSparkMAXTransversal2 = new CANSparkMax(8, MotorType.kBrushless); // Master // change can ID to 8 becasue we need worky on lift
         canSparkMAXTransversal2.setInverted(true);
         canSparkMAXTransversal2.setIdleMode(IdleMode.kBrake);
 

@@ -132,6 +132,7 @@ private final Joystick driverJoystick = new Joystick(0);
     // LIFT
     SmartDashboard.putData("LiftStartUp", new LiftStartUp( m_lift ));
     SmartDashboard.putData("LiftStartDown", new LiftStartDown( m_lift ));
+    
 
     // TRAVERSE
     SmartDashboard.putData("TransversalForward", new TransversalForward( m_transversal ));

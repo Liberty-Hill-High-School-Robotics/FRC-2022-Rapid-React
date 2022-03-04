@@ -23,7 +23,8 @@ public class GroupStopAllShooterMotors extends SequentialCommandGroup {
             parallel(                                                                                   // TURN EVERYTHING OFF
                 new FlywheelStop(flywheel),
                 new RearShooterStop(rearShooter),
-                new BeltStop(belt)
+                new BeltStop(belt),
+                new LimeLightLEDOff()
             )                                             
         );
     }

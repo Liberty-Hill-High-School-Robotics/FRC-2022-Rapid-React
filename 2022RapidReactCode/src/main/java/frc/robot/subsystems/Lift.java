@@ -45,7 +45,7 @@ public class Lift extends SubsystemBase {
     *
     */
     public Lift() {
-        canSparkMAXLift = new CANSparkMax(8, MotorType.kBrushless);
+        canSparkMAXLift = new CANSparkMax(9, MotorType.kBrushless);//change can ID to 9, 8 was bad motor conroller
         canSparkMAXLift.setIdleMode(IdleMode.kBrake);
         // Forward -- TOP
         canSparkMAXLift.setSoftLimit(SoftLimitDirection.kForward, 310);
@@ -57,11 +57,13 @@ public class Lift extends SubsystemBase {
         m_encoder = canSparkMAXLift.getEncoder();
 
         LIFT_IS_LOCKED = false;
+        
     }
 
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        SmartDashboard.putBoolean("LiftLocked", LIFT_IS_LOCKED);
         SmartDashboard.putNumber("liftPosition", m_encoder.getPosition());
         SmartDashboard.putBoolean("LiftForwardLimit", canSparkMAXLift.getForwardLimitSwitch(Type.kNormallyOpen).isPressed());
         SmartDashboard.putBoolean("LiftReverseLimit", canSparkMAXLift.getReverseLimitSwitch(Type.kNormallyOpen).isPressed());
@@ -76,25 +78,25 @@ public class Lift extends SubsystemBase {
     // Put methods for controlling this subsystem here. Call these from Commands.
 
     public void liftStartUp(){
-        if (!LIFT_IS_LOCKED){
+       // if (!LIFT_IS_LOCKED){
             if (!isLiftLocked()) {
                 if (m_encoder.getPosition() > FAST_MIN_ENCODER_COUNT && m_encoder.getPosition() < FAST_MAX_ENCODER_COUNT)
                     canSparkMAXLift.set(FAST_PERCENT_OUTPUT);
                 else
                     canSparkMAXLift.set(SLOW_PERCENT_OUTPUT);
             }
-        }
+        // }
     }
 
     public void liftStartDown(){
-        if (!LIFT_IS_LOCKED){
+        //if (!LIFT_IS_LOCKED){
             if (!isLiftLocked()) {
                 if (m_encoder.getPosition() > FAST_MIN_ENCODER_COUNT && m_encoder.getPosition() < FAST_MAX_ENCODER_COUNT)
                     canSparkMAXLift.set(-FAST_PERCENT_OUTPUT);
                 else
                     canSparkMAXLift.set(-SLOW_PERCENT_OUTPUT);
             }
-        }
+       // }
     }
 
     public void liftStop(){

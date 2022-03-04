@@ -73,7 +73,8 @@ public class Robot extends TimedRobot {
     @Override
     public void disabledInit() {
         m_robotContainer.forceLEDOff();
-        m_robotContainer.m_drive.PreciseMode=false;
+        m_robotContainer.m_drive.setNormalMode();
+        
     }
 
     @Override

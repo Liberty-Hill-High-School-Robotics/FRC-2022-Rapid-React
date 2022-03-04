@@ -62,7 +62,7 @@ already created in your subsystem
     @Override
     public boolean isFinished() {
         // End if NO TARGET IS AVAILABLE
-        if (RobotContainer.getInstance().getTv() == 1) {
+        if (RobotContainer.getInstance().getTv() != 1) {
                 RobotContainer.getInstance().forceLEDOff();
                 return true; 
         }
