@@ -48,7 +48,8 @@ public class SimpleAuton extends SequentialCommandGroup {
           //  new TurretAutoAim(turret),
           //  new TurretAutoCenter(turret),    
                                                                      // AIM
-            parallel(                                                                                   // GET THE SHOOTER UP TO SPEED
+            parallel(    
+            new DriveTime(3.5, -.5, drive),                                                                             // GET THE SHOOTER UP TO SPEED
             new FlywheelUpSpeed(flywheel, Constants.ShootingConstants.ShootingPosition.TARMAC),         // Flywheel (TARMAC)
             new RearFlywheelUpSpeed(rearShooter, Constants.ShootingConstants.ShootingPosition.TARMAC)   // RearFlywheel (TARMAC)
             ),
@@ -58,8 +59,8 @@ public class SimpleAuton extends SequentialCommandGroup {
                 new FlywheelStop(flywheel),
                 new RearShooterStop(rearShooter),
                 new BeltStop(belt)
-            ),                                               
-            new DriveTime(3.5, -.5, drive)                                                              // BACK UP OUT OF TARMAC
+            )                                              
+                                                                          // BACK UP OUT OF TARMAC
         );
     }
 
