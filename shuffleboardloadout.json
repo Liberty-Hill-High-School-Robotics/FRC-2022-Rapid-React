@@ -553,6 +553,17 @@
               "_source0": "network_table:///SmartDashboard/Auto Mode",
               "_title": "/SmartDashboard/Auto Mode"
             }
+          },
+          "6,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/IntakeOutCommand",
+              "_title": "/SmartDashboard/IntakeOutCommand"
+            }
           }
         }
       }
