@@ -1265,6 +1265,168 @@
           }
         }
       }
+    },
+    {
+      "title": "shooter2.0",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "titleType": 0,
+        "tiles": {
+          "4,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/RearDecrementVelocity",
+              "_title": "/SmartDashboard/RearDecrementVelocity"
+            }
+          },
+          "4,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/RearIncrementVelocity",
+              "_title": "/SmartDashboard/RearIncrementVelocity"
+            }
+          },
+          "7,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/RearStop",
+              "_title": "/SmartDashboard/RearStop"
+            }
+          },
+          "4,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/RearVelocity",
+              "_title": "/SmartDashboard/RearVelocity"
+            }
+          },
+          "5,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/RearRequestVelocity",
+              "_title": "/SmartDashboard/RearRequestVelocity"
+            }
+          },
+          "4,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/GROUP_RearFlywheelUpSpeed",
+              "_title": "/SmartDashboard/GROUP_RearFlywheelUpSpeed"
+            }
+          },
+          "5,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/RearFlywheelAtSpeed",
+              "_title": "/SmartDashboard/RearFlywheelAtSpeed",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "8,4": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/RearShooterTargetVelocity",
+              "_title": "/SmartDashboard/RearShooterTargetVelocity"
+            }
+          },
+          "8,3": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/RearShooterActualVelocity",
+              "_title": "/SmartDashboard/RearShooterActualVelocity"
+            }
+          },
+          "8,5": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/RearClosedLoopError",
+              "_title": "/SmartDashboard/RearClosedLoopError"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "encoder",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "titleType": 0,
+        "tiles": {
+          "4,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/encoderL",
+              "_title": "/SmartDashboard/encoderL"
+            }
+          },
+          "4,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/encoderR",
+              "_title": "/SmartDashboard/encoderR"
+            }
+          }
+        }
+      }
     }
   ],
   "windowGeometry": {

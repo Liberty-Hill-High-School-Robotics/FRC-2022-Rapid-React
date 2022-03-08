@@ -16,6 +16,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.RearShooter;
@@ -56,6 +57,7 @@ public class RearFlywheelUpSpeed extends CommandBase {
     @Override
     public boolean isFinished() {
         //return m_rearShooter.isFlywheelAtVelocity();
+        SmartDashboard.putBoolean("RearFlywheelAtSpeed", m_rearShooter.isFlywheelAtVelocity());
         return true;
     }
 

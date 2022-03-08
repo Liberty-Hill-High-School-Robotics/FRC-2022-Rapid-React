@@ -68,7 +68,7 @@ public class Constants {
         }
 
         private double[][] shootingSpeeds = {
-            {0.6, 80, 3325},       // TARMAC (ABOUT 60")
+            {0.6, 80, 980},       // TARMAC (ABOUT 60")
             {0.0, 0.0, 0},          // LAUNCH PAD 1 (ABOUT 145")
             {0.0, 0.0, 0},          // LAUNCH PAD 2 (ABOUT 187")
             {0.0, 0.0, 0},          // TERMINAL (ABOUT 248")

@@ -37,7 +37,7 @@ import com.revrobotics.CANSparkMax.IdleMode;
  */
 public class RearShooter extends SubsystemBase {
     private final double MAX_SHOOTER_VELOCITY = 5700;
-    private final double REAR_POWER = .3;
+    private final double REAR_POWER = 1;
 
     private double CURRENT_SHOOTER_VELOCITY = 0.0;
     private double targetShooterVelocity = 0.0;
@@ -56,11 +56,11 @@ public class RearShooter extends SubsystemBase {
         m_encoder = canSparkMAXRearShooter.getEncoder();
 
         m_pidController = canSparkMAXRearShooter.getPIDController();
-        m_pidController.setP(6e-5);
+        m_pidController.setP(.0001);
         m_pidController.setI(0);
         m_pidController.setD(0);
         m_pidController.setIZone(0);
-        m_pidController.setFF(0.000015);
+        m_pidController.setFF(0.00019);
         m_pidController.setOutputRange(-1, 1);
     }
 
@@ -109,7 +109,7 @@ public class RearShooter extends SubsystemBase {
             // *** COPY/PASTE ERROR *** velocity = temp.getShootingSpeed(position, Constants.ShootingConstants.SubSystem.FLYWHEEL); 
             targetShooterVelocity = temp.getShootingSpeed(position, Constants.ShootingConstants.SubSystem.REARSHOOTER);
         }
-        
+        SmartDashboard.putNumber("RearTargetShooterVelocity", targetShooterVelocity);
         m_pidController.setReference(targetShooterVelocity, CANSparkMax.ControlType.kVelocity);
     }    
     
@@ -125,7 +125,7 @@ public class RearShooter extends SubsystemBase {
 
     public boolean isFlywheelAtVelocity(){
         double closedLoopError = m_encoder.getVelocity() - targetShooterVelocity;
-        SmartDashboard.putNumber("RearShooterVelocity", m_encoder.getVelocity());
+        SmartDashboard.putNumber("RearShooterActualVelocity", m_encoder.getVelocity());
         SmartDashboard.putNumber("RearShooterTargetVelocity", targetShooterVelocity);
         SmartDashboard.putNumber("RearClosedLoopError", closedLoopError);
         if (Math.abs(closedLoopError) < 100 ) return true;
