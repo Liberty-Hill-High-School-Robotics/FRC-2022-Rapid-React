@@ -32,10 +32,10 @@ import com.revrobotics.SparkMaxLimitSwitch.Type;
  */
 public class Lift extends SubsystemBase {
     // private final double POWER_LIFT = .1;
-    private final int FAST_MAX_ENCODER_COUNT = 250;
-    private final int FAST_MIN_ENCODER_COUNT = 50;
-    private final double FAST_PERCENT_OUTPUT = 0.5;
-    private final double SLOW_PERCENT_OUTPUT = 0.1;
+    private final int FAST_MAX_ENCODER_COUNT = 275;
+    private final int FAST_MIN_ENCODER_COUNT = 25;
+    private final double FAST_PERCENT_OUTPUT = 0.8;
+    private final double SLOW_PERCENT_OUTPUT = 0.15;
 
     private RelativeEncoder m_encoder;
     private CANSparkMax canSparkMAXLift;
