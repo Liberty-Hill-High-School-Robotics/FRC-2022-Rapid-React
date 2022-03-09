@@ -68,7 +68,7 @@ public class Constants {
         }
 
         private double[][] shootingSpeeds = {
-            {0.6, 80, 980},       // TARMAC (ABOUT 60")
+            {0.6, 80, 980},         // TARMAC (ABOUT 60")  -- NOTE: The RearShooter was at 3325 at tournament, but the actual velocity achieved was 980
             {0.0, 0.0, 0},          // LAUNCH PAD 1 (ABOUT 145")
             {0.0, 0.0, 0},          // LAUNCH PAD 2 (ABOUT 187")
             {0.0, 0.0, 0},          // TERMINAL (ABOUT 248")

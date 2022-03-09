@@ -36,14 +36,34 @@ import com.revrobotics.CANSparkMax.IdleMode;
  *
  */
 public class RearShooter extends SubsystemBase {
+    /* -----------------------------------------------------------------------------------------------
+     * Variables for DashBoard PID -- TESTING ONLY
+     * -----------------------------------------------------------------------------------------------*/
     private final double MAX_SHOOTER_VELOCITY = 5700;
+    private double CURRENT_SHOOTER_VELOCITY = 0.0;
+
+    /* -----------------------------------------------------------------------------------------------
+     * Variables for PERCENT OUTPUT --  TESTING ONLY
+     * -----------------------------------------------------------------------------------------------*/
     private final double REAR_POWER = 1;
 
-    private double CURRENT_SHOOTER_VELOCITY = 0.0;
-    private double targetShooterVelocity = 0.0;
+    /* -----------------------------------------------------------------------------------------------
+     * Variables for CANSparkMAX
+     * -----------------------------------------------------------------------------------------------*/
     private CANSparkMax canSparkMAXRearShooter;
+
+    /* -----------------------------------------------------------------------------------------------
+     * Variables for Automatic PID Closed Loop Control
+     * -----------------------------------------------------------------------------------------------*/
+    private final double WHEEL_DIAMETER = 2.0;
+    private final double WHEEL_GEAR_REDUCTION = 3.0;
+    private final double MAX_RPM = 5700;
+
     private SparkMaxPIDController m_pidController;
     private RelativeEncoder m_encoder;
+    private double targetRPM = 0.0;
+    private double actualRPM = 0.0;
+    private double closedLoopError = 0;
 
     /**
     *
@@ -54,7 +74,10 @@ public class RearShooter extends SubsystemBase {
         canSparkMAXRearShooter.setInverted(true);
         
         m_encoder = canSparkMAXRearShooter.getEncoder();
+        actualRPM = m_encoder.getVelocity();
+        closedLoopError = actualRPM - targetRPM;
 
+        // 03/08/2022 PID was tuned -- no ball!
         m_pidController = canSparkMAXRearShooter.getPIDController();
         m_pidController.setP(.0001);
         m_pidController.setI(0);
@@ -67,6 +90,20 @@ public class RearShooter extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        if (targetRPM != 0) {
+            actualRPM = m_encoder.getVelocity();
+            closedLoopError = actualRPM - targetRPM;
+            SmartDashboard.putNumber("RearTarget", targetRPM);
+            SmartDashboard.putNumber("RearActualPID", actualRPM);
+            SmartDashboard.putNumber("RearError", closedLoopError);
+            SmartDashboard.putBoolean("RearAtSetpoint", isFlywheelAtVelocity());
+        }
+        else {
+            SmartDashboard.putNumber("RearTarget", 0);
+            SmartDashboard.putNumber("RearActualPID", 0);
+            SmartDashboard.putNumber("RearError", 0);
+            SmartDashboard.putBoolean("RearAtSetpoint", false);
+        }
         SmartDashboard.putNumber("RearVelocity", m_encoder.getVelocity());
     }
 
@@ -77,7 +114,18 @@ public class RearShooter extends SubsystemBase {
     }
 
     // Put methods for controlling this subsystem here. Call these from Commands.
+    /* -----------------------------------------------------------------------------------------------
+     * Methods used in all modes (percent output, automatic PID, Dashboard PID)
+     * -----------------------------------------------------------------------------------------------*/
+    public void RearShooterStop(){
+        canSparkMAXRearShooter.stopMotor();
+        targetRPM = 0;
+    }
 
+
+    /* -----------------------------------------------------------------------------------------------
+     * Methods for Percent Output TESTING ONLY
+     * -----------------------------------------------------------------------------------------------*/
     public void RearShooterOut(){
         canSparkMAXRearShooter.set(REAR_POWER);
         }
@@ -85,56 +133,82 @@ public class RearShooter extends SubsystemBase {
     public void RearShooterIn(){
         canSparkMAXRearShooter.set(-REAR_POWER);
     }
-    
-    public void RearShooterStop(){
-        canSparkMAXRearShooter.stopMotor();
-    }
 
     public void RearShooterOutPower (double power) {
       canSparkMAXRearShooter.set(power);
       SmartDashboard.putNumber("powerRear", power);
     }
-    // ***********************************************************************************************
-    // * rearFlywheelUpSpeed
-    // * Operate the flywheel at the requested velocity
-    // * Speed is based on use
-    // ***********************************************************************************************
+
+    /* -----------------------------------------------------------------------------------------------
+     * Methods for Automatic PID Closed Loop Control
+     * -----------------------------------------------------------------------------------------------*/
+
     public void rearflywheelUpSpeed(Constants.ShootingConstants.ShootingPosition position) {
-        Constants.ShootingConstants temp = new Constants.ShootingConstants();
-        targetShooterVelocity = 0;
+        Constants.ShootingConstants temp = new Constants.ShootingConstants();       // Currently in RPM
+        targetRPM = 0;
         if (position == Constants.ShootingConstants.ShootingPosition.DISTANCE) {
-            targetShooterVelocity = determinePowerFromDistance();
+            targetRPM = determinePowerFromDistance();
         }
         else {
-            // *** COPY/PASTE ERROR *** velocity = temp.getShootingSpeed(position, Constants.ShootingConstants.SubSystem.FLYWHEEL); 
-            targetShooterVelocity = temp.getShootingSpeed(position, Constants.ShootingConstants.SubSystem.REARSHOOTER);
+            targetRPM = temp.getShootingSpeed(position, Constants.ShootingConstants.SubSystem.REARSHOOTER);
         }
-        SmartDashboard.putNumber("RearTargetShooterVelocity", targetShooterVelocity);
-        m_pidController.setReference(targetShooterVelocity, CANSparkMax.ControlType.kVelocity);
+        m_pidController.setReference(targetRPM, CANSparkMax.ControlType.kVelocity);
     }    
     
-    // ***********************************************************************************************
-    // * determinePowerFromDistance
     // TODO: Implement Algorithm to find power based on distance
-    // ***********************************************************************************************
     public double determinePowerFromDistance(){
         double calculatedPower = 0;
         double distance = RobotContainer.getInstance().getDistance();
         return calculatedPower;
     }
 
+    /* ORIGINAL
+     * m_encoder.getVelocity is always ZERO and I don't know why
+     * 
     public boolean isFlywheelAtVelocity(){
-        double closedLoopError = m_encoder.getVelocity() - targetShooterVelocity;
+        double closedLoopError = m_encoder.getVelocity() - targetRPM;
         SmartDashboard.putNumber("RearShooterActualVelocity", m_encoder.getVelocity());
-        SmartDashboard.putNumber("RearShooterTargetVelocity", targetShooterVelocity);
+        SmartDashboard.putNumber("RearShooterTargetVelocity", targetRPM);
         SmartDashboard.putNumber("RearClosedLoopError", closedLoopError);
         if (Math.abs(closedLoopError) < 100 ) return true;
         else return false;
     }
+    */
 
+    /* Break Up the definition of closed loop error
+     * A shot in the dark -- there is no reason this should make a difference
+     */ 
+    public boolean isFlywheelAtVelocity(){
+        double error = 0;
+        double actual = 0;
+        actual = m_encoder.getVelocity();
+        error = actual - targetRPM;
+        SmartDashboard.putNumber("RearCheckActual", actual);
+        SmartDashboard.putNumber("RearCheckTarget", targetRPM);
+        SmartDashboard.putNumber("RearCheckError", error);
+        if (Math.abs(error) < 100 ) return true;
+        else return false;
+    }
+    
 
+    /* Based on Periodic Method Updates 
+    public boolean isFlywheelAtVelocity(){
+        if (Math.abs(closedLoopError) < 100 ) return true;
+        else return false;
+    }
+    */
 
-    // All methods below this comment are for TESTING ONLY
+    private double convertFPStoRPM (double fps){
+        return (60 * 12 * fps) / (WHEEL_GEAR_REDUCTION * WHEEL_DIAMETER * Math.PI);
+    }
+
+    private double convertRPMtoFPS (double rpm){
+        return (rpm * WHEEL_GEAR_REDUCTION * WHEEL_DIAMETER * Math.PI) / (60 *12);
+    }
+
+    /* -----------------------------------------------------------------------------------------------
+     * Methods for DASHBOARD Control of PID Closed Loop Control
+     * -----------------------------------------------------------------------------------------------*/
     public void incrementShooterVelocity() {
         CURRENT_SHOOTER_VELOCITY = CURRENT_SHOOTER_VELOCITY + 475;
         if (CURRENT_SHOOTER_VELOCITY > MAX_SHOOTER_VELOCITY) CURRENT_SHOOTER_VELOCITY = MAX_SHOOTER_VELOCITY;

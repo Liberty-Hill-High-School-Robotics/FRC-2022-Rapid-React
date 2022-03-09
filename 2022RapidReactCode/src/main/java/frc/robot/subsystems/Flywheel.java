@@ -38,16 +38,36 @@ import edu.wpi.first.wpilibj.DigitalInput;
  *
  */
 public class Flywheel extends SubsystemBase {
+    /* -----------------------------------------------------------------------------------------------
+     * Variables for DashBoard PID -- TESTING ONLY
+     * -----------------------------------------------------------------------------------------------*/
     // While Velocity is reported in units per 100ms, the input to the VELOCITY PID is a percentage from -100 to 100
     //private final double MAX_SHOOTER_VELOCITY = (2048 * 6380) / (600) ;//ouput is in units per 100ms. // 21777 units per 100ms
-    private final double MAX_SHOOTER_VELOCITY = 100;
-    private final double SHOOTER_POWER_IN = .75;
-    private final double SHOOTER_POWER_OUT = .5;
+    private final double MAX_SHOOTER_VELOCITY = 200;
     private double CURRENT_SHOOTER_VELOCITY = 0.0;
 
-    private WPI_TalonFX talonFXShooter1;
-    private WPI_TalonFX talonFXShooter2;
+    /* -----------------------------------------------------------------------------------------------
+     * Variables for PERCENT OUTPUT --  TESTING ONLY
+     * -----------------------------------------------------------------------------------------------*/
+    private final double SHOOTER_POWER_IN = .75;
+    private final double SHOOTER_POWER_OUT = .5;
+
+    /* -----------------------------------------------------------------------------------------------
+     * Variables for Hardware
+     * -----------------------------------------------------------------------------------------------*/
+    private WPI_TalonFX talonFXShooter1;            // LEADER
+    private WPI_TalonFX talonFXShooter2;            // FOLLOWER
     private DigitalInput shooterLmiit;
+
+    /* -----------------------------------------------------------------------------------------------
+     * Variables for Automatic PID Closed Loop Control
+     * -----------------------------------------------------------------------------------------------*/
+    private final double WHEEL_DIAMETER = 4.0;
+    private final double WHEEL_GEAR_REDUCTION = 15/24;
+    private final double MAX_RPM = 6380;
+
+    private double targetVelocity = 0;              // UNITS?
+
 
     
     /**
@@ -58,8 +78,8 @@ public class Flywheel extends SubsystemBase {
         talonFXShooter1.configFactoryDefault();
         talonFXShooter1.setInverted(true);
         talonFXShooter1.setNeutralMode(NeutralMode.Coast);
-       ErrorCode error = talonFXShooter1.config_kP(0, .0001);
-       SmartDashboard.putNumber("kperror", error.value);
+        
+        talonFXShooter1.config_kP(0, .0001);
         talonFXShooter1.config_kI(0, 0);
         talonFXShooter1.config_kF(0, 10);
         talonFXShooter1.config_kD(0, 0);
@@ -102,15 +122,27 @@ public class Flywheel extends SubsystemBase {
         //talonFXShooter1.config_kI(0, 0);
         //talonFXShooter1.config_kF(0, 10);
         //talonFXShooter1.config_kD(0, 0);
+
+        targetVelocity = 0;
     }
 
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
         SmartDashboard.putNumber("limelightDistance", RobotContainer.getInstance().getDistance());
-        SmartDashboard.putNumber("targetVelocity", talonFXShooter1.getClosedLoopTarget());
-        SmartDashboard.putNumber("actualVelocity1", talonFXShooter1.getSelectedSensorVelocity());
-        SmartDashboard.putNumber("actualVelocity2", talonFXShooter2.getSelectedSensorVelocity());
+
+        if (targetVelocity != 0 || CURRENT_SHOOTER_VELOCITY != 0){
+            SmartDashboard.putNumber("FrontTarget", talonFXShooter1.getClosedLoopTarget());
+            SmartDashboard.putNumber("FrontActual", talonFXShooter1.getSelectedSensorVelocity());
+            SmartDashboard.putNumber("FrontError", talonFXShooter1.getClosedLoopError());
+            SmartDashboard.putBoolean("FrontAtSetpoint", isFlywheelAtVelocity());
+        }
+        else{
+            SmartDashboard.putNumber("FrontTarget", 0);
+            SmartDashboard.putNumber("FrontActual", 0);
+            SmartDashboard.putNumber("FrontError", 0);
+            SmartDashboard.putBoolean("FrontAtSetpoint", false);
+        }
     }
 
     @Override
@@ -119,6 +151,17 @@ public class Flywheel extends SubsystemBase {
     }
 
     // Put methods for controlling this subsystem here. Call these from Commands.
+    /* -----------------------------------------------------------------------------------------------
+     * Methods used in all modes (percent output, automatic PID, Dashboard PID)
+     * -----------------------------------------------------------------------------------------------*/
+    public void flywheelStop() {
+        talonFXShooter1.stopMotor();;  
+        targetVelocity = 0;
+    }
+
+    /* -----------------------------------------------------------------------------------------------
+     * Methods for Percent Output TESTING ONLY
+     * -----------------------------------------------------------------------------------------------*/
 
     public void flywheelStartIn() {
         talonFXShooter1.set(SHOOTER_POWER_IN);
@@ -132,40 +175,27 @@ public class Flywheel extends SubsystemBase {
         talonFXShooter1.set(SHOOTER_POWER_OUT);
     }
 
-    public void flywheelStop() {
-        talonFXShooter1.stopMotor();;  
-    }
-
-    public void flywheelOutWithVelocity(double distance) {
-        talonFXShooter1.set(ControlMode.Velocity, MAX_SHOOTER_VELOCITY * .9);
-    }
-
     public void flywheelOutPower (double power) {
         talonFXShooter1.set(power);
     }
 
 
-    // ***********************************************************************************************
-    // * flywheelUpSpeed
-    // * Operate the flywheel at the requested velocity
-    // * Speed is based on use
-    // ***********************************************************************************************
+    /* -----------------------------------------------------------------------------------------------
+     * Methods for Automatic PID Closed Loop Control
+     * -----------------------------------------------------------------------------------------------*/
     public void flywheelUpSpeed(Constants.ShootingConstants.ShootingPosition position) {
         Constants.ShootingConstants temp = new Constants.ShootingConstants();
-        double velocity = 0;
+        targetVelocity = 0;
         if (position == Constants.ShootingConstants.ShootingPosition.DISTANCE) {
-            velocity = determinePowerFromDistance();
+            targetVelocity = determinePowerFromDistance();
         }
         else {
-            velocity = temp.getShootingSpeed(position, Constants.ShootingConstants.SubSystem.FLYWHEEL);
+            targetVelocity = temp.getShootingSpeed(position, Constants.ShootingConstants.SubSystem.FLYWHEEL);
         }
-        talonFXShooter1.set(ControlMode.Velocity, velocity);
+        talonFXShooter1.set(ControlMode.Velocity, targetVelocity);
     }
     
-    // ***********************************************************************************************
-    // * determinePowerFromDistance
     // TODO: Implement Algorithm to find power based on distance
-    // ***********************************************************************************************
     public double determinePowerFromDistance(){
         double calculatedPower = 0;
         double distance = RobotContainer.getInstance().getDistance();
@@ -173,14 +203,29 @@ public class Flywheel extends SubsystemBase {
     }
 
     public boolean isFlywheelAtVelocity(){
-        SmartDashboard.putNumber("FlywheelError", talonFXShooter1.getClosedLoopError());
        if (Math.abs(talonFXShooter1.getClosedLoopError()) < 10) return true;
        else return false;
-
     }
 
+    private double convertFPStoRPM (double fps){
+        return (60 * 12 * fps) / (WHEEL_GEAR_REDUCTION * WHEEL_DIAMETER * Math.PI);
+    }
 
-    // All methods below this comment are for TESTING ONLY
+    private double convertRPMtoFPS (double rpm){
+        return (rpm * WHEEL_GEAR_REDUCTION * WHEEL_DIAMETER * Math.PI) / (60 *12);
+    }
+
+    private double convertFPStoSetPoint (double fps) {
+        return 0;
+    }
+
+    private double convertSetPointToFPS (double setPoint) {
+        return 0;
+    }
+
+    /* -----------------------------------------------------------------------------------------------
+     * Methods for DASHBOARD Control of PID Closed Loop Control
+     * -----------------------------------------------------------------------------------------------*/
     public void incrementShooterVelocity() {
         CURRENT_SHOOTER_VELOCITY = CURRENT_SHOOTER_VELOCITY + 10;
         if (CURRENT_SHOOTER_VELOCITY > MAX_SHOOTER_VELOCITY) CURRENT_SHOOTER_VELOCITY = MAX_SHOOTER_VELOCITY;
@@ -195,6 +240,10 @@ public class Flywheel extends SubsystemBase {
 
     public void flyWheelTestVelocity() {
         talonFXShooter1.set(ControlMode.Velocity, SmartDashboard.getNumber("RequestedShooterVelocity", CURRENT_SHOOTER_VELOCITY));
+    }
+
+    public void flywheelOutWithVelocity(double distance) {
+        talonFXShooter1.set(ControlMode.Velocity, MAX_SHOOTER_VELOCITY * .9);
     }
 }
 
