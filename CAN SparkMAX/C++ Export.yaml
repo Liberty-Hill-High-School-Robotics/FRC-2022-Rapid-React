@@ -1,0 +1,7 @@
+CAN SparkMAX:
+  Defaults: "Component,None"
+  ClassName: "rev::CANSparkMax"
+  Construction: "#variable($Name).reset(new ${ClassName}($CAN_ID, rev::CANSparkMax::MotorType::k${Motor_Type}));"
+  LiveWindow: "lw->AddActuator(\"$Subsystem\", \"$Short_Name\", #variable($Name));"
+  Import: "\\#include \"CANSparkMax.h\""
+  
