@@ -37,7 +37,23 @@ public class Constants {
             LAUNCH1     (1),      // Shooting from Launch Pad 1
             LAUNCH2     (2),      // Shooting from Launch Pad 2
             TERMINAL    (3),      // Shooting from Terminal
-            DISTANCE    (4)       // Shooting Based on Distance from LimeLight
+            DISTANCE    (4),       // Shooting Based on Distance from LimeLight
+            TEST1a      (5),
+            TEST1b      (6),
+            TEST1c      (7),
+            TEST1d      (8),
+            TEST1e      (9),
+            TEST2a      (10),
+            TEST2b      (11),
+            TEST2c      (12),
+            TEST2d      (13),
+            TEST2e      (14),
+            TEST3a      (15),
+            TEST3b      (16),
+            TEST3c      (17),
+            TEST3d      (18),
+            TEST3e      (19)
+
             ;
 
             private final int shootingPositionIndex;
@@ -72,7 +88,22 @@ public class Constants {
             {0.0, 0.0, 0},          // LAUNCH PAD 1 (ABOUT 145")
             {0.0, 0.0, 0},          // LAUNCH PAD 2 (ABOUT 187")
             {0.0, 0.0, 0},          // TERMINAL (ABOUT 248")
-            {0.0, 0.0, 0}           // DISTANCE
+            {0.0, 0.0, 0},           // DISTANCE
+            // TEST1a      (5),
+            // TEST1b      (6),
+            // TEST1c      (7),
+            // TEST1d      (8),
+            // TEST1e      (9),
+            // TEST2a      (10),
+            // TEST2b      (11),
+            // TEST2c      (12),
+            // TEST2d      (13),
+            // TEST2e      (14),
+            // TEST3a      (15),
+            // TEST3b      (16),
+            // TEST3c      (17),
+            // TEST3d      (18),
+            // TEST3e      (19)
         };
 
         public double getShootingSpeed(ShootingPosition position, SubSystem subSystem) {

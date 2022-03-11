@@ -159,6 +159,9 @@ private final Joystick driverJoystick = new Joystick(0);
     SmartDashboard.putData("GROUP_FlywheelStop", new FlywheelStop(m_flywheel));
     SmartDashboard.putData("GROUP_BeltStop", new BeltStop(m_belt));
     SmartDashboard.putData("GROUP_DriveTime", new DriveTime(3.5, -.5, m_drive));
+
+    // TEST COMMANDS
+    SmartDashboard.putData("TEST1a", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.TEST1a));
   
 
     // Configure the button bindings
