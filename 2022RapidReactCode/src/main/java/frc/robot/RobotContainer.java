@@ -162,7 +162,52 @@ private final Joystick driverJoystick = new Joystick(0);
 
     // TEST COMMANDS
     SmartDashboard.putData("TEST1a", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.TEST1a));
-  
+    SmartDashboard.putData("TEST1b", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.TEST1b));
+    SmartDashboard.putData("TEST1c", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.TEST1c));
+    SmartDashboard.putData("TEST1d", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.TEST1d));
+    SmartDashboard.putData("TEST1e", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.TEST1e));
+    SmartDashboard.putData("TEST1f", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.TEST1f));
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    SmartDashboard.putData("ShootTEST1a", new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.TEST1a));
+    SmartDashboard.putData("ShootTEST1b", new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.TEST1b));
+    SmartDashboard.putData("ShootTEST1c", new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.TEST1c));
+    SmartDashboard.putData("ShootTEST1d", new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.TEST1d));
+    SmartDashboard.putData("ShootTEST1e", new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.TEST1e));
+    SmartDashboard.putData("ShootTEST1f", new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.TEST1f));
+
+    
+
+    SmartDashboard.putData("TEST2a", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.TEST2a));
+    SmartDashboard.putData("TEST2b", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.TEST2b));
+    SmartDashboard.putData("TEST2c", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.TEST2c));
+    SmartDashboard.putData("TEST2d", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.TEST2d));
+    SmartDashboard.putData("TEST2e", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.TEST2e));
+    SmartDashboard.putData("TEST2f", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.TEST2f));
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    SmartDashboard.putData("ShootTEST2a", new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.TEST2a));
+    SmartDashboard.putData("ShootTEST2b", new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.TEST2b));
+    SmartDashboard.putData("ShootTEST2c", new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.TEST2c));
+    SmartDashboard.putData("ShootTEST2d", new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.TEST2d));
+    SmartDashboard.putData("ShootTEST2e", new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.TEST2e));
+    SmartDashboard.putData("ShootTEST2f", new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.TEST2f));
+
+
+
+    SmartDashboard.putData("TEST3a", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.TEST3a));
+    SmartDashboard.putData("TEST3b", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.TEST3b));
+    SmartDashboard.putData("TEST3c", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.TEST3c));
+    SmartDashboard.putData("TEST3d", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.TEST3d));
+    SmartDashboard.putData("TEST3e", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.TEST3e));
+    SmartDashboard.putData("TEST3f", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.TEST3f));
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    SmartDashboard.putData("ShootTEST3a", new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.TEST3a));
+    SmartDashboard.putData("ShootTEST3b", new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.TEST3b));
+    SmartDashboard.putData("ShootTEST3c", new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.TEST3c));
+    SmartDashboard.putData("ShootTEST3d", new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.TEST3d));
+    SmartDashboard.putData("ShootTEST3e", new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.TEST3e));
+    SmartDashboard.putData("ShootTEST3f", new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.TEST3f));
+
+
 
     // Configure the button bindings
     configureButtonBindings();

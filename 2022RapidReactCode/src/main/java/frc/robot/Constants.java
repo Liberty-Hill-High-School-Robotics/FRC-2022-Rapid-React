@@ -38,21 +38,27 @@ public class Constants {
             LAUNCH2     (2),      // Shooting from Launch Pad 2
             TERMINAL    (3),      // Shooting from Terminal
             DISTANCE    (4),       // Shooting Based on Distance from LimeLight
+
             TEST1a      (5),
             TEST1b      (6),
             TEST1c      (7),
             TEST1d      (8),
             TEST1e      (9),
-            TEST2a      (10),
-            TEST2b      (11),
-            TEST2c      (12),
-            TEST2d      (13),
-            TEST2e      (14),
-            TEST3a      (15),
-            TEST3b      (16),
-            TEST3c      (17),
-            TEST3d      (18),
-            TEST3e      (19)
+            TEST1f      (10),
+
+            TEST2a      (11),
+            TEST2b      (12),
+            TEST2c      (13),
+            TEST2d      (14),
+            TEST2e      (15),
+            TEST2f      (16),
+
+            TEST3a      (17),
+            TEST3b      (18),
+            TEST3c      (19),
+            TEST3d      (20),
+            TEST3e      (21),
+            TEST3f      (22)
 
             ;
 

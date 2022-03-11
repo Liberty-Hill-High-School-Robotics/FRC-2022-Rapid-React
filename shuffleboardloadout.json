@@ -9,7 +9,6 @@
         "showGrid": true,
         "hgap": 16.0,
         "vgap": 16.0,
-        "titleType": 0,
         "tiles": {
           "0,0": {
             "size": [
@@ -36,8 +35,7 @@
               "Y-axis/Automatic bounds": true,
               "Y-axis/Upper bound": 1.0,
               "Y-axis/Lower bound": -1.0,
-              "Y-axis/Unit": "ul",
-              "Visible data/SmartDashboard/actualVelocity2": true
+              "Y-axis/Unit": "ul"
             }
           },
           "5,0": {
@@ -503,7 +501,6 @@
         "showGrid": true,
         "hgap": 16.0,
         "vgap": 16.0,
-        "titleType": 0,
         "tiles": {
           "0,1": {
             "size": [
@@ -577,7 +574,6 @@
         "showGrid": true,
         "hgap": 16.0,
         "vgap": 16.0,
-        "titleType": 0,
         "tiles": {
           "9,0": {
             "size": [
@@ -863,7 +859,6 @@
         "showGrid": true,
         "hgap": 16.0,
         "vgap": 16.0,
-        "titleType": 0,
         "tiles": {
           "3,0": {
             "size": [
@@ -995,7 +990,6 @@
         "showGrid": true,
         "hgap": 16.0,
         "vgap": 16.0,
-        "titleType": 0,
         "tiles": {
           "5,4": {
             "size": [
@@ -1068,7 +1062,6 @@
         "showGrid": true,
         "hgap": 16.0,
         "vgap": 16.0,
-        "titleType": 0,
         "tiles": {
           "5,3": {
             "size": [
@@ -1126,7 +1119,6 @@
         "showGrid": true,
         "hgap": 16.0,
         "vgap": 16.0,
-        "titleType": 0,
         "tiles": {
           "8,1": {
             "size": [
@@ -1239,7 +1231,6 @@
         "showGrid": true,
         "hgap": 16.0,
         "vgap": 16.0,
-        "titleType": 0,
         "tiles": {
           "4,2": {
             "size": [
@@ -1275,7 +1266,6 @@
         "showGrid": true,
         "hgap": 16.0,
         "vgap": 16.0,
-        "titleType": 0,
         "tiles": {
           "4,2": {
             "size": [
@@ -1401,7 +1391,6 @@
         "showGrid": true,
         "hgap": 16.0,
         "vgap": 16.0,
-        "titleType": 0,
         "tiles": {
           "4,2": {
             "size": [
@@ -1427,11 +1416,23 @@
           }
         }
       }
+    },
+    {
+      "title": "ShootByPos",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {}
+      }
     }
   ],
   "windowGeometry": {
-    "x": 0.5,
-    "y": 0.5,
+    "x": 1.0,
+    "y": 1.0,
     "width": 1919.0,
     "height": 1031.0
   }
