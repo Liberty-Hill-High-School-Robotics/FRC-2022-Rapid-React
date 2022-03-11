@@ -30,6 +30,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj.DigitalInput;
 
@@ -64,9 +65,11 @@ public class Flywheel extends SubsystemBase {
      * -----------------------------------------------------------------------------------------------*/
     private final double WHEEL_DIAMETER = 4.0;
     private final double WHEEL_GEAR_REDUCTION = 15/24;
+    private final double UNITS_PER_ROTATION = 2048;
     private final double MAX_RPM = 6380;
 
     private double targetVelocity = 0;              // UNITS?
+    private double targetVelocityUnits = 0;
 
 
     
@@ -77,11 +80,17 @@ public class Flywheel extends SubsystemBase {
         talonFXShooter1 = new WPI_TalonFX(11);
         talonFXShooter1.configFactoryDefault();
         talonFXShooter1.setInverted(true);
-        talonFXShooter1.setNeutralMode(NeutralMode.Coast);
+        talonFXShooter1.setNeutralMode(NeutralMode.Coast); 
+        
+        TalonFXConfiguration allConfigs = new TalonFXConfiguration();
+        allConfigs.reverseSoftLimitEnable = false;           // Rotation to Right
+        //allConfigs.reverseSoftLimitThreshold = -300;
+        allConfigs.forwardSoftLimitEnable = false;           // Rotation to Left
+        //allConfigs.forwardSoftLimitThreshold = 300;
         
         talonFXShooter1.config_kP(0, .0001);
         talonFXShooter1.config_kI(0, 0);
-        talonFXShooter1.config_kF(0, 10);
+        talonFXShooter1.config_kF(0, 0.046);
         talonFXShooter1.config_kD(0, 0);
 
         talonFXShooter2 = new WPI_TalonFX(12);
@@ -131,11 +140,13 @@ public class Flywheel extends SubsystemBase {
         // This method will be called once per scheduler run
         SmartDashboard.putNumber("limelightDistance", RobotContainer.getInstance().getDistance());
 
+
         if (targetVelocity != 0 || CURRENT_SHOOTER_VELOCITY != 0){
             SmartDashboard.putNumber("FrontTarget", talonFXShooter1.getClosedLoopTarget());
             SmartDashboard.putNumber("FrontActual", talonFXShooter1.getSelectedSensorVelocity());
             SmartDashboard.putNumber("FrontError", talonFXShooter1.getClosedLoopError());
             SmartDashboard.putBoolean("FrontAtSetpoint", isFlywheelAtVelocity());
+            SmartDashboard.putNumber("FrontTargetUnits", targetVelocityUnits);
         }
         else{
             SmartDashboard.putNumber("FrontTarget", 0);
@@ -192,7 +203,11 @@ public class Flywheel extends SubsystemBase {
         else {
             targetVelocity = temp.getShootingSpeed(position, Constants.ShootingConstants.SubSystem.FLYWHEEL);
         }
-        talonFXShooter1.set(ControlMode.Velocity, targetVelocity);
+        targetVelocityUnits = convertRPMtoFPS(targetVelocity);
+        SmartDashboard.putNumber("MaryFrontTarget", targetVelocity);
+        SmartDashboard.putNumber("MaryFrontTargetUnits", targetVelocityUnits);
+        talonFXShooter1.set(ControlMode.Velocity, targetVelocityUnits);
+        //targetVelocityUnits = (2048 * ((targetVelocity / 100) * 6380)) / (600);
     }
     
     // TODO: Implement Algorithm to find power based on distance
@@ -203,8 +218,14 @@ public class Flywheel extends SubsystemBase {
     }
 
     public boolean isFlywheelAtVelocity(){
-       if (Math.abs(talonFXShooter1.getClosedLoopError()) < 10) return true;
+       double error = 0;
+       double actual = 0;
+       actual = talonFXShooter1.getSelectedSensorVelocity();
+       error = actual - targetVelocityUnits;
+       if (Math.abs(error) < 500) return true;
        else return false;
+       //if (Math.abs(talonFXShooter1.getClosedLoopError()) < 10) return true;
+      //else return false;
     }
 
     private double convertFPStoRPM (double fps){
@@ -212,7 +233,9 @@ public class Flywheel extends SubsystemBase {
     }
 
     private double convertRPMtoFPS (double rpm){
-        return (rpm * WHEEL_GEAR_REDUCTION * WHEEL_DIAMETER * Math.PI) / (60 *12);
+        double fps = 0; 
+        fps = (rpm * UNITS_PER_ROTATION)/600;
+        return fps;
     }
 
     private double convertFPStoSetPoint (double fps) {
@@ -228,12 +251,14 @@ public class Flywheel extends SubsystemBase {
      * -----------------------------------------------------------------------------------------------*/
     public void incrementShooterVelocity() {
         CURRENT_SHOOTER_VELOCITY = CURRENT_SHOOTER_VELOCITY + 10;
+        targetVelocityUnits = (2048 * ((CURRENT_SHOOTER_VELOCITY / 100) * 6380)) / (600);
         if (CURRENT_SHOOTER_VELOCITY > MAX_SHOOTER_VELOCITY) CURRENT_SHOOTER_VELOCITY = MAX_SHOOTER_VELOCITY;
         SmartDashboard.putNumber("RequestedShooterVelocity", CURRENT_SHOOTER_VELOCITY);
     }
 
     public void decrementShooterVelocity() {
         CURRENT_SHOOTER_VELOCITY = CURRENT_SHOOTER_VELOCITY - 10;
+        targetVelocityUnits = (2048 * ((CURRENT_SHOOTER_VELOCITY / 100) * 6380)) / (600);
         if (CURRENT_SHOOTER_VELOCITY < 0) CURRENT_SHOOTER_VELOCITY = 0;
         SmartDashboard.putNumber("RequestedShooterVelocity", CURRENT_SHOOTER_VELOCITY);
     }
