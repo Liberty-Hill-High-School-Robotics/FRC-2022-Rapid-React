@@ -563,6 +563,32 @@
               "_source0": "network_table:///SmartDashboard/IntakeOutCommand",
               "_title": "/SmartDashboard/IntakeOutCommand"
             }
+          },
+          "6,2": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/FrontAtSetpoint",
+              "_title": "/SmartDashboard/FrontAtSetpoint",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "6,4": {
+            "size": [
+              1,
+              2
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/RearAtSetpoint",
+              "_title": "/SmartDashboard/RearAtSetpoint",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
           }
         }
       }
@@ -1446,7 +1472,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/TEST1a",
-              "_title": "SmartDashboard/TEST1a"
+              "_title": "/SmartDashboard/TEST1a"
             }
           },
           "10,1": {
@@ -1457,7 +1483,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/TEST1b",
-              "_title": "SmartDashboard/TEST1b"
+              "_title": "/SmartDashboard/TEST1b"
             }
           },
           "10,2": {
@@ -1468,7 +1494,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/TEST1c",
-              "_title": "SmartDashboard/TEST1c"
+              "_title": "/SmartDashboard/TEST1c"
             }
           },
           "10,3": {
@@ -1479,7 +1505,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/TEST1d",
-              "_title": "SmartDashboard/TEST1d"
+              "_title": "/SmartDashboard/TEST1d"
             }
           },
           "10,4": {
@@ -1490,7 +1516,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/TEST1e",
-              "_title": "SmartDashboard/TEST1e"
+              "_title": "/SmartDashboard/TEST1e"
             }
           },
           "10,5": {
@@ -1501,7 +1527,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/TEST1f",
-              "_title": "SmartDashboard/TEST1f"
+              "_title": "/SmartDashboard/TEST1f"
             }
           },
           "11,0": {
@@ -1512,7 +1538,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/TEST2a",
-              "_title": "SmartDashboard/TEST2a"
+              "_title": "/SmartDashboard/TEST2a"
             }
           },
           "11,1": {
@@ -1523,7 +1549,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/TEST2b",
-              "_title": "SmartDashboard/TEST2b"
+              "_title": "/SmartDashboard/TEST2b"
             }
           },
           "11,2": {
@@ -1534,7 +1560,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/TEST2c",
-              "_title": "SmartDashboard/TEST2c"
+              "_title": "/SmartDashboard/TEST2c"
             }
           },
           "11,3": {
@@ -1545,7 +1571,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/TEST2d",
-              "_title": "SmartDashboard/TEST2d"
+              "_title": "/SmartDashboard/TEST2d"
             }
           },
           "11,4": {
@@ -1556,7 +1582,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/TEST2e",
-              "_title": "SmartDashboard/TEST2e"
+              "_title": "/SmartDashboard/TEST2e"
             }
           },
           "11,5": {
@@ -1567,7 +1593,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/TEST2f",
-              "_title": "SmartDashboard/TEST2f"
+              "_title": "/SmartDashboard/TEST2f"
             }
           },
           "12,0": {
@@ -1578,7 +1604,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/TEST3a",
-              "_title": "SmartDashboard/TEST3a"
+              "_title": "/SmartDashboard/TEST3a"
             }
           },
           "12,1": {
@@ -1589,7 +1615,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/TEST3b",
-              "_title": "SmartDashboard/TEST3b"
+              "_title": "/SmartDashboard/TEST3b"
             }
           },
           "12,2": {
@@ -1600,7 +1626,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/TEST3c",
-              "_title": "SmartDashboard/TEST3c"
+              "_title": "/SmartDashboard/TEST3c"
             }
           },
           "12,3": {
@@ -1611,7 +1637,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/TEST3d",
-              "_title": "SmartDashboard/TEST3d"
+              "_title": "/SmartDashboard/TEST3d"
             }
           },
           "12,4": {
@@ -1622,7 +1648,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/TEST3e",
-              "_title": "SmartDashboard/TEST3e"
+              "_title": "/SmartDashboard/TEST3e"
             }
           },
           "12,5": {
@@ -1633,7 +1659,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/TEST3f",
-              "_title": "SmartDashboard/TEST3f"
+              "_title": "/SmartDashboard/TEST3f"
             }
           },
           "8,5": {
@@ -1644,7 +1670,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/ShootTEST3f",
-              "_title": "SmartDashboard/ShootTEST3f"
+              "_title": "/SmartDashboard/ShootTEST3f"
             }
           },
           "8,4": {
@@ -1655,7 +1681,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/ShootTEST3e",
-              "_title": "SmartDashboard/ShootTEST3e"
+              "_title": "/SmartDashboard/ShootTEST3e"
             }
           },
           "8,3": {
@@ -1666,7 +1692,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/ShootTEST3d",
-              "_title": "SmartDashboard/ShootTEST3d"
+              "_title": "/SmartDashboard/ShootTEST3d"
             }
           },
           "8,2": {
@@ -1677,7 +1703,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/ShootTEST3c",
-              "_title": "SmartDashboard/ShootTEST3c"
+              "_title": "/SmartDashboard/ShootTEST3c"
             }
           },
           "8,1": {
@@ -1688,7 +1714,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/ShootTEST3b",
-              "_title": "SmartDashboard/ShootTEST3b"
+              "_title": "/SmartDashboard/ShootTEST3b"
             }
           },
           "8,0": {
@@ -1699,7 +1725,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/ShootTEST3a",
-              "_title": "SmartDashboard/ShootTEST3a"
+              "_title": "/SmartDashboard/ShootTEST3a"
             }
           },
           "7,5": {
@@ -1710,7 +1736,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/ShootTEST2f",
-              "_title": "SmartDashboard/ShootTEST2f"
+              "_title": "/SmartDashboard/ShootTEST2f"
             }
           },
           "7,4": {
@@ -1721,7 +1747,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/ShootTEST2e",
-              "_title": "SmartDashboard/ShootTEST2e"
+              "_title": "/SmartDashboard/ShootTEST2e"
             }
           },
           "7,3": {
@@ -1732,7 +1758,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/ShootTEST2d",
-              "_title": "SmartDashboard/ShootTEST2d"
+              "_title": "/SmartDashboard/ShootTEST2d"
             }
           },
           "7,2": {
@@ -1743,7 +1769,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/ShootTEST2c",
-              "_title": "SmartDashboard/ShootTEST2c"
+              "_title": "/SmartDashboard/ShootTEST2c"
             }
           },
           "7,1": {
@@ -1754,7 +1780,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/ShootTEST2b",
-              "_title": "SmartDashboard/ShootTEST2b"
+              "_title": "/SmartDashboard/ShootTEST2b"
             }
           },
           "7,0": {
@@ -1765,7 +1791,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/ShootTEST2a",
-              "_title": "SmartDashboard/ShootTEST2a"
+              "_title": "/SmartDashboard/ShootTEST2a"
             }
           },
           "6,5": {
@@ -1776,7 +1802,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/ShootTEST1f",
-              "_title": "SmartDashboard/ShootTEST1f"
+              "_title": "/SmartDashboard/ShootTEST1f"
             }
           },
           "6,4": {
@@ -1787,7 +1813,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/ShootTEST1e",
-              "_title": "SmartDashboard/ShootTEST1e"
+              "_title": "/SmartDashboard/ShootTEST1e"
             }
           },
           "6,3": {
@@ -1798,7 +1824,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/ShootTEST1d",
-              "_title": "SmartDashboard/ShootTEST1d"
+              "_title": "/SmartDashboard/ShootTEST1d"
             }
           },
           "6,2": {
@@ -1809,7 +1835,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/ShootTEST1c",
-              "_title": "SmartDashboard/ShootTEST1c"
+              "_title": "/SmartDashboard/ShootTEST1c"
             }
           },
           "6,1": {
@@ -1820,7 +1846,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/ShootTEST1b",
-              "_title": "SmartDashboard/ShootTEST1b"
+              "_title": "/SmartDashboard/ShootTEST1b"
             }
           },
           "6,0": {
@@ -1831,7 +1857,7 @@
             "content": {
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/ShootTEST1a",
-              "_title": "SmartDashboard/ShootTEST1a"
+              "_title": "/SmartDashboard/ShootTEST1a"
             }
           },
           "3,0": {
@@ -1842,7 +1868,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/FrontActual",
-              "_title": "SmartDashboard/FrontActual"
+              "_title": "/SmartDashboard/FrontActual"
             }
           },
           "3,1": {
@@ -1853,7 +1879,7 @@
             "content": {
               "_type": "Boolean Box",
               "_source0": "network_table:///SmartDashboard/FrontAtSetpoint",
-              "_title": "SmartDashboard/FrontAtSetpoint",
+              "_title": "/SmartDashboard/FrontAtSetpoint",
               "Colors/Color when true": "#7CFC00FF",
               "Colors/Color when false": "#8B0000FF"
             }
@@ -1866,7 +1892,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/FrontError",
-              "_title": "SmartDashboard/FrontError"
+              "_title": "/SmartDashboard/FrontError"
             }
           },
           "3,3": {
@@ -1877,7 +1903,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/FrontTarget",
-              "_title": "SmartDashboard/FrontTarget"
+              "_title": "/SmartDashboard/FrontTarget"
             }
           },
           "4,3": {
@@ -1888,7 +1914,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/RearTarget",
-              "_title": "SmartDashboard/RearTarget"
+              "_title": "/SmartDashboard/RearTarget"
             }
           },
           "4,2": {
@@ -1899,7 +1925,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/RearError",
-              "_title": "SmartDashboard/RearError"
+              "_title": "/SmartDashboard/RearError"
             }
           },
           "4,1": {
@@ -1910,7 +1936,7 @@
             "content": {
               "_type": "Boolean Box",
               "_source0": "network_table:///SmartDashboard/RearAtSetpoint",
-              "_title": "SmartDashboard/RearAtSetpoint",
+              "_title": "/SmartDashboard/RearAtSetpoint",
               "Colors/Color when true": "#7CFC00FF",
               "Colors/Color when false": "#8B0000FF"
             }
@@ -1923,7 +1949,18 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/RearActualPID",
-              "_title": "SmartDashboard/RearActualPID"
+              "_title": "/SmartDashboard/RearActualPID"
+            }
+          },
+          "3,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/GROUP_StopAllShooterMotors",
+              "_title": "/SmartDashboard/GROUP_StopAllShooterMotors"
             }
           }
         }
