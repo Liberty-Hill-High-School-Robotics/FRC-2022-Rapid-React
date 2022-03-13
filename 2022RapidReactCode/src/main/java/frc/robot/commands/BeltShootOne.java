@@ -16,6 +16,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
@@ -42,14 +43,14 @@ public class BeltShootOne extends CommandBase {
     private boolean firstTime;
     private boolean waitForEmpty;
 
-    public BeltShootOne(Belt subsystem, Constants.ShootingConstants.ShootingPosition position) {
+    public BeltShootOne(Belt subsystem, Flywheel flywheel, RearShooter rearShooter, Constants.ShootingConstants.ShootingPosition position) {
         m_belt = subsystem;
         addRequirements(m_belt);
 
         m_position = position;
 
-        m_Flywheel = RobotContainer.getInstance().m_flywheel;
-        m_RearShooter = RobotContainer.getInstance().m_rearShooter;
+        m_Flywheel = flywheel;
+        m_RearShooter = rearShooter;
         firstTime = true;
         waitForEmpty = true;
     }
@@ -63,6 +64,18 @@ public class BeltShootOne extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+
+    }
+
+    // Called once the command ends or is interrupted.
+    @Override
+    public void end(boolean interrupted) {
+        // m_belt.beltStop();
+    }
+
+    // Returns true when the command should end.
+    @Override
+    public boolean isFinished() {
         if (!m_belt.isBallInConveyor()) waitForEmpty = false;
         if (firstTime) {
             // assume ball was in the conveyor and both flywheels are at speed
@@ -92,18 +105,9 @@ public class BeltShootOne extends CommandBase {
                 }
             }
         }
-    }
+        SmartDashboard.putBoolean("WaitForEmpty", waitForEmpty);
+        return false;
 
-    // Called once the command ends or is interrupted.
-    @Override
-    public void end(boolean interrupted) {
-        // m_belt.beltStop();
-    }
-
-    // Returns true when the command should end.
-    @Override
-    public boolean isFinished() {
-        return true;
     }
 
     @Override

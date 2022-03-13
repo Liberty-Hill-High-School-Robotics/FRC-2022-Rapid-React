@@ -208,7 +208,7 @@ private final Joystick driverJoystick = new Joystick(0);
     SmartDashboard.putData("ShootTEST3f", new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.TEST3f));
 
     // TEST Distance Based Shooter
-    SmartDashboard.putData("DISTANCE Belt", new BeltShootOne(m_belt, ShootingPosition.DISTANCE));
+    SmartDashboard.putData("DISTANCE Belt", new BeltShootOne(m_belt, m_flywheel, m_rearShooter, ShootingPosition.DISTANCE));
     SmartDashboard.putData("DISTANCE PREPARE", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.DISTANCE));
 
     // Configure the button bindings

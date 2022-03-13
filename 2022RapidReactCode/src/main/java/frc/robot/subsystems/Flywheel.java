@@ -215,9 +215,12 @@ public class Flywheel extends SubsystemBase {
         Constants.ShootingConstants temp = new Constants.ShootingConstants();
         double calculatedPower = 0;
         double distance = RobotContainer.getInstance().getDistance();
+        SmartDashboard.putNumber("CalculatedDistance", distance);
         ShootingPosition calculatedPosition;
         calculatedPosition = temp.getPositionFromDistance(distance);
+        SmartDashboard.putString("CalculatedPos", calculatedPosition.toString());
         calculatedPower = temp.getShootingSpeed(calculatedPosition, Constants.ShootingConstants.SubSystem.FLYWHEEL);
+        SmartDashboard.putNumber("CalculatedTarget", calculatedPower);
         return calculatedPower;
     }
 
@@ -225,7 +228,8 @@ public class Flywheel extends SubsystemBase {
        double error = 0;
        double actual = 0;
        actual = talonFXShooter1.getSelectedSensorVelocity();
-       error = actual - targetVelocityUnits;
+       //error = actual - targetVelocityUnits;
+       error = talonFXShooter1.getClosedLoopError();
        if (Math.abs(error) < 500) return true;
        else return false;
        //if (Math.abs(talonFXShooter1.getClosedLoopError()) < 10) return true;
