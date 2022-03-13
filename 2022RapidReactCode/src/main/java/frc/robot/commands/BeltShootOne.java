@@ -20,9 +20,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.Constants.ShootingConstants.ShootingPosition;
 import frc.robot.subsystems.Belt;
 import frc.robot.subsystems.Flywheel;
 import frc.robot.subsystems.RearShooter;
+import frc.robot.subsystems.Turret;
 
 /**
  * MODIFIED VERSION OF BeltUpSpeed used to Shoot that shoots 1 ball and waits
@@ -43,8 +45,8 @@ public class BeltShootOne extends CommandBase {
     private boolean firstTime;
     private boolean waitForEmpty;
 
-    public BeltShootOne(Belt subsystem, Flywheel flywheel, RearShooter rearShooter, Constants.ShootingConstants.ShootingPosition position) {
-        m_belt = subsystem;
+    public BeltShootOne(Belt belt, Flywheel flywheel, RearShooter rearShooter, ShootingPosition position ) {
+        m_belt = belt;
         addRequirements(m_belt);
 
         m_position = position;

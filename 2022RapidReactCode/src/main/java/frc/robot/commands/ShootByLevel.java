@@ -12,6 +12,7 @@
 
 package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.subsystems.Belt;
 import frc.robot.subsystems.Drive;
@@ -48,11 +49,12 @@ public class ShootByLevel extends SequentialCommandGroup {
            // new TurretAutoAim(turret),
             //new TurretAutoCenter(turret),  
             new LimeLightLEDOn(),                            // AIM
-            parallel(                                        // GET THE SHOOTER UP TO SPEED
+            parallel( 
+            new WaitCommand(.2),                                       // GET THE SHOOTER UP TO SPEED
             new FlywheelUpSpeed(flywheel, position),         // Flywheel (TARMAC)
             new RearFlywheelUpSpeed(rearShooter, position)   // RearFlywheel (TARMAC)
             ),
-            new BeltUpSpeed(belt, position)                  // SHOOT BALLS
+            new BeltShootOne(belt, flywheel, rearShooter, position)                  // SHOOT BALLS
 
 
 

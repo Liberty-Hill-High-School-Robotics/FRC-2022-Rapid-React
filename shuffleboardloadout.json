@@ -1962,6 +1962,74 @@
               "_source0": "network_table:///SmartDashboard/GROUP_StopAllShooterMotors",
               "_title": "/SmartDashboard/GROUP_StopAllShooterMotors"
             }
+          },
+          "4,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/DISTANCE Belt",
+              "_title": "/SmartDashboard/DISTANCE Belt"
+            }
+          },
+          "3,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/DISTANCE PREPARE",
+              "_title": "/SmartDashboard/DISTANCE PREPARE"
+            }
+          },
+          "4,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/WaitForEmpty",
+              "_title": "/SmartDashboard/WaitForEmpty",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "2,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/CalculatedDistance",
+              "_title": "/SmartDashboard/CalculatedDistance"
+            }
+          },
+          "2,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/CalculatedPos",
+              "_title": "/SmartDashboard/CalculatedPos"
+            }
+          },
+          "2,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/CalculatedTarget",
+              "_title": "/SmartDashboard/CalculatedTarget"
+            }
           }
         }
       }
