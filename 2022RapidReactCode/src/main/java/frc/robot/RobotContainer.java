@@ -207,7 +207,9 @@ private final Joystick driverJoystick = new Joystick(0);
     SmartDashboard.putData("ShootTEST3e", new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.TEST3e));
     SmartDashboard.putData("ShootTEST3f", new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.TEST3f));
 
-
+    // TEST Distance Based Shooter
+    SmartDashboard.putData("DISTANCE Belt", new BeltShootOne(m_belt, ShootingPosition.DISTANCE));
+    SmartDashboard.putData("DISTANCE PREPARE", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.DISTANCE));
 
     // Configure the button bindings
     configureButtonBindings();
@@ -255,6 +257,7 @@ final JoystickButton intakeToFullButton = new JoystickButton(operatorJoystick, X
 intakeToFullButton.whileHeld(new IntakeToFull( m_intake ) ,true);
     SmartDashboard.putData("IntakeToFullButton",new IntakeToFull( m_intake ) );
 
+// TODO: Update with distance based commands
 final JoystickButton prepareToShootButton = new JoystickButton(operatorJoystick, XboxController.Button.kLeftBumper.value);        
 prepareToShootButton.whileHeld(new PrepareToShoot(m_turret, m_flywheel, m_rearShooter  ) ,true);
     SmartDashboard.putData("PrepareToShootButton",new PrepareToShoot(m_turret, m_flywheel, m_rearShooter  ) );   
@@ -332,8 +335,11 @@ public Command getAutonomousCommand() {
 
 
   public double getDistance(){
-    double radians = Math.toRadians(CAMERA_ANGLE + getTy());  // 20220228 Corrected Calculation : Incorrectly sending angle in degrees instead of radians to tan method
-    double distance = (TARGET_HEIGHT - CAMERA_HEIGHT) / Math.tan(radians);
+    double distance = 999;    // TODO: Default to 999 (out of range) or 0 (at the fender)?
+    if (getTv() == 1) {
+      double radians = Math.toRadians(CAMERA_ANGLE + getTy());  // 20220228 Corrected Calculation : Incorrectly sending angle in degrees instead of radians to tan method
+      distance = (TARGET_HEIGHT - CAMERA_HEIGHT) / Math.tan(radians);
+    }
     return distance;
   }
   

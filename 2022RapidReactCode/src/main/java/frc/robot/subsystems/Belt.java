@@ -151,11 +151,14 @@ public class Belt extends SubsystemBase {
     
     // ***********************************************************************************************
     // * determinePowerFromDistance
-    // TODO: Implement Algorithm to find power based on distance
     // ***********************************************************************************************
     public double determinePowerFromDistance(){
+        Constants.ShootingConstants temp = new Constants.ShootingConstants();
         double calculatedPower = 0;
         double distance = RobotContainer.getInstance().getDistance();
+        ShootingPosition calculatedPosition;
+        calculatedPosition = temp.getPositionFromDistance(distance);
+        calculatedPower = temp.getShootingSpeed(calculatedPosition, Constants.ShootingConstants.SubSystem.BELT);
         return calculatedPower;
     }
 
