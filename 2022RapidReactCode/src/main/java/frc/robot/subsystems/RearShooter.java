@@ -18,6 +18,7 @@ package frc.robot.subsystems;
 
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.Constants.ShootingConstants.ShootingPosition;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -157,8 +158,12 @@ public class RearShooter extends SubsystemBase {
     
     // TODO: Implement Algorithm to find power based on distance
     public double determinePowerFromDistance(){
+        Constants.ShootingConstants temp = new Constants.ShootingConstants();
         double calculatedPower = 0;
         double distance = RobotContainer.getInstance().getDistance();
+        ShootingPosition calculatedPosition;
+        calculatedPosition = temp.getPositionFromDistance(distance);
+        calculatedPower = temp.getShootingSpeed(calculatedPosition, Constants.ShootingConstants.SubSystem.REARSHOOTER);
         return calculatedPower;
     }
 

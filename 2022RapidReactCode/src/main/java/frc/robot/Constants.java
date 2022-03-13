@@ -58,7 +58,9 @@ public class Constants {
             TEST3c      (19),
             TEST3d      (20),
             TEST3e      (21),
-            TEST3f      (22)
+            TEST3f      (22),
+
+            ERROR       (23)
 
             ;
 
@@ -101,28 +103,47 @@ public class Constants {
             {0.6, 4466.32, 1395.73},          // TEST1c      (7),
             {0.6, 4466.32, 1860.97},          // TEST1d      (8),
             {0.6, 4466.32, 2326.21},          // TEST1e      (9),
-            {0.6, 4466.32, 2791.45},          //TEST1F        (10),
+            {0.6, 4466.32, 2791.45},          // TEST1F      (10),
 
-            {0.6, 5104.37, 0},                // TEST2a      (10),
-            {0.6, 5104.37, 1063.41},          // TEST2b      (11),
-            {0.6, 5104.37, 1595.11},          // TEST2c      (12),
-            {0.6, 5104.37, 2126.82},          // TEST2d      (13),
-            {0.6, 5104.37, 2658.52},          // TEST2e      (14),
-            {0.6, 5104.37, 3190.23},          // TEST2f      (15),
+            {0.6, 5104.37, 0},                // TEST2a      (11),
+            {0.6, 5104.37, 1063.41},          // TEST2b      (12),
+            {0.6, 5104.37, 1595.11},          // TEST2c      (13),
+            {0.6, 5104.37, 2126.82},          // TEST2d      (14),
+            {0.6, 5104.37, 2658.52},          // TEST2e      (15),
+            {0.6, 5104.37, 3190.23},          // TEST2f      (16),
 
 
-            {0.6, 5742.41, 0},                // TEST3a      (15),
-            {0.6, 5742.41, 1196.34},          // TEST3b      (16),
-            {0.6, 5742.41, 1794.5},           // TEST3c      (17),
-            {0.6, 5742.41, 2392.67},          // TEST3d      (18),
-            {0.6, 5742.41, 2990.84},          // TEST3e      (19),
-            {0.6, 5742.41, 3589.01},          // TEST3f      (20),
+            {0.6, 5742.41, 0},                // TEST3a      (17),
+            {0.6, 5742.41, 1196.34},          // TEST3b      (18),
+            {0.6, 5742.41, 1794.5},           // TEST3c      (19),
+            {0.6, 5742.41, 2392.67},          // TEST3d      (20),
+            {0.6, 5742.41, 2990.84},          // TEST3e      (21),
+            {0.6, 5742.41, 3589.01},          // TEST3f      (22),
+
+            {0.0, 0, 0},                      // ERROR       (23),
 
         };
 
         public double getShootingSpeed(ShootingPosition position, SubSystem subSystem) {
             double speed = shootingSpeeds[position.getShootingPositionIndex()][subSystem.getShootingSubSystemIndex()];
             return speed;
+        }
+
+        public ShootingPosition getPositionFromDistance(double distance){
+            ShootingPosition distancePosition = ShootingPosition.ERROR;
+
+            if (distance < 8) distancePosition = ShootingPosition.TEST2a;
+            else if (distance < 25) distancePosition = ShootingPosition.TEST3a;
+            else if (distance < 33) distancePosition = ShootingPosition.TEST1b;
+            else if (distance < 39) distancePosition = ShootingPosition.TEST2d;
+            else if (distance < 48) distancePosition = ShootingPosition.TEST1c;
+            else if (distance < 57) distancePosition = ShootingPosition.TEST2b;
+            else if (distance < 73) distancePosition = ShootingPosition.TEST1d;
+            else if (distance < 88) distancePosition = ShootingPosition.TEST3b;
+            else if (distance < 95) distancePosition = ShootingPosition.TEST2c;
+            else if (distance < 103) distancePosition = ShootingPosition.TEST3d;
+
+            return distancePosition;
         }
 
     }
