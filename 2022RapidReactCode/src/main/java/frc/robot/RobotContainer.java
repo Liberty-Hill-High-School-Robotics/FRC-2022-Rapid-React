@@ -231,6 +231,12 @@ private final Joystick driverJoystick = new Joystick(0);
     m_chooser.addOption("SimpleAuton", new SimpleAuton(m_turret, m_flywheel, m_rearShooter, m_belt, m_drive));
     m_chooser.setDefaultOption("SimpleAuton", new SimpleAuton(m_turret, m_flywheel, m_rearShooter, m_belt, m_drive));
 
+<<<<<<< HEAD
+=======
+    m_chooser.addOption("TwoBallAuton", new TwoBallAuton(m_turret, m_flywheel, m_rearShooter, m_belt, m_drive,m_intake));
+    m_chooser.setDefaultOption("TwoBallAuton", new TwoBallAuton(m_turret, m_flywheel, m_rearShooter, m_belt, m_drive, m_intake));
+
+>>>>>>> parent of affb73c (3-15)
     
 
         SmartDashboard.putData("Auto Mode", m_chooser);
