@@ -160,7 +160,7 @@ private final Joystick driverJoystick = new Joystick(0);
     SmartDashboard.putData("GROUP_RearStop", new RearShooterStop(m_rearShooter));
     SmartDashboard.putData("GROUP_FlywheelStop", new FlywheelStop(m_flywheel));
     SmartDashboard.putData("GROUP_BeltStop", new BeltStop(m_belt));
-    SmartDashboard.putData("GROUP_DriveTime", new DriveTime(3.5, -.5, m_drive));
+    SmartDashboard.putData("GROUP_DriveTime", new DriveTime(3.5, -.5, 0, m_drive));
 
     // TEST COMMANDS
     SmartDashboard.putData("TEST1a", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.TEST1a));
@@ -232,7 +232,7 @@ private final Joystick driverJoystick = new Joystick(0);
     m_chooser.setDefaultOption("SimpleAuton", new SimpleAuton(m_turret, m_flywheel, m_rearShooter, m_belt, m_drive));
 
     m_chooser.addOption("TwoBallAuton", new TwoBallAuton(m_turret, m_flywheel, m_rearShooter, m_belt, m_drive,m_intake));
-    m_chooser.setDefaultOption("TwoBallAuton", new TwoBallAuton(m_turret, m_flywheel, m_rearShooter, m_belt, m_drive, m_intake));
+    //m_chooser.setDefaultOption("TwoBallAuton", new TwoBallAuton(m_turret, m_flywheel, m_rearShooter, m_belt, m_drive, m_intake));
 
     
 
