@@ -80,9 +80,13 @@ public class BeltShootOne extends CommandBase {
     public boolean isFinished() {
         if (!m_belt.isBallInConveyor()) waitForEmpty = false;
         if (firstTime) {
+            if (m_Flywheel.isFlywheelAtVelocity() &&
+                m_RearShooter.isFlywheelAtVelocity()) {
+                m_belt.beltUpSpeed(m_position);
+                firstTime = false;
+            }
             // assume ball was in the conveyor and both flywheels are at speed
-            m_belt.beltUpSpeed(m_position);
-            firstTime = false;
+            //m_belt.beltUpSpeed(m_position);
         }
         else {
             if (waitForEmpty) {
