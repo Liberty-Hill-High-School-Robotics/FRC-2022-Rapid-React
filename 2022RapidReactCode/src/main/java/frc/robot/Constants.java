@@ -136,16 +136,26 @@ public class Constants {
         public ShootingPosition getPositionFromDistance(double distance){
             ShootingPosition distancePosition = ShootingPosition.ERROR;
 
+            //if (distance < 8) distancePosition = ShootingPosition.TEST2a;
+            //else if (distance < 25) distancePosition = ShootingPosition.TEST3a;
+            //else if (distance < 33) distancePosition = ShootingPosition.TEST1b;
+            //else if (distance < 39) distancePosition = ShootingPosition.TEST2d;
+            //else if (distance < 48) distancePosition = ShootingPosition.TEST1c;
+            //else if (distance < 57) distancePosition = ShootingPosition.TEST2b;
+            //else if (distance < 73) distancePosition = ShootingPosition.TEST1d;
+            //else if (distance < 88) distancePosition = ShootingPosition.TEST3b;
+            //else if (distance < 95) distancePosition = ShootingPosition.TEST2c;
+            //else if (distance < 103) distancePosition = ShootingPosition.TEST3d;
+
             if (distance < 8) distancePosition = ShootingPosition.TEST2a;
             else if (distance < 25) distancePosition = ShootingPosition.TEST3a;
-            else if (distance < 33) distancePosition = ShootingPosition.TEST1b;
-            else if (distance < 39) distancePosition = ShootingPosition.TEST2d;
-            else if (distance < 48) distancePosition = ShootingPosition.TEST1c;
-            else if (distance < 57) distancePosition = ShootingPosition.TEST2b;
+            else if (distance < 33) distancePosition = ShootingPosition.TEST2b;
+            else if (distance < 39) distancePosition = ShootingPosition.TEST2b;
+            else if (distance < 48) distancePosition = ShootingPosition.TEST2b;
             else if (distance < 73) distancePosition = ShootingPosition.TEST1d;
             else if (distance < 88) distancePosition = ShootingPosition.TEST3b;
-            else if (distance < 95) distancePosition = ShootingPosition.TEST2c;
-            else if (distance < 103) distancePosition = ShootingPosition.TEST3d;
+            else if (distance < 95) distancePosition = ShootingPosition.TEST3b;
+            else if (distance < 103) distancePosition = ShootingPosition.TEST3b;
 
             return distancePosition;
         }
