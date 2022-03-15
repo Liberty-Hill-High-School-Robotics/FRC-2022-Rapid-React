@@ -231,12 +231,6 @@ private final Joystick driverJoystick = new Joystick(0);
     m_chooser.addOption("SimpleAuton", new SimpleAuton(m_turret, m_flywheel, m_rearShooter, m_belt, m_drive));
     m_chooser.setDefaultOption("SimpleAuton", new SimpleAuton(m_turret, m_flywheel, m_rearShooter, m_belt, m_drive));
 
-<<<<<<< HEAD
-=======
-    m_chooser.addOption("TwoBallAuton", new TwoBallAuton(m_turret, m_flywheel, m_rearShooter, m_belt, m_drive,m_intake));
-    m_chooser.setDefaultOption("TwoBallAuton", new TwoBallAuton(m_turret, m_flywheel, m_rearShooter, m_belt, m_drive, m_intake));
-
->>>>>>> parent of affb73c (3-15)
     
 
         SmartDashboard.putData("Auto Mode", m_chooser);
@@ -267,9 +261,35 @@ final JoystickButton intakeToFullButton = new JoystickButton(operatorJoystick, X
 intakeToFullButton.whileHeld(new IntakeToFull( m_intake ) ,true);
     SmartDashboard.putData("IntakeToFullButton",new IntakeToFull( m_intake ) );
 
+// TODO: Update with distance based commands
+
+//final JoystickButton prepareToShootButton = new JoystickButton(operatorJoystick, XboxController.Button.kLeftBumper.value);        
+//prepareToShootButton.whileHeld(new PrepareToShoot(m_turret, m_flywheel, m_rearShooter  ) ,true);
+    //SmartDashboard.putData("PrepareToShootButton",new PrepareToShoot(m_turret, m_flywheel, m_rearShooter  ) );   
+
+final JoystickButton prepareToShootByPositionButton = new JoystickButton(operatorJoystick, XboxController.Button.kLeftBumper.value);        
+prepareToShootByPositionButton.whileHeld(new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.DISTANCE  ) ,true);
+    SmartDashboard.putData("PrepareToShootByPositionButton",new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.DISTANCE  ) );  
+
+final JoystickButton beltShootOneButton = new JoystickButton(operatorJoystick, XboxController.Button.kRightBumper.value);        
+beltShootOneButton.whileHeld(new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.DISTANCE) ,true);
+    SmartDashboard.putData("ShootButton",new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.DISTANCE  ) );
+    
+final JoystickButton stopShooterButton = new JoystickButton(operatorJoystick, XboxController.Button.kRightBumper.value);        
+stopShooterButton.whenReleased(new GroupStopAllShooterMotors(m_flywheel, m_rearShooter, m_belt) ,true);
+    SmartDashboard.putData("StopShooterButton",new GroupStopAllShooterMotors(m_flywheel, m_rearShooter, m_belt  ) );  
+
 final JoystickButton precissionButton = new JoystickButton(driverJoystick, 2);        
 precissionButton.whileHeld(new drivePrecission( m_drive ) ,true);
     SmartDashboard.putData("precissionButton",new drivePrecission( m_drive ) );
+
+//final JoystickButton limelightOnButton = new JoystickButton(driverJoystick, 1);        
+//limelightOnButton.whenPressed(new LimeLightLEDOn() ,true);
+    //SmartDashboard.putData("limelightOnButton",new LimeLightLEDOn() );
+
+final JoystickButton autoCenterButton = new JoystickButton(driverJoystick, 1);        
+autoCenterButton.whenPressed(new Aim(m_turret) ,true);
+    SmartDashboard.putData("autoCenterButton",new Aim(m_turret) );
 
 
 
