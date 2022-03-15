@@ -63,12 +63,12 @@ already created in your subsystem
     public boolean isFinished() {
         // End if NO TARGET IS AVAILABLE
         if (RobotContainer.getInstance().getTv() != 1) {
-                RobotContainer.getInstance().forceLEDOff();
+               // RobotContainer.getInstance().forceLEDOff();
                 return true; 
         }
 
       // End when the controller is at the reference.
-        if (getController().atSetpoint()) RobotContainer.getInstance().forceLEDOff();
+       // if (getController().atSetpoint()) RobotContainer.getInstance().forceLEDOff();
 
         return getController().atSetpoint();
     }
