@@ -231,13 +231,9 @@ private final Joystick driverJoystick = new Joystick(0);
     m_chooser.addOption("SimpleAuton", new SimpleAuton(m_turret, m_flywheel, m_rearShooter, m_belt, m_drive));
     m_chooser.setDefaultOption("SimpleAuton", new SimpleAuton(m_turret, m_flywheel, m_rearShooter, m_belt, m_drive));
 
-    m_chooser.addOption("TwoBallAuton", new TwoBallAuton(m_turret, m_flywheel, m_rearShooter, m_belt, m_drive,m_intake));
-    m_chooser.setDefaultOption("TwoBallAuton", new TwoBallAuton(m_turret, m_flywheel, m_rearShooter, m_belt, m_drive, m_intake));
-
     
 
         SmartDashboard.putData("Auto Mode", m_chooser);
-        
   }
 
   public static RobotContainer getInstance() {
