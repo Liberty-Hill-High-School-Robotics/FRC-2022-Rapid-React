@@ -155,7 +155,7 @@ public class Constants {
             else if (distance < 73) distancePosition = ShootingPosition.TEST1d;
             else if (distance < 88) distancePosition = ShootingPosition.TEST3b;
             else if (distance < 95) distancePosition = ShootingPosition.TEST3b;
-            else if (distance < 103) distancePosition = ShootingPosition.TEST3b;
+            else if (distance < 120) distancePosition = ShootingPosition.TEST3b;
 
             return distancePosition;
         }
