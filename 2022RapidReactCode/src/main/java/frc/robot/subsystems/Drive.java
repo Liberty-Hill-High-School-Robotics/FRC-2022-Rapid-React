@@ -124,20 +124,23 @@ public class Drive extends SubsystemBase {
     public void driveStop(){
         talonSRXL.stopMotor();
         talonSRXR.stopMotor();
-        victorSPXL.stopMotor();
-        victorSPXR.stopMotor();
+
+//DO NOT UNCOMMENT THESE! IT WILL BREAK THE FOLLOW!!!!!!!!!!!!!!!!!
+
+        //victorSPXL.stopMotor();
+        //victorSPXR.stopMotor();
     }
 
     public void setPrecissionMode(){
   
-        if(PreciseMode){
-            driveMain.setMaxOutput(NORMAL_DRIVE_SPEED_FACTOR);
-            PreciseMode = false;
-        }
-        else{
+       // if(PreciseMode){
+           // driveMain.setMaxOutput(NORMAL_DRIVE_SPEED_FACTOR);
+           // PreciseMode = false;
+      //  }
+      //  else{
         driveMain.setMaxOutput(PRECISE_DRIVE_SPEED_FACTOR);
         PreciseMode = true;
-        }
+       // }
     }
 
     public void setNormalMode(){

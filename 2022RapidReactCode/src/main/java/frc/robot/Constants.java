@@ -60,7 +60,9 @@ public class Constants {
             TEST3e      (21),
             TEST3f      (22),
 
-            ERROR       (23)
+            TEST4a      (23),
+
+            ERROR       (24)
 
             ;
 
@@ -120,7 +122,9 @@ public class Constants {
             {0.6, 5742.41, 2990.84},          // TEST3e      (21),
             {0.6, 5742.41, 3589.01},          // TEST3f      (22),
 
-            {0.0, 0, 0},                      // ERROR       (23),
+            {0.6, 4466.32, 1581.82},          // TEST4a      (23),
+
+            {0.0, 0, 0},                      // ERROR       (24),
 
         };
 

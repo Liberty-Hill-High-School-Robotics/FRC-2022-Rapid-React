@@ -201,6 +201,8 @@ private final Joystick driverJoystick = new Joystick(0);
     SmartDashboard.putData("TEST3d", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.TEST3d));
     SmartDashboard.putData("TEST3e", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.TEST3e));
     SmartDashboard.putData("TEST3f", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.TEST3f));
+    
+    SmartDashboard.putData("TEST4a", new PrepareToShootByPosition(m_turret, m_flywheel, m_rearShooter, ShootingPosition.TEST4a));
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     SmartDashboard.putData("ShootTEST3a", new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.TEST3a));
     SmartDashboard.putData("ShootTEST3b", new ShootByLevel(m_turret, m_flywheel, m_rearShooter, m_belt, ShootingPosition.TEST3b));
@@ -278,7 +280,7 @@ stopShooterButton.whenReleased(new GroupStopAllShooterMotors(m_flywheel, m_rearS
     SmartDashboard.putData("StopShooterButton",new GroupStopAllShooterMotors(m_flywheel, m_rearShooter, m_belt  ) );  
 
 final JoystickButton precissionButton = new JoystickButton(driverJoystick, 2);        
-precissionButton.whenReleased(new drivePrecission( m_drive ) ,true);
+precissionButton.whileHeld(new drivePrecission( m_drive ) ,true);
     SmartDashboard.putData("precissionButton",new drivePrecission( m_drive ) );
 
 //final JoystickButton limelightOnButton = new JoystickButton(driverJoystick, 1);        
