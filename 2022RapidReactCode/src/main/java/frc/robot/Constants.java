@@ -62,7 +62,10 @@ public class Constants {
 
             TEST4a      (23),
 
-            ERROR       (24)
+            SHOOThalf   (24),
+            SHOOTfull   (25),
+
+            ERROR       (26)
 
             ;
 
@@ -124,7 +127,10 @@ public class Constants {
 
             {0.6, 4466.32, 1581.82},          // TEST4a      (23),
 
-            {0.0, 0, 0},                      // ERROR       (24),
+            {0.6, 4687.5, 0},                 // SHOOThalf   (24),
+            {0.6, 6380, 0},                   // SHOOTfull   (25),
+
+            {0.0, 4687.5, 0},                      // ERROR       (26),
 
         };
 
@@ -147,15 +153,20 @@ public class Constants {
             //else if (distance < 95) distancePosition = ShootingPosition.TEST2c;
             //else if (distance < 103) distancePosition = ShootingPosition.TEST3d;
 
-            if (distance < 8) distancePosition = ShootingPosition.TEST2a;
-            else if (distance < 25) distancePosition = ShootingPosition.TEST3a;
-            else if (distance < 33) distancePosition = ShootingPosition.TEST2b;
-            else if (distance < 39) distancePosition = ShootingPosition.TEST2b;
-            else if (distance < 48) distancePosition = ShootingPosition.TEST2b;
-            else if (distance < 73) distancePosition = ShootingPosition.TEST1d;
-            else if (distance < 88) distancePosition = ShootingPosition.TEST3b;
-            else if (distance < 95) distancePosition = ShootingPosition.TEST3b;
-            else if (distance < 120) distancePosition = ShootingPosition.TEST3b;
+            //if (distance < 8) distancePosition = ShootingPosition.TEST2a;
+            //else if (distance < 25) distancePosition = ShootingPosition.TEST3a;
+            //else if (distance < 33) distancePosition = ShootingPosition.TEST2b;
+            //else if (distance < 39) distancePosition = ShootingPosition.TEST2b;
+            //else if (distance < 48) distancePosition = ShootingPosition.TEST2b;
+            //else if (distance < 73) distancePosition = ShootingPosition.TEST1d;
+            //else if (distance < 88) distancePosition = ShootingPosition.TEST3b;
+            //else if (distance < 95) distancePosition = ShootingPosition.TEST3b;
+            //else if (distance < 120) distancePosition = ShootingPosition.TEST3b;
+
+            if (distance < 55) distancePosition = ShootingPosition.ERROR;
+            else if (distance < 90) distancePosition = ShootingPosition.SHOOThalf;
+            else if (distance < 125) distancePosition = ShootingPosition.SHOOTfull;
+
 
             return distancePosition;
         }
