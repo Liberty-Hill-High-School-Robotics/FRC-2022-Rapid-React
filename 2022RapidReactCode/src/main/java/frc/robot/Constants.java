@@ -11,6 +11,8 @@
 
 package frc.robot;
 
+import frc.robot.commands.TwoBallAuton;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants.  This class should not be used for any other purpose.  All constants should be
@@ -65,7 +67,9 @@ public class Constants {
             SHOOThalf   (24),
             SHOOTfull   (25),
 
-            ERROR       (26)
+            TwoAuton    (26),
+
+            ERROR       (27)
 
             ;
 
@@ -130,7 +134,9 @@ public class Constants {
             {0.6, 4687.5, 0},                 // SHOOThalf   (24),
             {0.6, 6380, 0},                   // SHOOTfull   (25),
 
-            {0.0, 4687.5, 0},                      // ERROR       (26),
+            {0.7,5187.5, 0},                  // TwoAuton    (26),
+
+            {0.0, 4687.5, 0},                      // ERROR       (27),
 
         };
 
