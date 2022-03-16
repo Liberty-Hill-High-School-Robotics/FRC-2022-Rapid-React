@@ -50,23 +50,24 @@ public class TwoBallAuton extends SequentialCommandGroup {
         //  );
           //  new TurretAutoAim(turret),
           //  new TurretAutoCenter(turret), 
-           // parallel(
-            //new DriveTime(2,.5, 0, drive),
-           // new IntakeToFull(intake)
-            //),
+           parallel(
+            new IntakeTimed(2.5, intake),
+            new DriveTime(2.25,.5, 0, drive)
+            ),
            // new IntakeStop(intake),
-           new LimeLightLEDOn(),
-            new DriveTime(2, 0, 1, drive),                                                         // AIM
-            new WaitCommand(5),                                                                           // GET THE SHOOTER UP TO SPEED
+            new LimeLightLEDOn(),  
+            new WaitCommand(1),
+            new DriveRotateToTarget(drive),
+            //new DriveTime(.4, 0, 1, drive),                                                     // AIM
+            //new WaitCommand(5),                                                                           // GET THE SHOOTER UP TO SPEED
             new FlywheelUpSpeed(flywheel, Constants.ShootingConstants.ShootingPosition.DISTANCE),         // Flywheel (TARMAC)
            // new RearFlywheelUpSpeed(rearShooter, Constants.ShootingConstants.ShootingPosition.TARMAC)   // RearFlywheel (TARMAC)
-            
             new WaitForShooter(1),
             new BeltUpSpeed(belt, Constants.ShootingConstants.ShootingPosition.DISTANCE),                 // SHOOT BALLS
             new WaitForShooter(3),                                                                      // WAIT FOR SHOOTING TO BE DONE
             parallel(                                                                                   // TURN EVERYTHING OFF
                 new FlywheelStop(flywheel),
-                new RearShooterStop(rearShooter),
+                //new RearShooterStop(rearShooter),
                 new BeltStop(belt)
             ),   
             new DriveTime(2.5, -.5, 0, drive)                                           
