@@ -12,6 +12,7 @@
 
 package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.subsystems.Belt;
 import frc.robot.subsystems.Drive;
@@ -48,12 +49,13 @@ public class SimpleAuton extends SequentialCommandGroup {
           //  new TurretAutoAim(turret),
           //  new TurretAutoCenter(turret),    
             new DriveTime(1,-.5, 0, drive),                                                         // AIM
-            parallel(                                                                             // GET THE SHOOTER UP TO SPEED
-            new FlywheelUpSpeed(flywheel, Constants.ShootingConstants.ShootingPosition.TARMAC),         // Flywheel (TARMAC)
-            new RearFlywheelUpSpeed(rearShooter, Constants.ShootingConstants.ShootingPosition.TARMAC)   // RearFlywheel (TARMAC)
-            ),
+            new LimeLightLEDOn(),
+            new WaitCommand(.2),                                                                           // GET THE SHOOTER UP TO SPEED
+            new FlywheelUpSpeed(flywheel, Constants.ShootingConstants.ShootingPosition.DISTANCE),         // Flywheel (TARMAC)
+            //new RearFlywheelUpSpeed(rearShooter, Constants.ShootingConstants.ShootingPosition.TARMAC)   // RearFlywheel (TARMAC)
+            
             new WaitForShooter(1),
-            new BeltUpSpeed(belt, Constants.ShootingConstants.ShootingPosition.TARMAC),                 // SHOOT BALLS
+            new BeltUpSpeed(belt, Constants.ShootingConstants.ShootingPosition.DISTANCE),                 // SHOOT BALLS
             new WaitForShooter(3),                                                                      // WAIT FOR SHOOTING TO BE DONE
             parallel(                                                                                   // TURN EVERYTHING OFF
                 new FlywheelStop(flywheel),
