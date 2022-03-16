@@ -42,7 +42,7 @@ public class Belt extends SubsystemBase {
     // ***********************************************************************************************
     public enum Level {
         INDEX       (0.3),      // Auto-Move Ball to Sensor Position
-        MANUAL      (0.2)       // If Operator is trying to correct a problem
+        MANUAL      (0.6)       // If Operator is trying to correct a problem
         ;
 
         private final double levelCode;
