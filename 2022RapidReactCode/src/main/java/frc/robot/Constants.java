@@ -172,7 +172,7 @@ public class Constants {
             if (distance < 55) distancePosition = ShootingPosition.ERROR;
             else if (distance < 90) distancePosition = ShootingPosition.SHOOThalf;
             else if (distance < 125) distancePosition = ShootingPosition.SHOOTfull;
-
+            else distancePosition = ShootingPosition.ERROR;
 
             return distancePosition;
         }

@@ -13,6 +13,8 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Constants;
+import frc.robot.RobotContainer;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -24,6 +26,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+
+
 
 /**
  *
@@ -96,6 +100,19 @@ public class Drive extends SubsystemBase {
 
     @Override
     public void simulationPeriodic() {
+        Constants.ShootingConstants temp = new Constants.ShootingConstants();
+        double distance = RobotContainer.getInstance().getDistance();
+        Constants.ShootingConstants.ShootingPosition calculatedPosition;
+        calculatedPosition = temp.getPositionFromDistance(distance);
+       
+        if (calculatedPosition == Constants.ShootingConstants.ShootingPosition.ERROR){
+            SmartDashboard.putBoolean("CanShoot", false);
+        }else{
+            SmartDashboard.putBoolean("CanShoot", true);
+        }
+       
+        
+
         // This method will be called once per scheduler run when in simulation
     }
 
