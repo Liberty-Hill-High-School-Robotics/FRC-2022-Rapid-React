@@ -88,6 +88,17 @@ public class Drive extends SubsystemBase {
 
     @Override
     public void periodic() {
+        Constants.ShootingConstants temp = new Constants.ShootingConstants();
+        double distance = RobotContainer.getInstance().getDistance();
+        Constants.ShootingConstants.ShootingPosition calculatedPosition;
+        calculatedPosition = temp.getPositionFromDistance(distance);
+       
+        if (calculatedPosition == Constants.ShootingConstants.ShootingPosition.ERROR){
+            SmartDashboard.putBoolean("CanShoot", false);
+        }else{
+            SmartDashboard.putBoolean("CanShoot", true);
+        }
+
         // This method will be called once per scheduler run
         SmartDashboard.putNumber("gyroValue", gyro.getAngle());
         SmartDashboard.putNumber("encoderR", talonSRXR.getSelectedSensorPosition());
@@ -100,16 +111,7 @@ public class Drive extends SubsystemBase {
 
     @Override
     public void simulationPeriodic() {
-        Constants.ShootingConstants temp = new Constants.ShootingConstants();
-        double distance = RobotContainer.getInstance().getDistance();
-        Constants.ShootingConstants.ShootingPosition calculatedPosition;
-        calculatedPosition = temp.getPositionFromDistance(distance);
-       
-        if (calculatedPosition == Constants.ShootingConstants.ShootingPosition.ERROR){
-            SmartDashboard.putBoolean("CanShoot", false);
-        }else{
-            SmartDashboard.putBoolean("CanShoot", true);
-        }
+        
        
         
 

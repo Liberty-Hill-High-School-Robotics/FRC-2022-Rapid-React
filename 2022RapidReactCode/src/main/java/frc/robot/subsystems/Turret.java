@@ -31,7 +31,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
  */
 
 public class Turret extends SubsystemBase {
-    private final double TURRET_POWER = .25;
+    private final double TURRET_POWER = .3;
 
     private WPI_TalonSRX talonSRXTurret;
 
@@ -47,8 +47,8 @@ public class Turret extends SubsystemBase {
         //allConfigs.reverseSoftLimitThreshold = -300;
         //allConfigs.forwardSoftLimitEnable = true;           // Rotation to Left
         //allConfigs.forwardSoftLimitThreshold = 300;
-        allConfigs.peakOutputForward = .25;
-        allConfigs.peakOutputReverse = -.25;
+        allConfigs.peakOutputForward = .3;
+        allConfigs.peakOutputReverse = -.3;
         talonSRXTurret.configAllSettings(allConfigs);
         talonSRXTurret.setNeutralMode(NeutralMode.Brake);
 

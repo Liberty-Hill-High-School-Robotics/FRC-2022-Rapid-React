@@ -589,6 +589,19 @@
               "Colors/Color when true": "#7CFC00FF",
               "Colors/Color when false": "#8B0000FF"
             }
+          },
+          "6,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/CanShoot",
+              "_title": "SmartDashboard/CanShoot",
+              "Colors/Color when true": "#663399FF",
+              "Colors/Color when false": "#FFFFFFFF"
+            }
           }
         }
       }
@@ -2036,9 +2049,9 @@
     }
   ],
   "windowGeometry": {
-    "x": 0.5,
-    "y": 0.5,
-    "width": 1919.0,
-    "height": 1031.0
+    "x": 0.800000011920929,
+    "y": 0.800000011920929,
+    "width": 1919.199951171875,
+    "height": 1031.199951171875
   }
 }
