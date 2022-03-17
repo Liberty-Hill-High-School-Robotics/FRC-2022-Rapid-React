@@ -65,7 +65,8 @@ public class TwoBallAuton extends SequentialCommandGroup {
             new FlywheelUpSpeed(flywheel, Constants.ShootingConstants.ShootingPosition.TwoAuton),         // Flywheel (TARMAC)
            // new RearFlywheelUpSpeed(rearShooter, Constants.ShootingConstants.ShootingPosition.TARMAC)   // RearFlywheel (TARMAC)
             new WaitForShooter(1),
-            new BeltShootOne(belt, flywheel, rearShooter, Constants.ShootingConstants.ShootingPosition.TwoAuton),                // SHOOT BALLS
+            //new BeltShootOne(belt, flywheel, rearShooter, Constants.ShootingConstants.ShootingPosition.TwoAuton),                // SHOOT BALLS
+            new BeltUpSpeed(belt, Constants.ShootingConstants.ShootingPosition.TwoAuton),
             new WaitForShooter(3),                                                                      // WAIT FOR SHOOTING TO BE DONE
             parallel(                                                                                   // TURN EVERYTHING OFF
                 new FlywheelStop(flywheel),
