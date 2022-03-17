@@ -66,7 +66,7 @@ private final Joystick driverJoystick = new Joystick(0);
   private final double TARGET_HEIGHT = 104;
   private final double CAMERA_HEIGHT = 37;
   //private final double CAMERA_ANGLE = 35.008;
-  private final double CAMERA_ANGLE = 52.791;
+  private final double CAMERA_ANGLE = 36.40643673;
 
   
   // A chooser for autonomous commands
