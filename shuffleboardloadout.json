@@ -504,9 +504,9 @@
         "vgap": 16.0,
         "titleType": 0,
         "tiles": {
-          "0,1": {
+          "0,2": {
             "size": [
-              6,
+              7,
               5
             ],
             "content": {
@@ -523,7 +523,7 @@
               "imageHeight": 0
             }
           },
-          "7,1": {
+          "0,7": {
             "size": [
               6,
               5
@@ -553,7 +553,7 @@
               "_title": "/SmartDashboard/Auto Mode"
             }
           },
-          "6,1": {
+          "6,11": {
             "size": [
               1,
               1
@@ -564,7 +564,7 @@
               "_title": "/SmartDashboard/IntakeOutCommand"
             }
           },
-          "6,2": {
+          "6,9": {
             "size": [
               1,
               2
@@ -577,30 +577,17 @@
               "Colors/Color when false": "#8B0000FF"
             }
           },
-          "6,4": {
+          "0,0": {
             "size": [
-              1,
+              7,
               2
             ],
             "content": {
               "_type": "Boolean Box",
-              "_source0": "network_table:///SmartDashboard/RearAtSetpoint",
-              "_title": "/SmartDashboard/RearAtSetpoint",
-              "Colors/Color when true": "#7CFC00FF",
-              "Colors/Color when false": "#8B0000FF"
-            }
-          },
-          "6,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Boolean Box",
               "_source0": "network_table:///SmartDashboard/CanShoot",
-              "_title": "SmartDashboard/CanShoot",
-              "Colors/Color when true": "#663399FF",
-              "Colors/Color when false": "#FFFFFFFF"
+              "_title": "/SmartDashboard/CanShoot",
+              "Colors/Color when true": "#00FF00FF",
+              "Colors/Color when false": "#800000FF"
             }
           }
         }
@@ -1150,6 +1137,25 @@
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/TurretAutoAim",
               "_title": "SmartDashboard/TurretAutoAim"
+            }
+          },
+          "2,1": {
+            "size": [
+              3,
+              2
+            ],
+            "content": {
+              "_type": "Camera Stream",
+              "_source0": "camera_server://limelight",
+              "_title": "limelight",
+              "Crosshair/Show crosshair": true,
+              "Crosshair/Crosshair color": "#FFFFFFFF",
+              "Controls/Show controls": true,
+              "Controls/Rotation": "NONE",
+              "compression": -1.0,
+              "fps": -1,
+              "imageWidth": 0,
+              "imageHeight": 0
             }
           }
         }
@@ -2049,9 +2055,9 @@
     }
   ],
   "windowGeometry": {
-    "x": 0.800000011920929,
-    "y": 0.800000011920929,
-    "width": 1919.199951171875,
-    "height": 1031.199951171875
+    "x": -1088.0,
+    "y": -8.0,
+    "width": 1096.0,
+    "height": 1888.0
   }
 }
