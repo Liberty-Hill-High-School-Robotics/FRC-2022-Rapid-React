@@ -132,9 +132,9 @@ public class Constants {
             {0.6, 4466.32, 1581.82},          // TEST4a      (23),
 
             {0.6, 4687.5, 0},                 // SHOOThalf   (24),
-            {0.6, 6380, 0},                   // SHOOTfull   (25),
+            {0.6, 5800, 0},                   // SHOOTfull   (25),
 
-            {0.7,5187.5, 0},                  // TwoAuton    (26),
+            {0.7,6380, 0},                  // TwoAuton    (26),
 
             {0.0, 4687.5, 0},                      // ERROR       (27),
 
@@ -172,8 +172,9 @@ public class Constants {
             if (distance < 55) distancePosition = ShootingPosition.ERROR;
             //else if (distance < 90) distancePosition = ShootingPosition.SHOOThalf;
             //else if (distance < 80) distancePosition = ShootingPosition.SHOOThalf;
-            else if (distance < 85) distancePosition = ShootingPosition.SHOOThalf;
-            else if (distance < 125) distancePosition = ShootingPosition.SHOOTfull;
+            //else if (distance < 85) distancePosition = ShootingPosition.SHOOThalf;
+            else if (distance < 105) distancePosition = ShootingPosition.SHOOThalf;
+            else if (distance < 130) distancePosition = ShootingPosition.SHOOTfull;
             else distancePosition = ShootingPosition.ERROR;
 
             return distancePosition;
