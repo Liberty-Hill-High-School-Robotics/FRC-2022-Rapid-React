@@ -66,7 +66,7 @@ private final Joystick driverJoystick = new Joystick(0);
   private final double TARGET_HEIGHT = 104;
   private final double CAMERA_HEIGHT = 37;
   //private final double CAMERA_ANGLE = 35.008;
-  private final double CAMERA_ANGLE = 36.40643673;
+  private final double CAMERA_ANGLE = 33.49758059;
 
   
   // A chooser for autonomous commands
@@ -284,6 +284,20 @@ stopShooterButton.whenReleased(new GroupStopAllShooterMotors(m_flywheel, m_rearS
 final JoystickButton precissionButton = new JoystickButton(driverJoystick, 2);        
 precissionButton.whileHeld(new drivePrecission( m_drive ) ,true);
     SmartDashboard.putData("precissionButton",new drivePrecission( m_drive ) );
+
+final JoystickButton HALFManualShootButton = new JoystickButton(operatorJoystick, XboxController.Button.kLeftStick.value);        
+HALFManualShootButton.whileHeld(new HalfManualShoot( m_flywheel, m_belt ) ,true);
+    SmartDashboard.putData("HALFManualShootBUTTON",new HalfManualShoot( m_flywheel, m_belt ) );
+
+final JoystickButton HALFManualShootStopButton = new JoystickButton(operatorJoystick, XboxController.Button.kLeftStick.value);        
+HALFManualShootStopButton.whenReleased(new GroupStopAllShooterMotors( m_flywheel, m_rearShooter, m_belt ) ,true);
+
+final JoystickButton FullManualShootButton = new JoystickButton(operatorJoystick, XboxController.Button.kRightStick.value);        
+FullManualShootButton.whileHeld(new FullManualShoot( m_flywheel, m_belt ) ,true);
+    SmartDashboard.putData("FullManualShootBUTTON",new FullManualShoot( m_flywheel, m_belt ) );
+
+final JoystickButton FullManualShootStopButton = new JoystickButton(operatorJoystick, XboxController.Button.kRightStick.value);        
+FullManualShootStopButton.whenReleased(new GroupStopAllShooterMotors( m_flywheel, m_rearShooter, m_belt ) ,true);
 
 //final JoystickButton limelightOnButton = new JoystickButton(driverJoystick, 1);        
 //limelightOnButton.whenPressed(new LimeLightLEDOn() ,true);
