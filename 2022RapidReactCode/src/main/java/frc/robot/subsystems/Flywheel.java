@@ -33,6 +33,9 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+
+import org.opencv.video.DISOpticalFlow;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 
 
@@ -68,6 +71,8 @@ public class Flywheel extends SubsystemBase {
     private final double WHEEL_GEAR_REDUCTION = 15/24;
     private final double UNITS_PER_ROTATION = 2048;
     private final double MAX_RPM = 6380;
+    private final double LAUNCH_ANGLE = 60;      //change to actuall correct num
+    private final double INITAL_HEIGHT = (37 / 12);      //change to correct num
 
     private double targetVelocity = 0;              // UNITS?
     private double targetVelocityUnits = 0;
@@ -212,7 +217,11 @@ public class Flywheel extends SubsystemBase {
     }
     
     public double determinePowerFromDistance(){
-        Constants.ShootingConstants temp = new Constants.ShootingConstants();
+        double Distance = RobotContainer.getInstance().getDistance();
+        //CalculatedVelocity = (Math.sqrt(16.087 * (Distance * Distance) / ((INITAL_HEIGHT + (Math.tan(LAUNCH_ANGLE) * Distance) - 9.5))));
+        double CalculatedVelocity = Math.sqrt((16.087 * Distance * Distance) / ((INITAL_HEIGHT + (Math.tan(LAUNCH_ANGLE) * Distance) - 9.5) * Math.cos(LAUNCH_ANGLE) * Math.cos(LAUNCH_ANGLE) ));
+
+        /*Constants.ShootingConstants temp = new Constants.ShootingConstants();
         double calculatedPower = 0;
         double distance = RobotContainer.getInstance().getDistance();
         SmartDashboard.putNumber("CalculatedDistance", distance);
@@ -221,7 +230,9 @@ public class Flywheel extends SubsystemBase {
         SmartDashboard.putString("CalculatedPos", calculatedPosition.toString());
         calculatedPower = temp.getShootingSpeed(calculatedPosition, Constants.ShootingConstants.SubSystem.FLYWHEEL);
         SmartDashboard.putNumber("CalculatedTarget", calculatedPower);
-        return calculatedPower;
+        return calculatedPower;*/
+
+        return CalculatedVelocity;
     }
 
     public boolean isFlywheelAtVelocity(){
