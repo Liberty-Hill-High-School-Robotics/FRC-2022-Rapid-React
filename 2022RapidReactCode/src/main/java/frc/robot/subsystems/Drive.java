@@ -122,9 +122,9 @@ public class Drive extends SubsystemBase {
     // Put methods for controlling this subsystem here. Call these from Commands.
 
     public void DriveArcade(double speed, double rotation) {
-        double Current = talonSRXL.get();
-        if (Current >= MAX_STOP_SPEED){
-            speed = Current - .05;
+        double currentOutput = talonSRXL.get();
+        if (currentOutput > speed && currentOutput >= MAX_STOP_SPEED) {            // Moving Forward and want to decrease speed
+            speed = currentOutput - .05;
         }
 
         driveMain.arcadeDrive(speed, rotation);

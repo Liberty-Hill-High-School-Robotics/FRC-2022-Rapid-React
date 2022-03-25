@@ -48,13 +48,13 @@ public class ShootByLevel extends SequentialCommandGroup {
             //new TurretAutoCenter(turret),   
            // new TurretAutoAim(turret),
             //new TurretAutoCenter(turret),  
-            new LimeLightLEDOn(),                            // AIM
+            new LimeLightLEDOn(),                            
+            new WaitCommand(.2),                                    // GET THE SHOOTER UP TO SPEED
             parallel( 
-            new WaitCommand(.2),                                       // GET THE SHOOTER UP TO SPEED
-            new FlywheelUpSpeed(flywheel, position),         // Flywheel (TARMAC)
-            new RearFlywheelUpSpeed(rearShooter, position)   // RearFlywheel (TARMAC)
+            new FlywheelUpSpeed(flywheel, position),                // Flywheel
+            new RearFlywheelUpSpeed(rearShooter, position)          // RearFlywheel
             ),
-            new BeltShootOne(belt, flywheel, rearShooter, position)                  // SHOOT BALLS
+            new BeltShootOne(belt, flywheel, rearShooter, position) // SHOOT BALLS
 
 
 

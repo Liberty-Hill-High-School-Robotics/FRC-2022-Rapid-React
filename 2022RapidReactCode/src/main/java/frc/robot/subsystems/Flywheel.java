@@ -204,24 +204,27 @@ public class Flywheel extends SubsystemBase {
         Constants.ShootingConstants temp = new Constants.ShootingConstants();
         targetVelocity = 0;
         if (position == Constants.ShootingConstants.ShootingPosition.DISTANCE) {
-            targetVelocity = determinePowerFromDistance();
+            targetVelocity = determinePowerFromDistance();  // RPM
         }
         else {
-            targetVelocity = temp.getShootingSpeed(position, Constants.ShootingConstants.SubSystem.FLYWHEEL);
+            targetVelocity = temp.getShootingSpeed(position, Constants.ShootingConstants.SubSystem.FLYWHEEL);  // RPM
         }
-        targetVelocityUnits = convertRPMtoFPS(targetVelocity);
-        SmartDashboard.putNumber("MaryFrontTarget", targetVelocity);
-        SmartDashboard.putNumber("MaryFrontTargetUnits", targetVelocityUnits);
+        targetVelocityUnits = convertRPMtoSetPoint(targetVelocity);
         talonFXShooter1.set(ControlMode.Velocity, targetVelocityUnits);
-        //targetVelocityUnits = (2048 * ((targetVelocity / 100) * 6380)) / (600);
     }
     
-    public double determinePowerFromDistance(){
+    public double determinePowerFromDistance(){ // RETURN RPM
         double Distance = RobotContainer.getInstance().getDistance();
-        //CalculatedVelocity = (Math.sqrt(16.087 * (Distance * Distance) / ((INITAL_HEIGHT + (Math.tan(LAUNCH_ANGLE) * Distance) - 9.5))));
         double CalculatedVelocity = Math.sqrt((16.087 * Distance * Distance) / ((INITAL_HEIGHT + (Math.tan(LAUNCH_ANGLE) * Distance) - 9.5) * Math.cos(LAUNCH_ANGLE) * Math.cos(LAUNCH_ANGLE) ));
+        double calculatedPower = convertFPStoRPM(CalculatedVelocity);
 
-        /*Constants.ShootingConstants temp = new Constants.ShootingConstants();
+        SmartDashboard.putNumber("FLYWHEEL DISTANCE", Distance);
+        SmartDashboard.putNumber("FLYWHEEL VELOCITY (FT/SEC)", CalculatedVelocity);
+        SmartDashboard.putNumber("FLYWHEEL RPM", calculatedPower);
+        SmartDashboard.putNumber("FLYWHEEL UNITS/100MSEC", convertFPStoSetPoint(CalculatedVelocity));
+
+        /*
+        Constants.ShootingConstants temp = new Constants.ShootingConstants();
         double calculatedPower = 0;
         double distance = RobotContainer.getInstance().getDistance();
         SmartDashboard.putNumber("CalculatedDistance", distance);
@@ -230,39 +233,75 @@ public class Flywheel extends SubsystemBase {
         SmartDashboard.putString("CalculatedPos", calculatedPosition.toString());
         calculatedPower = temp.getShootingSpeed(calculatedPosition, Constants.ShootingConstants.SubSystem.FLYWHEEL);
         SmartDashboard.putNumber("CalculatedTarget", calculatedPower);
-        return calculatedPower;*/
+        return calculatedPower;
+        */
 
-        return CalculatedVelocity;
+        return calculatedPower;
     }
 
     public boolean isFlywheelAtVelocity(){
        double error = 0;
-       double actual = 0;
-       actual = talonFXShooter1.getSelectedSensorVelocity();
+       //double actual = 0;
+       
+       //actual = talonFXShooter1.getSelectedSensorVelocity();
        //error = actual - targetVelocityUnits;
+       
        error = talonFXShooter1.getClosedLoopError();
        if (Math.abs(error) < 500) return true;
        else return false;
+
        //if (Math.abs(talonFXShooter1.getClosedLoopError()) < 10) return true;
       //else return false;
     }
 
     private double convertFPStoRPM (double fps){
+        // FT    60 SEC   12 IN   REV                                          REV
+        // --- X ------ X ----- X --------------------------------------- ==>  --------
+        // SEC   MIN      FT      GEAR_REDUCTION * WHEEL_DIAMETER * PI IN      MIN
+        
         return (60 * 12 * fps) / (WHEEL_GEAR_REDUCTION * WHEEL_DIAMETER * Math.PI);
     }
 
     private double convertRPMtoFPS (double rpm){
+        // REV   MIN      WHEEL DIAMETER * GEAR REDUCTION * PI (IN)   FT         FT
+        // --- X ------ X ----------------------------------------- X ----- ==>  --------
+        // MIN   60 SEC   REV                                         12 IN      SEC
+
         double fps = 0; 
-        fps = (rpm * UNITS_PER_ROTATION)/600;
+        // fps = (rpm * UNITS_PER_ROTATION)/600;
+        fps = (rpm * WHEEL_DIAMETER * WHEEL_GEAR_REDUCTION * Math.PI) / (60 * 12);
         return fps;
     }
 
     private double convertFPStoSetPoint (double fps) {
-        return 0;
+        double setPoint = 0;
+        // FT    SEC            12 IN   REV                                       UNITS PER ROTATION      UNITS
+        // --- X ------------ X ----- X --------------------------------------- X ------------------ ==>  --------
+        // SEC   10 (100MSEC)   FT      GEAR_REDUCTION * WHEEL_DIAMETER * PI IN   REV                     100 MSEC
+
+        setPoint = (fps * 12 * UNITS_PER_ROTATION) / (10 * WHEEL_DIAMETER * Math.PI);
+        return setPoint;
+    }
+
+    private double convertRPMtoSetPoint (double rpm) {
+        double setPoint = 0;
+        // REV   MIN      SEC            UNITS PER ROTATION      UNITS
+        // --- X ------ X ------------ X ------------------ ==>  --------
+        // MIN   60 SEC   10 (100MSEC)   REV                     100 MSEC
+
+        setPoint = rpm * UNITS_PER_ROTATION / 600;
+        return setPoint;
     }
 
     private double convertSetPointToFPS (double setPoint) {
-        return 0;
+        // UNITS         10 (100MSEC)   REV                  GEAR REDUCTION * DIAMETER * PI   FT         FT
+        // ---------- X  ------------ X ------------------ X ------------------------------ X ----- ==>  ---
+        // (100 MSEC)    SEC            UNITS PER ROTATION   REV                              12 IN      SEC
+        
+        double fps;
+        fps = (10 * WHEEL_GEAR_REDUCTION * WHEEL_DIAMETER * Math.PI) / (UNITS_PER_ROTATION * 12);
+        
+        return fps;
     }
 
     /* -----------------------------------------------------------------------------------------------
