@@ -47,7 +47,7 @@ public class Drive extends SubsystemBase {
     
     private final double NORMAL_DRIVE_SPEED_FACTOR = 1.0;
     private final double PRECISE_DRIVE_SPEED_FACTOR = 0.6;
-    private final double MAX_STOP_SPEED = .65;
+    private final double MAX_STOP_SPEED = .35;
     
     /**
     *
@@ -122,10 +122,17 @@ public class Drive extends SubsystemBase {
     // Put methods for controlling this subsystem here. Call these from Commands.
 
     public void DriveArcade(double speed, double rotation) {
-        double currentOutput = talonSRXL.get();
+        double currentOutput = talonSRXR.get();
+        SmartDashboard.putNumber("driveSlowSpeed", currentOutput);
+        SmartDashboard.putNumber("driveRequestedSpeed", speed);
+        
         if (currentOutput > speed && currentOutput >= MAX_STOP_SPEED) {            // Moving Forward and want to decrease speed
-            speed = currentOutput - .05;
+       // if (currentOutput >= MAX_STOP_SPEED     &&      currentOutput < speed){\
+
+            speed = currentOutput - .0001;
+
         }
+        SmartDashboard.putNumber("givenSpeed", speed);
 
         driveMain.arcadeDrive(speed, rotation);
         // *** ALLOW DIFFERENTIAL DRIVE TO HANDLE SCALING *** driveMain.arcadeDrive(speed*speedFactor, rotation*speedFactor);
