@@ -122,19 +122,21 @@ public class Drive extends SubsystemBase {
     // Put methods for controlling this subsystem here. Call these from Commands.
 
     public void DriveArcade(double speed, double rotation) {
-        double currentOutput = talonSRXR.get();
+        double adjustedSpeed;
+        double currentOutput;
+
+        adjustedSpeed = speed;       // speed is passed by value and cannot be changed!!!!  Create a local variable instead.
+        currentOutput = talonSRXR.get();
+
+        if (currentOutput > speed && currentOutput >= MAX_STOP_SPEED) {            // Moving Forward and want to decrease speed
+            adjustedSpeed = currentOutput - .0001;
+        }
+
         SmartDashboard.putNumber("driveSlowSpeed", currentOutput);
         SmartDashboard.putNumber("driveRequestedSpeed", speed);
-        
-        if (currentOutput > speed && currentOutput >= MAX_STOP_SPEED) {            // Moving Forward and want to decrease speed
-       // if (currentOutput >= MAX_STOP_SPEED     &&      currentOutput < speed){\
+        SmartDashboard.putNumber("givenSpeed", adjustedSpeed);
 
-            speed = currentOutput - .0001;
-
-        }
-        SmartDashboard.putNumber("givenSpeed", speed);
-
-        driveMain.arcadeDrive(speed, rotation);
+        driveMain.arcadeDrive(adjustedSpeed, rotation);
         // *** ALLOW DIFFERENTIAL DRIVE TO HANDLE SCALING *** driveMain.arcadeDrive(speed*speedFactor, rotation*speedFactor);
     }
 

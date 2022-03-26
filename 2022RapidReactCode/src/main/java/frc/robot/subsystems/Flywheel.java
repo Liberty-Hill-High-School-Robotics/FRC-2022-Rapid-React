@@ -47,7 +47,6 @@ public class Flywheel extends SubsystemBase {
      * Variables for DashBoard PID -- TESTING ONLY
      * -----------------------------------------------------------------------------------------------*/
     // While Velocity is reported in units per 100ms, the input to the VELOCITY PID is a percentage from -100 to 100
-    //private final double MAX_SHOOTER_VELOCITY = (2048 * 6380) / (600) ;//ouput is in units per 100ms. // 21777 units per 100ms
     private final double MAX_SHOOTER_VELOCITY = 200;
     private double CURRENT_SHOOTER_VELOCITY = 0.0;
 
@@ -71,8 +70,13 @@ public class Flywheel extends SubsystemBase {
     private final double WHEEL_GEAR_REDUCTION = 15/24;
     private final double UNITS_PER_ROTATION = 2048;
     private final double MAX_RPM = 6380;
-    private final double LAUNCH_ANGLE = 60;      //change to actuall correct num
-    private final double INITAL_HEIGHT = (37 / 12);      //change to correct num
+    private final double LAUNCH_ANGLE = Math.toRadians(60);      //change to actuall correct num
+    private final double INITAL_HEIGHT = (37 / 12);              //change to correct num
+    private final double MIN_DISTANCE = 61.5;
+    private final double MAX_DISTANCE = 156.9;
+    private final double MIN_UP100MS = 15000;
+    private final double MAX_UP100MS = (2048 * 6380) / (600) ; //ouput is in units per 100ms. // 21777 units per 100ms
+    private final double UP100MS_INCREMENT = 71.038;
 
     private double targetVelocity = 0;              // UNITS?
     private double targetVelocityUnits = 0;
@@ -204,24 +208,38 @@ public class Flywheel extends SubsystemBase {
         Constants.ShootingConstants temp = new Constants.ShootingConstants();
         targetVelocity = 0;
         if (position == Constants.ShootingConstants.ShootingPosition.DISTANCE) {
-            targetVelocity = determinePowerFromDistance();  // RPM
+            targetVelocity = determinePowerFromDistance();  
+            targetVelocityUnits = targetVelocity;
         }
         else {
             targetVelocity = temp.getShootingSpeed(position, Constants.ShootingConstants.SubSystem.FLYWHEEL);  // RPM
+            targetVelocityUnits = convertRPMtoSetPoint(targetVelocity);
         }
-        targetVelocityUnits = convertRPMtoSetPoint(targetVelocity);
+        
         talonFXShooter1.set(ControlMode.Velocity, targetVelocityUnits);
     }
     
     public double determinePowerFromDistance(){ // RETURN RPM
+        double setPoint;
         double Distance = RobotContainer.getInstance().getDistance();
-        double CalculatedVelocity = Math.sqrt((16.087 * Distance * Distance) / ((INITAL_HEIGHT + (Math.tan(LAUNCH_ANGLE) * Distance) - 9.5) * Math.cos(LAUNCH_ANGLE) * Math.cos(LAUNCH_ANGLE) ));
-        double calculatedPower = convertFPStoRPM(CalculatedVelocity);
+        if (Distance <= MAX_DISTANCE){
+            if (Distance >= MIN_DISTANCE){
+                setPoint = ((Distance-MIN_DISTANCE)*UP100MS_INCREMENT) + MIN_UP100MS;
+            }
+            else {
+                setPoint = MIN_UP100MS;
+            }
+        }
+        else {
+            setPoint = MAX_UP100MS;
+        }
+        //double CalculatedVelocity = Math.sqrt((16.087 * Distance * Distance) / ((INITAL_HEIGHT + (Math.tan(LAUNCH_ANGLE) * Distance) - 9.5) * Math.cos(LAUNCH_ANGLE) * Math.cos(LAUNCH_ANGLE) ));
+        //double calculatedPower = convertFPStoRPM(CalculatedVelocity);
 
-        SmartDashboard.putNumber("FLYWHEEL DISTANCE", Distance);
-        SmartDashboard.putNumber("FLYWHEEL VELOCITY (FT/SEC)", CalculatedVelocity);
-        SmartDashboard.putNumber("FLYWHEEL RPM", calculatedPower);
-        SmartDashboard.putNumber("FLYWHEEL UNITS/100MSEC", convertFPStoSetPoint(CalculatedVelocity));
+        //SmartDashboard.putNumber("FLYWHEEL DISTANCE", Distance);
+        //SmartDashboard.putNumber("FLYWHEEL VELOCITY (FT/SEC)", CalculatedVelocity);
+        //SmartDashboard.putNumber("FLYWHEEL RPM", calculatedPower);
+        //SmartDashboard.putNumber("FLYWHEEL UNITS/100MSEC", convertFPStoSetPoint(CalculatedVelocity));
 
         /*
         Constants.ShootingConstants temp = new Constants.ShootingConstants();
@@ -236,7 +254,7 @@ public class Flywheel extends SubsystemBase {
         return calculatedPower;
         */
 
-        return calculatedPower;
+        return setPoint;
     }
 
     public boolean isFlywheelAtVelocity(){
@@ -299,7 +317,7 @@ public class Flywheel extends SubsystemBase {
         // (100 MSEC)    SEC            UNITS PER ROTATION   REV                              12 IN      SEC
         
         double fps;
-        fps = (10 * WHEEL_GEAR_REDUCTION * WHEEL_DIAMETER * Math.PI) / (UNITS_PER_ROTATION * 12);
+        fps = setPoint * (10 * WHEEL_GEAR_REDUCTION * WHEEL_DIAMETER * Math.PI) / (UNITS_PER_ROTATION * 12);
         
         return fps;
     }
