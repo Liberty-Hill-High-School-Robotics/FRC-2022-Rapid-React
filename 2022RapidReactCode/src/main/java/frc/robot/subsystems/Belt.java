@@ -159,6 +159,7 @@ public class Belt extends SubsystemBase {
         ShootingPosition calculatedPosition;
         calculatedPosition = temp.getPositionFromDistance(distance);
         calculatedPower = temp.getShootingSpeed(calculatedPosition, Constants.ShootingConstants.SubSystem.BELT);
+        calculatedPower = 0.6;
         return calculatedPower;
     }
 

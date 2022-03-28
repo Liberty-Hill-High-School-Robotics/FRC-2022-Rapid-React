@@ -131,9 +131,15 @@ public class Drive extends SubsystemBase {
         adjustedSpeed = speed;       // speed is passed by value and cannot be changed!!!!  Create a local variable instead.
         currentOutput = talonSRXR.get();
 
+        SmartDashboard.putBoolean("isWorking", false);
+
+
         if (currentOutput > speed && currentOutput >= MAX_STOP_SPEED) {            // Moving Forward and want to decrease speed
             adjustedSpeed = currentOutput - .0001;
             counter++;
+
+            SmartDashboard.putBoolean("isWorking", true);
+
 
         }
 
