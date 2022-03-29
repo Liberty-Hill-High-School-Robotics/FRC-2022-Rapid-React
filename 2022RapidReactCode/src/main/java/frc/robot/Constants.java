@@ -68,8 +68,10 @@ public class Constants {
             SHOOTfull   (25),
 
             TwoAuton    (26),
+            
+            LowShoot    (27),
 
-            ERROR       (27)
+            ERROR       (28)
 
             ;
 
@@ -135,8 +137,9 @@ public class Constants {
             {0.6, 5800, 0},                   // SHOOTfull   (25),
 
             {0.7,6380, 0},                  // TwoAuton    (26),
+            {0.6,1612,0},                    // low shoot (27)
 
-            {0.0, 4687.5, 0},                      // ERROR       (27),
+            {0.0, 4687.5, 0},                      // ERROR       (28),
 
         };
 
