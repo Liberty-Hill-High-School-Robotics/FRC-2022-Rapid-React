@@ -146,7 +146,8 @@ public class Belt extends SubsystemBase {
         else {
             percentOutput = temp.getShootingSpeed(position, Constants.ShootingConstants.SubSystem.BELT);
         }
-        victorSPXBelt.set(percentOutput);
+        victorSPXBelt.set(0.6);
+        //victorSPXBelt.set(percentOutput); change becasue we always want it to shoot 0.6
     }
     
     // ***********************************************************************************************
