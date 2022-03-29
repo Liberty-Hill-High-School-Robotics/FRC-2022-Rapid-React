@@ -51,7 +51,7 @@ public class TwoBallAuton extends SequentialCommandGroup {
           //  new TurretAutoAim(turret),
           //  new TurretAutoCenter(turret), 
            parallel(
-            new IntakeTimed(2.55, intake),
+            new IntakeTimed(2.6, intake),
             new DriveTime(2.35,.5, 0, drive)
             ),
            // new IntakeStop(intake),
