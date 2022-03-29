@@ -303,7 +303,7 @@ final JoystickButton LOWShootButton = new JoystickButton(operatorJoystick, XboxC
 LOWShootButton.whileHeld(new LOWShoot( m_flywheel, m_belt ) ,true);
     SmartDashboard.putData("LOWShootButton",new LOWShoot( m_flywheel, m_belt ) );
 
-final JoystickButton LOWShootStopButton = new JoystickButton(operatorJoystick, XboxController.Button.kRightStick.value);        
+final JoystickButton LOWShootStopButton = new JoystickButton(operatorJoystick, XboxController.Button.kX.value);        
 LOWShootStopButton.whenReleased(new GroupStopAllShooterMotors( m_flywheel, m_rearShooter, m_belt ) ,true);
 
 //final JoystickButton limelightOnButton = new JoystickButton(driverJoystick, 1);        

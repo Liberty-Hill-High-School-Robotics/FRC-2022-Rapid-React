@@ -47,7 +47,7 @@ public class LOWShoot extends SequentialCommandGroup {
             //new TurretAutoCenter(turret),  
             new LimeLightLEDOn(),                                                         // AIM
             new FlywheelUpSpeed(flywheel, Constants.ShootingConstants.ShootingPosition.LowShoot),  
-            new WaitCommand(1),       // Flywheel (TARMAC)
+            new WaitCommand(1),       
             new BeltUpSpeed(belt, Constants.ShootingConstants.ShootingPosition.LowShoot)                 // SHOOT BALLS
 
 
