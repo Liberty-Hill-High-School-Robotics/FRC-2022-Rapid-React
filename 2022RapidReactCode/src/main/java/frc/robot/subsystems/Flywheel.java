@@ -73,10 +73,10 @@ public class Flywheel extends SubsystemBase {
     private final double LAUNCH_ANGLE = Math.toRadians(60);      //change to actuall correct num
     private final double INITAL_HEIGHT = (37 / 12);              //change to correct num
     private final double MIN_DISTANCE = 61.5;
-    private final double MAX_DISTANCE = 156.9;
+    private final double MAX_DISTANCE = 170;
     private final double MIN_UP100MS = 15000;
     private final double MAX_UP100MS = (2048 * 6380) / (600) ; //ouput is in units per 100ms. // 21777 units per 100ms
-    private final double UP100MS_INCREMENT = 71.038;
+    private final double UP100MS_INCREMENT = 62.461; // 71.038 to
 
     private double targetVelocity = 0;              // UNITS?
     private double targetVelocityUnits = 0;

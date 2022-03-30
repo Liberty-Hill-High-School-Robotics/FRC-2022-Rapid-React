@@ -172,13 +172,13 @@ public class Constants {
             //else if (distance < 95) distancePosition = ShootingPosition.TEST3b;
             //else if (distance < 120) distancePosition = ShootingPosition.TEST3b;
 
-            if (distance < 55) distancePosition = ShootingPosition.ERROR;
+            if (distance < 55) distancePosition = ShootingPosition.LowShoot;
             //else if (distance < 90) distancePosition = ShootingPosition.SHOOThalf;
             //else if (distance < 80) distancePosition = ShootingPosition.SHOOThalf;
             //else if (distance < 85) distancePosition = ShootingPosition.SHOOThalf;
             else if (distance < 105) distancePosition = ShootingPosition.SHOOThalf;
             else if (distance < 130) distancePosition = ShootingPosition.SHOOTfull;
-            else distancePosition = ShootingPosition.ERROR;
+            else distancePosition = ShootingPosition.SHOOTfull;
 
             return distancePosition;
         }
