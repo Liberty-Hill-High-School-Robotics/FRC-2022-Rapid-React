@@ -45,8 +45,8 @@ public class Drive extends SubsystemBase {
 
     public Boolean PreciseMode;
     
-    private final double NORMAL_DRIVE_SPEED_FACTOR = 1.0;
-    private final double PRECISE_DRIVE_SPEED_FACTOR = 0.6;
+    private final double NORMAL_DRIVE_SPEED_FACTOR = 0.75;
+    private final double PRECISE_DRIVE_SPEED_FACTOR = 0.4;
     private final double MAX_STOP_SPEED = .35;
 
     private int counter = 0;
