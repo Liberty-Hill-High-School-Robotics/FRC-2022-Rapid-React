@@ -52,7 +52,7 @@ public class TwoBallAuton extends SequentialCommandGroup {
           //  new TurretAutoCenter(turret), 
            parallel(
             new IntakeTimed(2.6, intake),
-            new DriveTime(2.35, 1, 0, drive) //power was .5, changed to 1
+            new DriveTime(2.35, .5, 0, drive) //power was .5, changed to 1
             ),
            // new IntakeStop(intake),
             new LimeLightLEDOn(),  
@@ -73,7 +73,7 @@ public class TwoBallAuton extends SequentialCommandGroup {
                 //new RearShooterStop(rearShooter),
                 new BeltStop(belt)
             ),   
-            new DriveTime(2, -1, 0, drive)                                           
+            new DriveTime(2.35, -.5, 0, drive)                                           
                                                                           // BACK UP OUT OF TARMAC
         );
     }
