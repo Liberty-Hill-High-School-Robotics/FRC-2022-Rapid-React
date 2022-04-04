@@ -306,6 +306,12 @@ LOWShootButton.whileHeld(new LOWShoot( m_flywheel, m_belt ) ,true);
 final JoystickButton LOWShootStopButton = new JoystickButton(operatorJoystick, XboxController.Button.kX.value);        
 LOWShootStopButton.whenReleased(new GroupStopAllShooterMotors( m_flywheel, m_rearShooter, m_belt ) ,true);
 
+final JoystickButton TurretRight = new JoystickButton(operatorJoystick, XboxController.Button.kStart.value);
+TurretRight.whenHeld(new TurretRight(m_turret),true);
+
+final JoystickButton TurretLeft = new JoystickButton(operatorJoystick, XboxController.Button.kBack.value);
+TurretLeft.whenHeld(new TurretLeft(m_turret),true);
+
 //final JoystickButton limelightOnButton = new JoystickButton(driverJoystick, 1);        
 //limelightOnButton.whenPressed(new LimeLightLEDOn() ,true);
     //SmartDashboard.putData("limelightOnButton",new LimeLightLEDOn() );
@@ -313,6 +319,7 @@ LOWShootStopButton.whenReleased(new GroupStopAllShooterMotors( m_flywheel, m_rea
 final JoystickButton autoCenterButton = new JoystickButton(driverJoystick, 1);        
 autoCenterButton.whenPressed(new Aim(m_turret) ,true);
     SmartDashboard.putData("autoCenterButton",new Aim(m_turret) );
+
 
 
 
