@@ -98,9 +98,9 @@ public class Flywheel extends SubsystemBase {
         allConfigs.forwardSoftLimitEnable = false;           // Rotation to Left
         //allConfigs.forwardSoftLimitThreshold = 300;
         
-        talonFXShooter1.config_kP(0, .0001);
+        talonFXShooter1.config_kP(0, .0001); //0.0001 - 0.00069
         talonFXShooter1.config_kI(0, 0);
-        talonFXShooter1.config_kF(0, 0.046);
+        talonFXShooter1.config_kF(0, 0.046); //.046 - .06
         talonFXShooter1.config_kD(0, 0);
 
         talonFXShooter2 = new WPI_TalonFX(12);
