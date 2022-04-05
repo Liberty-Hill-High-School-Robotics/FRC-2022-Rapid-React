@@ -54,8 +54,8 @@ public class ShootByLevel extends SequentialCommandGroup {
             new FlywheelUpSpeed(flywheel, position),                // Flywheel
             new RearFlywheelUpSpeed(rearShooter, position)          // RearFlywheel
             ),
-            new BeltShootOne(belt, flywheel, rearShooter, position) // SHOOT BALLS
-
+            //new BeltShootOne(belt, flywheel, rearShooter, position) // SHOOT BALLS
+            new BeltUpSpeed(belt, Constants.ShootingConstants.ShootingPosition.DISTANCE)
 
 
 
