@@ -58,7 +58,7 @@ public class TwoBallAuton extends SequentialCommandGroup {
             new LimeLightLEDOn(),  
             new WaitCommand(1),
            // new DriveRotateToTarget(drive),
-            new DriveTime(.575, 0, 1, drive), //.5 to .55 to .575
+            new DriveTime(.6, 0, 1, drive), //.5 to .55 to .575 to .6
             new WaitCommand(.5),
             new TurretAutoCenter(turret),                                                    // AIM
             //new WaitCommand(5),                                                                           // GET THE SHOOTER UP TO SPEED
