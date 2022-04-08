@@ -11,6 +11,7 @@
 // ROBOTBUILDER TYPE: SequentialCommandGroup.
 
 package frc.robot.commands;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
@@ -51,16 +52,21 @@ public class TwoBallAuton extends SequentialCommandGroup {
           //  new TurretAutoAim(turret),
           //  new TurretAutoCenter(turret), 
            parallel(
-            new IntakeTimed(2.6, intake),
-            new DriveTime(2.4, .6, 0, drive) //power was .5, changed to 1
+            new IntakeTimed(2.7, intake),
+            new DriveTime(2.45, .6, 0, drive) //power was .5, changed to 1 to 2.45 time back to .245
             ),
            // new IntakeStop(intake),
             new LimeLightLEDOn(),  
             new WaitCommand(1),
            // new DriveRotateToTarget(drive),
-            new DriveTime(.6, 0, 1, drive), //.5 to .55 to .575 to .6
+            new DriveTime(.58, 0, 1, drive), //.5 to .55 to .575 to .6 back to .575 to .58
             new WaitCommand(.5),
-            new TurretAutoCenter(turret),                                                    // AIM
+            new TurretAutoCenter(turret),
+            //ParallelRaceGroup(
+            //    new TurretAutoCenter(turret),
+            //    new WaitCommand(1.25)
+           // ),
+                                                                // AIM
             //new WaitCommand(5),                                                                           // GET THE SHOOTER UP TO SPEED
             new FlywheelUpSpeed(flywheel, Constants.ShootingConstants.ShootingPosition.DISTANCE),         // Flywheel (TARMAC)
            // new RearFlywheelUpSpeed(rearShooter, Constants.ShootingConstants.ShootingPosition.TARMAC)   // RearFlywheel (TARMAC)
