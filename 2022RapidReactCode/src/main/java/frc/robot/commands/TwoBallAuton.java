@@ -61,7 +61,10 @@ public class TwoBallAuton extends SequentialCommandGroup {
            // new DriveRotateToTarget(drive),
             new DriveTime(.58, 0, 1, drive), //.5 to .55 to .575 to .6 back to .575 to .58
             new WaitCommand(.5),
+            race(
             new TurretAutoCenter(turret),
+            new WaitCommand(.5) // .5 - .75
+            ),
             //ParallelRaceGroup(
             //    new TurretAutoCenter(turret),
             //    new WaitCommand(1.25)
