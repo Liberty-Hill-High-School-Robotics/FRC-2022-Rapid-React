@@ -35,6 +35,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 public class Drive extends SubsystemBase {
     private final double WHEEL_DIAMETER = 6.0;
     private final double TICKS_PER_ROTATION = 4096;
+    
 
     private WPI_TalonSRX talonSRXR;
     private WPI_TalonSRX talonSRXL;
@@ -58,24 +59,24 @@ public class Drive extends SubsystemBase {
         talonSRXR = new WPI_TalonSRX(4);
         talonSRXR.configFactoryDefault();
         talonSRXR.setInverted(true); 
-        talonSRXR.setNeutralMode(NeutralMode.Brake);
+        talonSRXR.setNeutralMode(NeutralMode.Coast);
 
         victorSPXR = new WPI_VictorSPX(5);
         victorSPXR.configFactoryDefault();
         victorSPXR.follow(talonSRXR);
         victorSPXR.setInverted(InvertType.FollowMaster);
-        victorSPXR.setNeutralMode(NeutralMode.Brake);
+        victorSPXR.setNeutralMode(NeutralMode.Coast);
     
         talonSRXL = new WPI_TalonSRX(6);
         talonSRXL.configFactoryDefault();
         talonSRXL.setInverted(false);
-        talonSRXL.setNeutralMode(NeutralMode.Brake);
+        talonSRXL.setNeutralMode(NeutralMode.Coast);
 
         victorSPXL = new WPI_VictorSPX(7);
         victorSPXL.configFactoryDefault();
         victorSPXL.follow(talonSRXL);
         victorSPXL.setInverted(InvertType.FollowMaster);
-        victorSPXL.setNeutralMode(NeutralMode.Brake);
+        victorSPXL.setNeutralMode(NeutralMode.Coast);
  
         driveMain = new DifferentialDrive(talonSRXL, talonSRXR);
         addChild("driveMain",driveMain);

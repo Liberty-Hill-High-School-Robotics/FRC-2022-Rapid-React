@@ -58,7 +58,7 @@ public class DriveArcade extends CommandBase {
         if(Math.abs(-RobotContainer.getInstance().getdriverJoystick().getY()) < .1 ){
             m_drive.DriveArcade(-RobotContainer.getInstance().getdriverJoystick().getY(),RobotContainer.getInstance().getdriverJoystick().getX() * 0.5);
         } else {
-        m_drive.DriveArcade(-RobotContainer.getInstance().getdriverJoystick().getY(),RobotContainer.getInstance().getdriverJoystick().getX());
+        m_drive.DriveArcade(-RobotContainer.getInstance().getdriverJoystick().getY(),RobotContainer.getInstance().getdriverJoystick().getX() * 0.5);
         }
 
 
